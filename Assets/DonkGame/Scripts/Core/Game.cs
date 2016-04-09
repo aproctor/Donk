@@ -24,6 +24,13 @@ public static class Game {
         }
     }
 
+    public static int NumPlayers {
+        get {
+            //TODO move this to game round when it's ready
+            return Config.maxPlayers;
+        }
+    }
+
     public static void LoadLevel(Scenes scene) {
         SceneManager.LoadScene(scene.ToString());
     }
