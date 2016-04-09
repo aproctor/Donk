@@ -1,7 +1,7 @@
 Capture the Flag
 
 
-
+```
 
 =============
 Class Model
@@ -69,5 +69,4 @@ GameConfig
  - based on environment
  - holds other configs
 
-
-
+```
