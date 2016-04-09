@@ -5,8 +5,10 @@ using System.Collections;
 public static class Game {
 
     public enum Scenes {
-        Startup,
-        Game
+        //Enum values corespond to build load order
+        Startup=0,
+        Game=1,
+        Environment=2
     }
 
     private static GameConfig _config = null;
@@ -32,7 +34,7 @@ public static class Game {
     }
 
     public static void LoadLevel(Scenes scene) {
-        SceneManager.LoadScene(scene.ToString());
+        SceneManager.LoadScene((int)scene);
     }
 
     private static void LoadConfig() {
