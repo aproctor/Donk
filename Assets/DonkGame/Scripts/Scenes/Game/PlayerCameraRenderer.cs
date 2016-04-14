@@ -5,13 +5,7 @@ using System.Collections;
 [ExecuteInEditMode]
 public class PlayerCameraRenderer : MonoBehaviour {
 
-    public enum CameraMode {
-        Single,
-        SideBySide, //2 screens split vertically
-        TwoStacked, //2 screens split horizontally 
-        TwoByTwo
-    }
-    public CameraMode mode = CameraMode.TwoByTwo;
+    public Game.CameraMode mode = Game.CameraMode.TwoByTwo;
 
     [SerializeField]
     private RawImage[] playerCameras;
@@ -34,12 +28,12 @@ public class PlayerCameraRenderer : MonoBehaviour {
         int w = Screen.width;
         int h = Screen.height;
 
-        if (this.mode == CameraMode.TwoByTwo) {
+        if (this.mode == Game.CameraMode.TwoByTwo) {
             w = (int)(w / 2);
             h = (int)(h / 2);
-        } else if (this.mode == CameraMode.SideBySide) {
+        } else if (this.mode == Game.CameraMode.SideBySide) {
             w = (int)(w / 2);
-        } else if (this.mode == CameraMode.SideBySide) {
+        } else if (this.mode == Game.CameraMode.SideBySide) {
             h = (int)(h / 2);
         }
 

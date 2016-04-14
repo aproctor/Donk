@@ -11,6 +11,13 @@ public static class Game {
         Environment=2
     }
 
+    public enum CameraMode {
+        Single,
+        SideBySide, //2 screens split vertically
+        TwoStacked, //2 screens split horizontally 
+        TwoByTwo
+    }
+
     private static GameConfig _config = null;
     public static GameConfig Config {
         get {
