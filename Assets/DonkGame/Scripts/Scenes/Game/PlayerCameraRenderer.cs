@@ -5,6 +5,14 @@ using System.Collections;
 [ExecuteInEditMode]
 public class PlayerCameraRenderer : MonoBehaviour {
 
+    public enum CameraMode {
+        Single,
+        SideBySide, //2 screens split vertically
+        TwoStacked, //2 screens split horizontally 
+        TwoByTwo
+    }
+    public CameraMode mode = CameraMode.TwoByTwo;
+
     [SerializeField]
     private RawImage[] playerCameras;
 
@@ -23,9 +31,17 @@ public class PlayerCameraRenderer : MonoBehaviour {
 	}
 
     private void SetupPlayerCameras() {
-        //2x2 Layout, may want to abstract later for more screen
-        int w = (int)(Screen.width / 2);
-        int h = (int)(Screen.height / 2);
+        int w = Screen.width;
+        int h = Screen.height;
+
+        if (this.mode == CameraMode.TwoByTwo) {
+            w = (int)(w / 2);
+            h = (int)(h / 2);
+        } else if (this.mode == CameraMode.SideBySide) {
+            w = (int)(w / 2);
+        } else if (this.mode == CameraMode.SideBySide) {
+            h = (int)(h / 2);
+        }
 
         for (int i = 0; i < playerCameras.Length; i++) {
             this.playerCameras[i].rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, w);
