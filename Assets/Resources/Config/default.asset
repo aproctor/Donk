@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Name: default
   m_EditorClassIdentifier: 
   colors: {fileID: 11400000, guid: 89cce23330b9e294f8fcfc3693af3792, type: 2}
+  cameras:
+  - {fileID: 11400000, guid: 877d4b56e7d6b1e45bde33e1b43aa03e, type: 2}
+  - {fileID: 11400000, guid: 747923cf24517ab4d994b1b5b4a117d4, type: 2}
   maxPlayers: 4
