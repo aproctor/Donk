@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7aab2afff10f341a8c473808a566fa, type: 3}
+  m_Name: 2x2_camera_config
+  m_EditorClassIdentifier: 
+  mode: 3
+  cameraPrefabs:
+  - {fileID: 166202, guid: d0fe7ce7f05658f4abe8eb384e538321, type: 2}
+  - {fileID: 166202, guid: fd26113a6ae4ad643aa96478da099196, type: 2}
+  - {fileID: 166202, guid: c7a7516df75912a49bce5ab55fd45881, type: 2}
+  - {fileID: 166202, guid: c2b54cde365dcdf49bd5cff8280be7e4, type: 2}
+  uiPrefab: {fileID: 102102, guid: 28d505b087d7bd643b7b422ed07fe555, type: 2}

@@ -3,6 +3,14 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GameMaster : MonoBehaviour {
+    
+    [Header("Object Links")]
+    [SerializeField]
+    private GameObject ui;
+
+    //TODO spawn these dynamically
+    public GameObject[] teamObjs;
+    public GameObject[] playerObjs;
 
 	// Use this for initialization
 	void Start () {
@@ -14,6 +22,61 @@ public class GameMaster : MonoBehaviour {
             Debug.Log("Loading Environment");
             SceneManager.LoadScene((int)Game.Scenes.Environment, LoadSceneMode.Additive);
         }
+        
 	}
+
+    private void SetupCameras(Game.CameraMode cameraMode) {
+        CameraConfig cameraConfig = null;
+        for (int i = 0; i < Game.Config.cameras.Length; i++) {
+            if (Game.Config.cameras[i].mode == cameraMode) {
+                cameraConfig = Game.Config.cameras[i];
+                break;
+            }
+        }
+
+        if (cameraConfig == null) {
+            Debug.LogError("Unable to find config for camera mode <" + cameraMode.ToString() + ">");
+        } else {
+            //Spawn cameras based on mode
+            if (cameraMode == Game.CameraMode.SideBySide || cameraMode == Game.CameraMode.TwoStacked) {
+                //Add a camera to each team
+                SetupFollowCam(cameraConfig.cameraPrefabs[0], teamObjs[0], playerObjs[0], playerObjs[1]);
+                SetupFollowCam(cameraConfig.cameraPrefabs[1], teamObjs[1], playerObjs[2], playerObjs[3]);
+            } else if (cameraMode == Game.CameraMode.TwoByTwo) {
+                //TODO add a camera to each player
+                for (int i = 0; i < cameraConfig.cameraPrefabs.Length; i++) {
+                    ((GameObject)GameObject.Instantiate(cameraConfig.cameraPrefabs[i])).transform.parent = playerObjs[i].transform;
+                }
+            } else if (cameraMode == Game.CameraMode.Single) {
+                //TODO add first camera prefab to current player?
+                Debug.LogError("Unimplemented Camera Mode");
+            }
+
+            //Spawn PiP UI
+            SetupPipUI(cameraConfig.uiPrefab);
+        }
+    }
+
+    private void SetupFollowCam(GameObject prefab, GameObject team, GameObject player1, GameObject player2) {
+        GameObject newCamera = (GameObject)GameObject.Instantiate(prefab);
+        newCamera.transform.SetParent(team.transform);
+        FollowerCamera followerCamera = newCamera.GetComponent<FollowerCamera>();
+        followerCamera.player1 = player1.transform;
+        followerCamera.player2 = player2.transform;
+    }
+
+    private void SetupPipUI(GameObject prefab) {
+        GameObject pipUI = (GameObject)GameObject.Instantiate(prefab);        
+        RectTransform rectTransform = pipUI.GetComponent<RectTransform>();
+        rectTransform.SetParent(this.ui.GetComponent<RectTransform>());
+        rectTransform.offsetMin = Vector2.zero;
+        rectTransform.offsetMax = Vector2.one;
+        /*RectOffset rectOffset = pipUI.GetComponent<RectOffset>();
+        rectOffset.top = 0f;
+        rectOffset.bottom 0f;
+        rectOffset.left = 0f;
+        rectOffset.right = 0f;*/
+        
+    }
 	
 }
