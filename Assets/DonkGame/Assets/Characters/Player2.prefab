@@ -129,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172322}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40, y: 0, z: -40}
+  m_LocalPosition: {x: -78.5, y: 0, z: -102.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 478000}
@@ -286,6 +286,7 @@ MonoBehaviour:
   fireSensitivity: 0.1
   speed: 100
   playerNumber: 2
+  model: {fileID: 181464}
   turret: {fileID: 157340}
 --- !u!124 &12418784
 Behaviour:

@@ -14,11 +14,14 @@ public class PlayerController : MonoBehaviour {
 
     private Vector3 aimDirection = Vector3.zero;
 
+    [Header("Object Links")]
+    [SerializeField]
+    private GameObject model;
     [SerializeField]
     private GameObject turret;
 
     void Start() {
-        Renderer r = this.GetComponent<Renderer>();
+        Renderer r = model.GetComponent<Renderer>();
         r.material = Instantiate<Material>(r.material);
 
         r.material.color = Game.Config.colors.playerColors[playerNumber - 1];
