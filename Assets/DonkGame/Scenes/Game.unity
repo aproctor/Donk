@@ -725,19 +725,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400772, guid: e6954adaeded20c428378c0fca08a6c0, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 499
+      value: 403
       objectReference: {fileID: 0}
     - target: {fileID: 22400772, guid: e6954adaeded20c428378c0fca08a6c0, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 544
+      value: 440
       objectReference: {fileID: 0}
     - target: {fileID: 22404448, guid: e6954adaeded20c428378c0fca08a6c0, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 499
+      value: 403
       objectReference: {fileID: 0}
     - target: {fileID: 22404448, guid: e6954adaeded20c428378c0fca08a6c0, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 544
+      value: 440
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6954adaeded20c428378c0fca08a6c0, type: 2}
@@ -793,10 +793,6 @@ Prefab:
       propertyPath: player2
       value: 
       objectReference: {fileID: 666122895}
-    - target: {fileID: 11441214, guid: e4d9c1963d95b3343864c6809e6bf42d, type: 2}
-      propertyPath: distanceMargin
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e4d9c1963d95b3343864c6809e6bf42d, type: 2}
   m_IsPrefabParent: 0
@@ -854,10 +850,6 @@ Prefab:
     - target: {fileID: 153770, guid: 02c62653b6ccf244c8e86c9311a0edde, type: 2}
       propertyPath: m_Name
       value: 2x1_LeftCameraRig
-      objectReference: {fileID: 0}
-    - target: {fileID: 11439606, guid: 02c62653b6ccf244c8e86c9311a0edde, type: 2}
-      propertyPath: distanceMargin
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 02c62653b6ccf244c8e86c9311a0edde, type: 2}

@@ -2,7 +2,7 @@
  * Script to move camera to middle point between 2 objects.
  * TODO abstract this to follow an arbitrary number of objects
  * 
- * Copied from http://stackoverflow.com/questions/22015697/how-to-keep-2-objects-in-view-at-all-time-by-scaling-the-field-of-view-or-zy
+ * Adapted from http://stackoverflow.com/questions/22015697/how-to-keep-2-objects-in-view-at-all-time-by-scaling-the-field-of-view-or-zy
  */
 using UnityEngine;
 using System.Collections;
@@ -26,15 +26,8 @@ public class FollowerCameraRig : MonoBehaviour {
     private float fov;
     private float tanFov;
 
-
-    private Vector3 initialPosition = Vector3.zero;
-    private Quaternion initialRotation = Quaternion.identity;
-
-
-
+   
     void Start() {
-        this.initialRotation = this.transform.localRotation;
-        this.initialPosition = this.transform.position;
 
         if (this.cameraMode == Game.CameraMode.SideBySide) {
             aspectRatio = ((float)Screen.width / 2) / Screen.height;
@@ -49,18 +42,16 @@ public class FollowerCameraRig : MonoBehaviour {
         // Find the middle point between players.
         Vector3 vectorBetweenPlayers = player2.position - player1.position;
         middlePoint = player1.position + 0.5f * vectorBetweenPlayers;
-        this.transform.position = middlePoint;
-
+        
         // Calculate the new distance.
         distanceBetweenPlayers = vectorBetweenPlayers.magnitude;
         cameraDistance = ((distanceBetweenPlayers / 2.0f + distanceMargin)/ aspectRatio) / tanFov;
 
+        //Set the Rig to the middlepoint
+        this.transform.position = middlePoint;
+
+        //Move the camera backwards away from the middlepoint
         followCam.transform.localPosition = new Vector3(0f, 0f, -cameraDistance);
-
-        // Set camera to new position.
-        //Vector3 dir = (followCam.transform.position - middlePoint).normalized;
-        //followCam.transform.position = middlePoint + dir * (cameraDistance + distanceMargin);
-
     }
 
     void OnDrawGizmos() {
