@@ -26,8 +26,15 @@ public class FollowerCamera : MonoBehaviour {
     private float tanFov;
 
 
+    private Vector3 initialPosition = Vector3.zero;
+    private Quaternion initialRotation = Quaternion.identity;
+
+
 
     void Start() {
+        this.initialRotation = this.transform.localRotation;
+        this.initialPosition = this.transform.position;
+
         if (this.cameraMode == Game.CameraMode.SideBySide) {
             aspectRatio = ((float)Screen.width / 2) / Screen.height;
         } else {
