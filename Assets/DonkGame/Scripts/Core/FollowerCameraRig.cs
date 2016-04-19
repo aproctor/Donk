@@ -17,6 +17,8 @@ public class FollowerCameraRig : MonoBehaviour {
     public Game.CameraMode cameraMode = Game.CameraMode.SideBySide;
 
     public float distanceMargin = 1.0f;
+    public float minimumDistance = 20f;
+    public float maximumDistance = 200f;
 
     private Vector3 middlePoint;
     private float distanceFromMiddlePoint;
@@ -46,6 +48,7 @@ public class FollowerCameraRig : MonoBehaviour {
         // Calculate the new distance.
         distanceBetweenPlayers = vectorBetweenPlayers.magnitude;
         cameraDistance = ((distanceBetweenPlayers / 2.0f + distanceMargin)/ aspectRatio) / tanFov;
+        cameraDistance = Mathf.Clamp(cameraDistance, this.minimumDistance, this.maximumDistance);
 
         //Set the Rig to the middlepoint
         this.transform.position = middlePoint;
