@@ -10,4 +10,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/DonkGame/Scenes/Game.unity
   - enabled: 1
-    path: Assets/DonkGame/Scenes/Game-Environment.unity
+    path: Assets/DonkGame/Scenes/levels/ForestEnvironment.unity

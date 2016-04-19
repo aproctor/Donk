@@ -15,4 +15,6 @@ MonoBehaviour:
   cameras:
   - {fileID: 11400000, guid: 877d4b56e7d6b1e45bde33e1b43aa03e, type: 2}
   - {fileID: 11400000, guid: 747923cf24517ab4d994b1b5b4a117d4, type: 2}
+  modes:
+  - {fileID: 11400000, guid: 5b54b7f396d41da479bfe5e3ec20e7c5, type: 2}
   maxPlayers: 4

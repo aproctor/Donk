@@ -10,7 +10,8 @@ public class Startup : MonoBehaviour {
 
     void Update() {
         if (Input.anyKeyDown) {
-            Game.LoadLevel(Game.Scenes.Game);
+            //TODO level select in start menus
+            Game.StartGame(Game.Config.modes[0]);
         }
     }
 }

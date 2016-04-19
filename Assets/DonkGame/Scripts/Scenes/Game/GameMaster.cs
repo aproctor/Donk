@@ -16,14 +16,24 @@ public class GameMaster : MonoBehaviour {
 	void Start () {
         Game.Initialize();
 
-        //Additivly load the environment if not found
-        //Not sure if I like this, but just starting to play with multi-scene editing
-        if (GameObject.Find("Game-Environment") == null) {
-            Debug.Log("Loading Environment");
-            SceneManager.LoadScene((int)Game.Scenes.Environment, LoadSceneMode.Additive);
+        if (Game.round == null) {
+            LoadGameDefaults();
         }
-        
+
+        for(int i = 0; i < Game.round.mode.levelScenes.Length; i++) {   
+#if UNITY_EDITOR
+            //For ease of development, scenes that are loaded additively might have to be disposed
+            //This apparently works with unsaved scenes, which is pretty awesome.
+            SceneManager.UnloadScene((int)Game.round.mode.levelScenes[i]);
+#endif
+            SceneManager.LoadScene((int)Game.round.mode.levelScenes[i], LoadSceneMode.Additive);
+        }     
 	}
+
+    private void LoadGameDefaults() {
+        Debug.LogWarning("Loading Game Defaults, this should have been passed by the menu scene");
+        Game.round = new GameRound(Game.Config.modes[0]);
+    }
 
     private void SetupCameras(Game.CameraMode cameraMode) {
         CameraConfig cameraConfig = null;

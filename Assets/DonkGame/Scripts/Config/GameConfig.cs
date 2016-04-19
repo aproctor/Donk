@@ -7,6 +7,7 @@ public class GameConfig : ScriptableObject {
     #region external_configs
     public ColorConfig colors;
     public CameraConfig[] cameras;
+    public GameMode[] modes;
     #endregion
 
 

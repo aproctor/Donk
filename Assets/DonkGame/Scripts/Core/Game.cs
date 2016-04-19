@@ -4,11 +4,13 @@ using System.Collections;
 
 public static class Game {
 
+    public static GameRound round = null;
+
     public enum Scenes {
         //Enum values corespond to build load order
         Startup=0,
         Game=1,
-        Environment=2
+        ForestEnvironment = 2
     }
 
     public enum CameraMode {
@@ -40,8 +42,13 @@ public static class Game {
         }
     }
 
+    public static void StartGame(GameMode mode) {
+        round = new GameRound(mode);
+        LoadLevel(Game.Scenes.Game);
+    }
+
     public static void LoadLevel(Scenes scene) {
-        SceneManager.LoadScene((int)scene);
+        SceneManager.LoadScene((int)scene);        
     }
 
     private static void LoadConfig() {
