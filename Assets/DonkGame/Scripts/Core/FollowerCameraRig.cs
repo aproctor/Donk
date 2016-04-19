@@ -41,27 +41,18 @@ public class FollowerCameraRig : MonoBehaviour {
 
     void Update() {
         if (players.Length > 0) {
-            float minX = players[0].position.x;
-            float maxX = players[0].position.x;
-
-            float playerFactor = 1f / players.Length;
-            middlePoint = Vector3.zero;
+            Bounds bounds = new Bounds(players[0].position, Vector3.zero);
             for(int i = 0; i < players.Length; i++) {
-                if (players[i].position.x < minX) {
-                    minX = players[i].position.x;
-                }
-                if (players[i].position.x > maxX) {
-                    maxX = players[i].position.x;
-                }
-                middlePoint += players[i].position * playerFactor;
-            }
+                bounds.Encapsulate(players[i].position);
+            }            
 
             //Set the Rig to the middlepoint
+            middlePoint = bounds.center;
             this.transform.position = middlePoint;
 
             // Calculate the new camera distance.
-            distanceBetweenPlayers = maxX - minX;
-            cameraDistance = ((distanceBetweenPlayers / 2.0f + distanceMargin) / aspectRatio) / tanFov;
+            distanceBetweenPlayers = Mathf.Max(bounds.size.x, (bounds.size.z * aspectRatio));
+            cameraDistance = ((distanceBetweenPlayers / 2.0f + distanceMargin)) / tanFov;
             cameraDistance = Mathf.Clamp(cameraDistance, this.minimumDistance, this.maximumDistance);
 
             //Move the camera backwards away from the middlepoint
