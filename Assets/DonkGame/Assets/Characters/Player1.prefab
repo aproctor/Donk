@@ -93,7 +93,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100.1, y: 0, z: -90.8}
+  m_LocalPosition: {x: -94.2, y: 0, z: -13.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 485900}
@@ -144,8 +144,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 156208}
-  m_LocalRotation: {x: 0, y: 0, z: 0.70566756, w: 0.7085432}
-  m_LocalPosition: {x: 0.589, y: 0.762, z: 0}
+  m_LocalRotation: {x: -0.49994346, y: -0.4979144, z: 0.5000478, w: 0.5020857}
+  m_LocalPosition: {x: 0, y: 0.765, z: 0.723}
   m_LocalScale: {x: 0.526863, y: 0.526863, z: 0.526863}
   m_Children: []
   m_Father: {fileID: 485900}
@@ -311,7 +311,7 @@ MonoBehaviour:
   fireAxisHorizontal: RightStickH1
   fireAxisVertical: RightStickV1
   fireSensitivity: 0.1
-  speed: 30
+  speed: 12
   playerNumber: 1
   model: {fileID: 186334}
   turret: {fileID: 182394}

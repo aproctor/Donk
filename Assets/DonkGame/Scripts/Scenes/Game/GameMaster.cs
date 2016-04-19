@@ -20,21 +20,42 @@ public class GameMaster : MonoBehaviour {
             LoadGameDefaults();
         }
 
-        for(int i = 0; i < Game.round.mode.levelScenes.Length; i++) {   
+        LoadLevels();
+
+
+        //TODO Spawn Players and setup input devices
+
+	}
+
+    private void LoadGameDefaults() {
+        Debug.LogWarning("Loading Game Defaults, this should have been setup by the menu scene");
+        Game.round = new GameRound(Game.Config.modes[0]);
+    }
+
+    /**
+     * Based on the game round level info, load up the required scenes
+     */
+    private void LoadLevels() {
+        for (int i = 0; i < Game.round.mode.levelScenes.Length; i++) {
 #if UNITY_EDITOR
             //For ease of development, scenes that are loaded additively might have to be disposed
             //This apparently works with unsaved scenes, which is pretty awesome.
             SceneManager.UnloadScene((int)Game.round.mode.levelScenes[i]);
 #endif
             SceneManager.LoadScene((int)Game.round.mode.levelScenes[i], LoadSceneMode.Additive);
-        }     
-	}
-
-    private void LoadGameDefaults() {
-        Debug.LogWarning("Loading Game Defaults, this should have been passed by the menu scene");
-        Game.round = new GameRound(Game.Config.modes[0]);
+        }
     }
 
+
+
+
+
+
+
+
+
+    #region camera_crap_cleanup
+    //FIXME clean up this camera spawning logic once we have some decisions on how we want to handle cameras
     private void SetupCameras(Game.CameraMode cameraMode) {
         CameraConfig cameraConfig = null;
         for (int i = 0; i < Game.Config.cameras.Length; i++) {
@@ -81,12 +102,7 @@ public class GameMaster : MonoBehaviour {
         rectTransform.SetParent(this.ui.GetComponent<RectTransform>());
         rectTransform.offsetMin = Vector2.zero;
         rectTransform.offsetMax = Vector2.one;
-        /*RectOffset rectOffset = pipUI.GetComponent<RectOffset>();
-        rectOffset.top = 0f;
-        rectOffset.bottom 0f;
-        rectOffset.left = 0f;
-        rectOffset.right = 0f;*/
-        
     }
-	
+    #endregion
+
 }
