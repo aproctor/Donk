@@ -3,11 +3,7 @@ using System.Collections;
 using InControl;
 
 public class PlayerController : MonoBehaviour {
-
-    public string horizontalAxis = "Horizontal";
-    public string verticalAxis = "Vertical";
-    public string fireAxisHorizontal = "RightStickH1";
-    public string fireAxisVertical = "RightStickV1";
+ 
     public float fireSensitivity = 0.1f;
     
     public float speed = 100f;

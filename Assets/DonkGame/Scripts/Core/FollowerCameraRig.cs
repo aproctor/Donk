@@ -9,8 +9,7 @@ using System.Collections;
 
 public class FollowerCameraRig : MonoBehaviour {
 
-    public Transform player1;
-    public Transform player2;
+    public Transform[] players;
     [SerializeField]
     private Camera followCam;
 
@@ -41,24 +40,37 @@ public class FollowerCameraRig : MonoBehaviour {
     }
 
     void Update() {
-        // Find the middle point between players.
-        Vector3 vectorBetweenPlayers = player2.position - player1.position;
-        middlePoint = player1.position + 0.5f * vectorBetweenPlayers;
-        
-        // Calculate the new distance.
-        distanceBetweenPlayers = vectorBetweenPlayers.magnitude;
-        cameraDistance = ((distanceBetweenPlayers / 2.0f + distanceMargin)/ aspectRatio) / tanFov;
-        cameraDistance = Mathf.Clamp(cameraDistance, this.minimumDistance, this.maximumDistance);
+        if (players.Length > 0) {
+            float minX = players[0].position.x;
+            float maxX = players[0].position.x;
 
-        //Set the Rig to the middlepoint
-        this.transform.position = middlePoint;
+            float playerFactor = 1f / players.Length;
+            middlePoint = Vector3.zero;
+            for(int i = 0; i < players.Length; i++) {
+                if (players[i].position.x < minX) {
+                    minX = players[i].position.x;
+                }
+                if (players[i].position.x > maxX) {
+                    maxX = players[i].position.x;
+                }
+                middlePoint += players[i].position * playerFactor;
+            }
 
-        //Move the camera backwards away from the middlepoint
-        followCam.transform.localPosition = new Vector3(0f, 0f, -cameraDistance);
+            //Set the Rig to the middlepoint
+            this.transform.position = middlePoint;
+
+            // Calculate the new camera distance.
+            distanceBetweenPlayers = maxX - minX;
+            cameraDistance = ((distanceBetweenPlayers / 2.0f + distanceMargin) / aspectRatio) / tanFov;
+            cameraDistance = Mathf.Clamp(cameraDistance, this.minimumDistance, this.maximumDistance);
+
+            //Move the camera backwards away from the middlepoint
+            followCam.transform.localPosition = new Vector3(0f, 0f, -cameraDistance);
+        }        
     }
 
     void OnDrawGizmos() {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(middlePoint, 0.2f);
+        Gizmos.DrawSphere(middlePoint, 1f);
     }
 }

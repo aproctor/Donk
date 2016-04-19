@@ -112,11 +112,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3aa5152a5092e548a02dea46f0d5b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
   followCam: {fileID: 2041014}
   cameraMode: 1
-  distanceMargin: 4
+  distanceMargin: 8
+  minimumDistance: 20
+  maximumDistance: 200
 --- !u!124 &12484596
 Behaviour:
   m_ObjectHideFlags: 1

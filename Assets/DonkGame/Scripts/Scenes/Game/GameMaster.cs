@@ -92,8 +92,8 @@ public class GameMaster : MonoBehaviour {
         GameObject newCamera = (GameObject)GameObject.Instantiate(prefab);
         newCamera.transform.SetParent(team.transform);
         FollowerCameraRig followerCamera = newCamera.GetComponent<FollowerCameraRig>();
-        followerCamera.player1 = player1.transform;
-        followerCamera.player2 = player2.transform;
+        //followerCamera.player1 = player1.transform;
+        //followerCamera.player2 = player2.transform;
     }
 
     private void SetupPipUI(GameObject prefab) {

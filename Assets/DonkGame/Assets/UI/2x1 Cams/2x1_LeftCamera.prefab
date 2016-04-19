@@ -53,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 153770}
   m_LocalRotation: {x: 0.48583132, y: 0, z: 0, w: 0.8740526}
-  m_LocalPosition: {x: -87.52, y: 0, z: -92.9}
+  m_LocalPosition: {x: -87.52, y: 0, z: -6.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 426090}
@@ -111,11 +111,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3aa5152a5092e548a02dea46f0d5b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
   followCam: {fileID: 2007436}
   cameraMode: 1
-  distanceMargin: 4
+  distanceMargin: 8
+  minimumDistance: 20
+  maximumDistance: 200
 --- !u!124 &12410020
 Behaviour:
   m_ObjectHideFlags: 1
