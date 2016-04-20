@@ -14,24 +14,24 @@ GameObjects
 PlayerObject <PlayerController, RigidBody, Collider>
 	+ direction
 	+ actualDirection (smoothing)	
-	- Camera (Maybe later spawned above with a follow script)
-	- Player Model <Animator>
 	- HealthBar<HealthBar, Canvas>
 	- Audio
 		- MoveSound
 		- DeathSound
 		- AttackSound		
 
-Resource
-	+ value
+Objective (Chicken)
+	+ captureValue
+	+ valuePerMinute
 	- Model <Animator>
+
+
+GameMaster
+ + GameRound (Reference)
 
 TeamBase
 	+ Team (reference)
 	- Model
-
-GameMaster
- + GameRound (Reference)
 
 Pickup
 |- HealthPickup
@@ -39,11 +39,6 @@ Pickup
 |- BuffPickup
 
 
-UI <Canvas>
- - PlayerCameras <PlayerCameraRenderer>
- - HUD
- - Overlays
- - Curtain
 
 
 Static Classes
@@ -56,17 +51,8 @@ Game
 GameRound
  - Team[]
 
-
 Team
- + color
  + Player[]
 
-
-ScriptableObjects
-=================
-
-GameConfig
- - based on environment
- - holds other configs
 
 ```

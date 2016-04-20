@@ -2,7 +2,7 @@
 using System.Collections;
 using InControl;
 
-public class PlayerController : MonoBehaviour {
+public class Player : MonoBehaviour {
  
     public float fireSensitivity = 0.1f;
     
@@ -36,8 +36,13 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (device) {
-            UpdateDirection();
             UpdateActions();
+        }
+    }
+
+    void FixedUpdate() {
+        if (device) {
+            UpdateDirection();
         }
     }
 
@@ -46,7 +51,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 moveDirection = new Vector3(device.Direction.Vector.x, 0, device.Direction.Vector.y).normalized;
         this.aimDirection = new Vector3(device.RightStick.Vector.x, 0f, device.RightStick.Vector.y);
 
-        this.transform.position += moveDirection * Time.deltaTime * this.speed;
+        this.GetComponent<Rigidbody>().MovePosition(this.transform.position + moveDirection * Time.deltaTime * this.speed);
         if (this.turret && aimDirection.sqrMagnitude > this.fireSensitivity) {                
             Quaternion quat = Quaternion.LookRotation(aimDirection, Vector3.up);
             this.turret.transform.rotation = quat;
@@ -72,10 +77,35 @@ public class PlayerController : MonoBehaviour {
             //Y Button
             Debug.LogError("Player " + playerNumber + " Y");
         }
+
+        if (device.RightTrigger.WasPressed) {
+            Attack();
+            teampAttackSemaphore = true;
+        } else {
+            teampAttackSemaphore = false;
+        }
+    }
+
+    private bool teampAttackSemaphore = false;
+    public float tempAttackRadius = 10f;
+    void Attack() {
+        //TODO check equiped weapon, and run it's attack.  For now just doing some simple sphere intercepting
+        Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, tempAttackRadius);
+        for (int i = 0; i < hitColliders.Length; i++) {
+            Damagable d = hitColliders[i].GetComponent<Damagable>();
+            if (d != null) {
+                d.TakeDamage(10f);
+            }
+        }
     }
 
     void OnDrawGizmos() {
         Gizmos.color = Color.magenta;
         Gizmos.DrawSphere(this.transform.position + this.aimDirection, 0.3f);
+
+        if (this.teampAttackSemaphore) {
+            Gizmos.color = new Color(1f,0f,0f,0.3f);
+            Gizmos.DrawSphere(this.transform.position + this.aimDirection, this.tempAttackRadius);
+        }
     }
 }
