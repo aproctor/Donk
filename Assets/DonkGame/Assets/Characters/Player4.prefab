@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 404990}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ GameObject:
   - 20: {fileID: 2057814}
   - 124: {fileID: 12432424}
   - 92: {fileID: 9216440}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 2x2_Camera4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - 33: {fileID: 3365402}
   - 136: {fileID: 13675902}
   - 23: {fileID: 2361542}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - 4: {fileID: 402462}
   - 33: {fileID: 3315384}
   - 23: {fileID: 2398464}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - 65: {fileID: 6523390}
   - 114: {fileID: 11477658}
   - 54: {fileID: 5479348}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,6 +300,11 @@ MonoBehaviour:
   playerNumber: 4
   model: {fileID: 146214}
   turret: {fileID: 117038}
+  maxHealth: 100
+  currentHealth: 100
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 256
   tempAttackRadius: 10
 --- !u!124 &12432424
 Behaviour:

@@ -16,6 +16,13 @@ public class Player : MonoBehaviour {
     private GameObject model;
     [SerializeField]
     private GameObject turret;
+    [SerializeField]
+    int maxHealth = 100;
+    [SerializeField]
+    int currentHealth = 100;
+    [SerializeField]
+    Ability[] Abilities = new Ability[5];
+    [SerializeField] LayerMask attackMask;
 
     [HideInInspector]
     public InputDevice device = null;
@@ -25,6 +32,9 @@ public class Player : MonoBehaviour {
         r.material = Instantiate<Material>(r.material);
 
         r.material.color = Game.Config.colors.playerColors[playerNumber - 1];
+
+        this.currentHealth = this.maxHealth;
+        this.Abilities[0] = new SwordSlash(this.transform, this.attackMask);
     }
 	
 	// Update is called once per frame
@@ -64,6 +74,9 @@ public class Player : MonoBehaviour {
         if (device.Action1.WasPressed) {
             //A button
             Debug.LogError("Player "+ playerNumber + " A");
+            if(this.Abilities[0] != null) {
+                this.Abilities[0].Activate();
+            }
         }
         if (device.Action2.WasPressed) {
             //B button
@@ -100,12 +113,24 @@ public class Player : MonoBehaviour {
     }
 
     void OnDrawGizmos() {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(this.transform.position, 2f);
+
         Gizmos.color = Color.magenta;
         Gizmos.DrawSphere(this.transform.position + this.aimDirection, 0.3f);
 
         if (this.teampAttackSemaphore) {
             Gizmos.color = new Color(1f,0f,0f,0.3f);
             Gizmos.DrawSphere(this.transform.position + this.aimDirection, this.tempAttackRadius);
+        }
+    }
+
+    public void TakeDamage(int value) {
+        this.currentHealth -= value;
+        if(this.currentHealth <= 0) {
+            Debug.LogError("Player " + this.playerNumber + " died");
+        } else {
+            Debug.LogError("Player " + this.playerNumber + " got hit");
         }
     }
 }
