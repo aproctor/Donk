@@ -3,7 +3,8 @@ using System.Collections;
 
 public class LevelConfig : MonoBehaviour {
 
-    //TODO put spawn point and other geographically important data here
+  public Transform[] Team1SpawnPoints;
+  public Transform[] Team2SpawnPoints;
 
 	// Use this for initialization
 	void Start () {

@@ -115,6 +115,7 @@ public class GameMaster : MonoBehaviour {
             yield return oneSecondDelay;
         }
 
+		Game.round.startTime = Time.time;
         ResumeGame();
 
         yield return null;
