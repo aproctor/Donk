@@ -7,7 +7,7 @@ public class GameMaster : MonoBehaviour {
     #region attributes
     [Header("Object Links")]
     [SerializeField]
-    private GameObject ui;
+	private UIController ui;
 
     //TODO spawn these dynamically
     public Team[] teams;
@@ -93,11 +93,12 @@ public class GameMaster : MonoBehaviour {
         player.gameObject.name = "Player " + player.playerNumber;
         player.attackMask = Game.Config.teamMask[i];
         this.players[playerIndex] = player;
+		this.teams[i].AddPlayer(player);
 
         ++playerIndex;
       }
     }
-    SetupCameras(Game.CameraMode.SideBySide);
+		this.ui.SetupCameras(Game.CameraMode.SideBySide, this.teams);
 
         this.state = GameMasterState.WaitingForPlayers;
     }
@@ -137,18 +138,24 @@ public class GameMaster : MonoBehaviour {
     IEnumerator StartGameCountdown() {
         this.state = GameMasterState.Countdown;
         for (int i = 0; i < this.secondsToStart; i++) {
-            Debug.LogError(this.secondsToStart - i);
+			this.ui.countdownText.text = (this.secondsToStart - i).ToString();
             yield return oneSecondDelay;
         }
 
 		Game.round.startTime = Time.time;
-        ResumeGame();
+		ResumeGame();
+
+		this.ui.countdownText.text = "GO!";
+
+		yield return oneSecondDelay;
+
+		this.ui.countdownText.text = "";        
 
         yield return null;
     }
 
     public void PauseGame() {
-        Debug.LogError("PAUSED");
+		this.ui.countdownText.text = "PAUSED";        
         this.state = GameMasterState.Paused;
     }
     public void UnPauseGame() {
@@ -186,55 +193,5 @@ public class GameMaster : MonoBehaviour {
     #endregion 
 
 
-
-    #region setup_cameras
-    private void SetupCameras(Game.CameraMode cameraMode) {
-        CameraConfig cameraConfig = null;
-        for (int i = 0; i < Game.Config.cameras.Length; i++) {
-            if (Game.Config.cameras[i].mode == cameraMode) {
-                cameraConfig = Game.Config.cameras[i];
-                break;
-            }
-        }
-
-        if (cameraConfig == null) {
-            Debug.LogError("Unable to find config for camera mode <" + cameraMode.ToString() + ">");
-        } else {
-            //Spawn cameras based on mode
-            if (cameraMode == Game.CameraMode.SideBySide || cameraMode == Game.CameraMode.TwoStacked) {
-                //Add a camera to each team
-                SetupFollowCam(cameraConfig.cameraPrefabs[0], teams[0], players[0], players[1]);
-                SetupFollowCam(cameraConfig.cameraPrefabs[1], teams[1], players[2], players[3]);
-            } else if (cameraMode == Game.CameraMode.TwoByTwo) {
-                //TODO add a camera to each player
-                for (int i = 0; i < cameraConfig.cameraPrefabs.Length; i++) {
-                    ((GameObject)GameObject.Instantiate(cameraConfig.cameraPrefabs[i])).transform.parent = players[i].transform;
-                }
-            } else if (cameraMode == Game.CameraMode.Single) {
-                //TODO add first camera prefab to current player?
-                Debug.LogError("Unimplemented Camera Mode");
-            }
-
-            //Spawn PiP UI
-            SetupPipUI(cameraConfig.uiPrefab);
-        }
-    }
-
-    private void SetupFollowCam(GameObject prefab, Team team, Player player1, Player player2) {
-        GameObject newCamera = (GameObject)GameObject.Instantiate(prefab);
-        newCamera.transform.SetParent(team.transform);
-        FollowerCameraRig followerCamera = newCamera.GetComponent<FollowerCameraRig>();
-        followerCamera.players[0] = player1.transform;
-        followerCamera.players[1] = player2.transform;
-    }
-
-    private void SetupPipUI(GameObject prefab) {
-        GameObject pipUI = (GameObject)GameObject.Instantiate(prefab);        
-        RectTransform rectTransform = pipUI.GetComponent<RectTransform>();
-        rectTransform.SetParent(this.ui.GetComponent<RectTransform>());
-        rectTransform.offsetMin = Vector2.zero;
-        rectTransform.offsetMax = Vector2.one;
-    }
-    #endregion
 
 }
