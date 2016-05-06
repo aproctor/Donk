@@ -112,17 +112,9 @@ public class Player : MonoBehaviour {
         }
     }
 
-    void OnDrawGizmos() {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(this.transform.position, 2f);
-
+    void OnDrawGizmosSelected() {
         Gizmos.color = Color.magenta;
         Gizmos.DrawSphere(this.transform.position + this.aimDirection, 0.3f);
-
-        if (this.teampAttackSemaphore) {
-            Gizmos.color = new Color(1f,0f,0f,0.3f);
-            Gizmos.DrawSphere(this.transform.position + this.aimDirection, this.tempAttackRadius);
-        }
     }
 
     public void TakeDamage(int value) {

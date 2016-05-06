@@ -16,7 +16,7 @@ public class Team : MonoBehaviour {
     /// </summary>
     /// <returns>score</returns>
     public void ScoreObjectivePoints() {
-        //TODO check pens for points, using random score per tick
-        Score += Random.Range(1, 5);
+        //TODO check pens for points, using random score per tick        
+		//Game.round.mode.chickenTickScoreAmount
     }
 }

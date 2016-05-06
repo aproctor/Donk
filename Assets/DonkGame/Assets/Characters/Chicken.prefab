@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 416098}
   - 135: {fileID: 13507126}
   - 54: {fileID: 5435764}
-  - 114: {fileID: 11497546}
   - 114: {fileID: 11427610}
+  - 114: {fileID: 11413900}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -134,7 +134,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101122}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.22371292, y: -1.4376998, z: 6.8580117}
+  m_LocalPosition: {x: -0.22371292, y: 0.809, z: 6.8580117}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 411230}
@@ -263,7 +263,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 638b6410a284d464b963e877532c760f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -339,7 +339,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 638b6410a284d464b963e877532c760f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: -1.62
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -401,6 +401,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &11413900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea8b27feda4143bda2c7f4d707a1e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11427610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -456,17 +467,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
---- !u!114 &11497546
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f98d3f3b1346f814c974e5ea0ff53db3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &13507126
 SphereCollider:
   m_ObjectHideFlags: 1
