@@ -11,8 +11,6 @@ public class GameConfig : ScriptableObject {
 
     public GameMode[] modes;
 
-    public LayerMask[] teamMask;
-
     public int maxPlayers = 4;
 
 }

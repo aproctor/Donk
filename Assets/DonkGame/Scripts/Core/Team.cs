@@ -30,6 +30,7 @@ public class Team : MonoBehaviour {
 
 		p.transform.parent = this.transform;
 		p.attackMask = teamMask;
+    p.gameObject.layer = this.gameObject.layer;
 		p.team = this;
 	}
 
