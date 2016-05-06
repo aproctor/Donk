@@ -137,7 +137,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8310386c25e19a249a1887a35a456de3, type: 2}
+  - {fileID: 2100000, guid: 86e4ef0a47f5752418dcf82046a0968d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -920,6 +920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121856630fb83447b82463acc05032d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: {fileID: 0}
 --- !u!135 &888937447
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1608,6 +1609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121856630fb83447b82463acc05032d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: {fileID: 0}
 --- !u!1 &1726753710
 GameObject:
   m_ObjectHideFlags: 0
