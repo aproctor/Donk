@@ -3,6 +3,9 @@ using System.Collections;
 
 public class ChickenCoop : MonoBehaviour {
 
+  [HideInInspector]
+  public Team team;
+
   public int CountChickens() {
     SphereCollider chickenCoopCollider = this.GetComponent<SphereCollider>();
 

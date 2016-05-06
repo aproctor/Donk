@@ -23,6 +23,7 @@ public class Player : MonoBehaviour {
     [SerializeField]
     Ability[] Abilities = new Ability[5];
     public LayerMask attackMask;
+    public Team team = null;
 
     [HideInInspector]
     public InputDevice device = null;
@@ -34,7 +35,7 @@ public class Player : MonoBehaviour {
         r.material.color = Game.Config.colors.playerColors[playerNumber - 1];
 
         this.currentHealth = this.maxHealth;
-        this.Abilities[0] = new SwordSlash(this.transform, this.attackMask);
+        this.Abilities[0] = new SwordSlash(this.transform, this.attackMask, this);
     }
 	
 	// Update is called once per frame
@@ -72,44 +73,26 @@ public class Player : MonoBehaviour {
         //The following comments assume xbox 360 controls, but it should work cross platform
 
         if (device.Action1.WasPressed) {
-            //A button
-            Debug.LogError("Player "+ playerNumber + " A");
-            if(this.Abilities[0] != null) {
-                this.Abilities[0].Activate();
-            }
+          //A button          
         }
         if (device.Action2.WasPressed) {
             //B button
             Debug.LogError("Player " + playerNumber + " B");
         }
-        if (device.Action3.WasPressed) {
+        if (device.Action3.WasPressed || device.RightTrigger.WasPressed) {
             //X button
-            Debug.LogError("Player " + playerNumber + " X");
+            this.Attack();
         }
         if (device.Action4.WasPressed) {
             //Y Button
             Debug.LogError("Player " + playerNumber + " Y");
-        }
-
-        if (device.RightTrigger.WasPressed) {
-            Attack();
-            teampAttackSemaphore = true;
-        } else {
-            teampAttackSemaphore = false;
-        }
+        }  
     }
 
-    private bool teampAttackSemaphore = false;
-    public float tempAttackRadius = 10f;
     void Attack() {
-        //TODO check equiped weapon, and run it's attack.  For now just doing some simple sphere intercepting
-        Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, tempAttackRadius);
-        for (int i = 0; i < hitColliders.Length; i++) {
-            Damagable d = hitColliders[i].GetComponent<Damagable>();
-            if (d != null) {
-                d.TakeDamage(10f);
-            }
-        }
+      if(this.Abilities[0] != null) {
+        this.Abilities[0].Activate();
+      }
     }
 
     void OnDrawGizmosSelected() {

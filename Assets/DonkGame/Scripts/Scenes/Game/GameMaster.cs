@@ -82,6 +82,7 @@ public class GameMaster : MonoBehaviour {
     for(int i = 0; i < Game.round.mode.numTeams; i++) {
       TeamObjects teamObjs = level.teamObjects[i];
       this.teams[i].teamObjects = teamObjs;
+      teamObjs.chickenCoop.team = this.teams[i];
 
       for(int j = 0; j < numPlayersPerTeam; j++) {
         Transform spawnPoint = teamObjs.spawnPoints[j];
