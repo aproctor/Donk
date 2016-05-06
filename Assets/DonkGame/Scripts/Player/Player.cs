@@ -76,17 +76,25 @@ public class Player : MonoBehaviour
       UpdateDirection ();
     }
   }
-
+    
+  public Rigidbody latchedObject = null;
+  public float latchedMoveSpeed = 0.2f;
   void UpdateDirection ()
-  {        
+  {
     //Convert Incontrol vectors to movement directions in 3d space
     Vector3 moveDirection = new Vector3 (device.Direction.Vector.x, 0, device.Direction.Vector.y).normalized;
     this.aimDirection = new Vector3 (device.RightStick.Vector.x, 0f, device.RightStick.Vector.y);
 
-    this.GetComponent<Rigidbody> ().MovePosition (this.transform.position + moveDirection * Time.deltaTime * this.speed);
     if (this.turret && aimDirection.sqrMagnitude > this.fireSensitivity) {                
       Quaternion quat = Quaternion.LookRotation (aimDirection, Vector3.up);
       this.turret.transform.rotation = quat;
+    }
+
+    if (latchedObject != null) {
+		this.latchedObject.MovePosition(this.latchedObject.transform.position + moveDirection * Time.deltaTime * this.speed * this.latchedMoveSpeed);
+    } else {
+      //Move self
+      this.GetComponent<Rigidbody> ().MovePosition(this.transform.position + moveDirection * Time.deltaTime * this.speed);
     }
   }
 
@@ -100,7 +108,10 @@ public class Player : MonoBehaviour
     }
     if (device.Action2.WasPressed) {
       //B button
-      Debug.LogError ("Player " + playerNumber + " B");
+		if (this.latchedObject) {
+			this.UnlatchFromObject();
+		}
+			//TODO spit chicken, fuck this spacing
     }
     if (device.Action3.WasPressed || device.RightTrigger.WasPressed) {
       //X button
@@ -159,7 +170,7 @@ public class Player : MonoBehaviour
     for (int i = 0; i < possibleObjects.Length; i++) {
       BigEgg egg = possibleObjects [i].GetComponent<BigEgg> ();
       if (egg != null) {
-        LatchOntoEgg(egg);
+        LatchOnto(egg.GetComponent<Rigidbody>());
         break;
       }
 
@@ -171,9 +182,15 @@ public class Player : MonoBehaviour
     }
   }
 
-  void LatchOntoEgg(BigEgg egg) {
-    Debug.LogError ("Latching onto egg",egg.gameObject);
+  void LatchOnto(Rigidbody obj) {
+	this.latchedObject = obj;
 
+    this.transform.SetParent(obj.transform);
+  }
+
+  void UnlatchFromObject() {
+	this.latchedObject = null;
+    this.transform.SetParent (this.team.transform);
   }
 
   void OnDrawGizmosSelected ()
