@@ -323,8 +323,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 888937445}
-  - 65: {fileID: 888937447}
   - 114: {fileID: 888937446}
+  - 135: {fileID: 888937447}
   m_Layer: 0
   m_Name: ChickenCoop
   m_TagString: Untagged
@@ -339,7 +339,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 888937444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6, y: 1.03, z: -0.292}
+  m_LocalPosition: {x: -102.19, y: 1.03, z: -20.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1726753711}
@@ -355,8 +355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121856630fb83447b82463acc05032d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &888937447
-BoxCollider:
+--- !u!135 &888937447
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -365,7 +365,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.21, y: 1.94, z: 2.23}
+  m_Radius: 7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &916825442
 GameObject:
@@ -521,6 +521,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 146848, guid: fddef3551f1117c45b778a079c03955b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fddef3551f1117c45b778a079c03955b, type: 2}
   m_IsPrefabParent: 0
@@ -654,6 +658,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1669725611}
+  - 135: {fileID: 1669725612}
+  - 114: {fileID: 1669725613}
   m_Layer: 0
   m_Name: ChickenCoop
   m_TagString: Untagged
@@ -668,11 +674,34 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1669725610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 104.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2019086825}
   m_RootOrder: 0
+--- !u!135 &1669725612
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1669725610}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 7
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1669725613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1669725610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121856630fb83447b82463acc05032d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1726753710
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +748,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1485137608}
   - {fileID: 1873541086}
-  chickenCoop: {fileID: 888937444}
+  chickenCoop: {fileID: 888937446}
 --- !u!1001 &1791492001
 Prefab:
   m_ObjectHideFlags: 0
@@ -857,8 +886,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnDelay: 0
   objectToSpawn: {fileID: 195632, guid: fcebbb62907774611b2e8cd4324195dc, type: 2}
-  respawn: 1
-  respawnDelay: 0
 --- !u!1 &2019086824
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,7 +932,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 954671310}
   - {fileID: 931021391}
-  chickenCoop: {fileID: 954671309}
+  chickenCoop: {fileID: 1669725613}
 --- !u!1 &2146236491
 GameObject:
   m_ObjectHideFlags: 0

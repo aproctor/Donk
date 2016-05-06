@@ -81,6 +81,7 @@ public class GameMaster : MonoBehaviour {
     int playerIndex = 0;
     for(int i = 0; i < Game.round.mode.numTeams; i++) {
       TeamObjects teamObjs = level.teamObjects[i];
+      this.teams[i].teamObjects = teamObjs;
 
       for(int j = 0; j < numPlayersPerTeam; j++) {
         Transform spawnPoint = teamObjs.spawnPoints[j];
@@ -169,7 +170,6 @@ public class GameMaster : MonoBehaviour {
 
         //Check Scores
         for (int i = 0; i < this.teams.Length; i++) {
-            Debug.LogWarning("Score[" + i + "]: " + this.teams[i].Score);
             if (this.teams[i].Score > Game.round.mode.scoreLimit) {                
                 GameOver();
             }
@@ -185,8 +185,7 @@ public class GameMaster : MonoBehaviour {
 
 
 
-    #region camera_crap_cleanup
-    //FIXME clean up this camera spawning logic once we have some decisions on how we want to handle cameras
+    #region setup_cameras
     private void SetupCameras(Game.CameraMode cameraMode) {
         CameraConfig cameraConfig = null;
         for (int i = 0; i < Game.Config.cameras.Length; i++) {
@@ -215,7 +214,7 @@ public class GameMaster : MonoBehaviour {
             }
 
             //Spawn PiP UI
-            //SetupPipUI(cameraConfig.uiPrefab);
+            SetupPipUI(cameraConfig.uiPrefab);
         }
     }
 
@@ -227,13 +226,13 @@ public class GameMaster : MonoBehaviour {
         followerCamera.players[1] = player2.transform;
     }
 
-//    private void SetupPipUI(GameObject prefab) {
-//        GameObject pipUI = (GameObject)GameObject.Instantiate(prefab);        
-//        RectTransform rectTransform = pipUI.GetComponent<RectTransform>();
-//        rectTransform.SetParent(this.ui.GetComponent<RectTransform>());
-//        rectTransform.offsetMin = Vector2.zero;
-//        rectTransform.offsetMax = Vector2.one;
-//    }
+    private void SetupPipUI(GameObject prefab) {
+        GameObject pipUI = (GameObject)GameObject.Instantiate(prefab);        
+        RectTransform rectTransform = pipUI.GetComponent<RectTransform>();
+        rectTransform.SetParent(this.ui.GetComponent<RectTransform>());
+        rectTransform.offsetMin = Vector2.zero;
+        rectTransform.offsetMax = Vector2.one;
+    }
     #endregion
 
 }
