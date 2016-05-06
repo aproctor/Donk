@@ -22,7 +22,7 @@ public class Player : MonoBehaviour {
     int currentHealth = 100;
     [SerializeField]
     Ability[] Abilities = new Ability[5];
-    [SerializeField] LayerMask attackMask;
+    public LayerMask attackMask;
 
     [HideInInspector]
     public InputDevice device = null;

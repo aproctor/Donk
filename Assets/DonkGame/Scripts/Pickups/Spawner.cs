@@ -10,33 +10,51 @@ public class Spawner : MonoBehaviour {
 	private GameObject spawnedObject = null;
 
 	private bool spawned = false;
-	private float lastSpawnTime = 0f;
+	private float timeOfDeath = 0f;
 	private int numTimesSpawned = 0;
+    private Damagable damagable = null;
 
 	private bool CanSpawn {
 		get {
-			return ((Time.time - this.lastSpawnTime) > spawnDelay) &&
-                ((spawnedObject == null) || !(spawnedObject.activeSelf));
+			return ((Time.time - this.timeOfDeath) > this.spawnDelay) &&
+                ((this.spawnedObject == null) || !(this.spawnedObject.activeSelf));
 		}
 	}
 
+    void Start() {
+        this.SpawnObject();
+    }
+
 	void Update() {
 		if(this.CanSpawn) {
-			SpawnObject();
+            this.SpawnObject();
 		}	
 	}
 
+    public void ObjectReadyForRespawn() {
+        this.timeOfDeath = Time.time;
+    }
+
 	private void SpawnObject() {
-        if (spawnedObject == null) {
-            spawnedObject = (GameObject)GameObject.Instantiate(objectToSpawn, this.transform.position, this.objectToSpawn.transform.rotation);
-            this.lastSpawnTime = Time.time;
-            spawned = true;
-            numTimesSpawned += 1;
+        if (!this.spawned) {
+            this.spawnedObject = (GameObject)GameObject.Instantiate(objectToSpawn, this.transform.position, this.objectToSpawn.transform.rotation);
+            this.spawned = true;
+            this.numTimesSpawned += 1;
+
+            this.damagable = spawnedObject.GetComponent<Damagable>();
+            if(this.damagable != null) {
+                this.damagable.OnDie.AddListener(this.ObjectReadyForRespawn);
+                this.damagable.Reset();
+            }
+
         } else {
             this.spawnedObject.transform.position = this.transform.position;
             this.spawnedObject.SetActive(true);
-            this.lastSpawnTime = Time.time;
             ++this.numTimesSpawned;
+
+            if (this.damagable != null) {
+                this.damagable.Reset();
+            }
         }
 	}
 }
