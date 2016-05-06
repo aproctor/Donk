@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
     for (int i = 0; i < possibleObjects.Length; i++) {
       BigEgg egg = possibleObjects [i].GetComponent<BigEgg> ();
       if (egg != null) {
-        Debug.LogError ("Latching onto egg");
+        LatchOntoEgg(egg);
         break;
       }
 
@@ -169,6 +169,11 @@ public class Player : MonoBehaviour
         break;
       }
     }
+  }
+
+  void LatchOntoEgg(BigEgg egg) {
+    Debug.LogError ("Latching onto egg",egg.gameObject);
+
   }
 
   void OnDrawGizmosSelected ()
