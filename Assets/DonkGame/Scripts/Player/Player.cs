@@ -23,16 +23,21 @@ public class Player : MonoBehaviour {
     [SerializeField]
     Ability[] Abilities = new Ability[5];
     public LayerMask attackMask;
-    public Team team = null;
+	[HideInInspector]
+	public Team team = null;
+
+	[SerializeField]
+	public Renderer[] primaryMaterials;
 
     [HideInInspector]
     public InputDevice device = null;
 
     void Start() {
-        Renderer r = model.GetComponent<Renderer>();
-        r.material = Instantiate<Material>(r.material);
-
-        r.material.color = Game.Config.colors.playerColors[playerNumber - 1];
+		for (int i = 0; i < primaryMaterials.Length; i++) {
+			Renderer r = primaryMaterials[i];
+			r.material = Instantiate<Material>(r.material);
+			r.material.color = Game.Config.colors.playerColors[playerNumber - 1];
+		}
 
         this.currentHealth = this.maxHealth;
         this.Abilities[0] = new SwordSlash(this.transform, this.attackMask, this);
@@ -49,6 +54,10 @@ public class Player : MonoBehaviour {
         if (device) {
             UpdateActions();
         }
+
+		if (this.aimDirection != Vector3.zero) {
+			this.model.transform.LookAt (this.transform.position + this.aimDirection);
+		}
     }
 
     void FixedUpdate() {
