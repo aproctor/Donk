@@ -3,8 +3,7 @@ using System.Collections;
 
 public class LevelConfig : MonoBehaviour {
 
-  public Transform[] Team1SpawnPoints;
-  public Transform[] Team2SpawnPoints;
+  public TeamObjects[] teamObjects;
 
 	// Use this for initialization
 	void Start () {

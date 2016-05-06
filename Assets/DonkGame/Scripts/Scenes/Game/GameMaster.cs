@@ -32,6 +32,10 @@ public class GameMaster : MonoBehaviour {
     public float gameScoreTickRate = 1f;
     private float lastScoreTickTime = 0f;
 
+  [Header("Prefabs")]
+  [SerializeField]
+  private GameObject playerPrefab = null;
+
     #endregion
 
 
@@ -72,6 +76,25 @@ public class GameMaster : MonoBehaviour {
 
     public void LevelLoaded(LevelConfig level) {
         //TODO Link up relevant game objects from level config
+        int numPlayersPerTeam = Game.round.mode.numPlayers / Game.round.mode.numTeams;
+
+    int playerIndex = 0;
+    for(int i = 0; i < Game.round.mode.numTeams; i++) {
+      TeamObjects teamObjs = level.teamObjects[i];
+
+      for(int j = 0; j < numPlayersPerTeam; j++) {
+        Transform spawnPoint = teamObjs.spawnPoints[j];
+        Player player = ((GameObject)GameObject.Instantiate(this.playerPrefab)).GetComponent<Player>();
+        player.playerNumber = playerIndex + 1;       
+        player.transform.position = spawnPoint.transform.position;
+        player.transform.parent = this.teams[i].transform;
+        player.gameObject.name = "Player " + player.playerNumber;
+        this.players[playerIndex] = player;
+
+        ++playerIndex;
+      }
+    }
+    SetupCameras(Game.CameraMode.SideBySide);
 
         this.state = GameMasterState.WaitingForPlayers;
     }
@@ -192,7 +215,7 @@ public class GameMaster : MonoBehaviour {
             }
 
             //Spawn PiP UI
-            SetupPipUI(cameraConfig.uiPrefab);
+            //SetupPipUI(cameraConfig.uiPrefab);
         }
     }
 
@@ -200,17 +223,17 @@ public class GameMaster : MonoBehaviour {
         GameObject newCamera = (GameObject)GameObject.Instantiate(prefab);
         newCamera.transform.SetParent(team.transform);
         FollowerCameraRig followerCamera = newCamera.GetComponent<FollowerCameraRig>();
-        //followerCamera.player1 = player1.transform;
-        //followerCamera.player2 = player2.transform;
+        followerCamera.players[0] = player1.transform;
+        followerCamera.players[1] = player2.transform;
     }
 
-    private void SetupPipUI(GameObject prefab) {
-        GameObject pipUI = (GameObject)GameObject.Instantiate(prefab);        
-        RectTransform rectTransform = pipUI.GetComponent<RectTransform>();
-        rectTransform.SetParent(this.ui.GetComponent<RectTransform>());
-        rectTransform.offsetMin = Vector2.zero;
-        rectTransform.offsetMax = Vector2.one;
-    }
+//    private void SetupPipUI(GameObject prefab) {
+//        GameObject pipUI = (GameObject)GameObject.Instantiate(prefab);        
+//        RectTransform rectTransform = pipUI.GetComponent<RectTransform>();
+//        rectTransform.SetParent(this.ui.GetComponent<RectTransform>());
+//        rectTransform.offsetMin = Vector2.zero;
+//        rectTransform.offsetMax = Vector2.one;
+//    }
     #endregion
 
 }
