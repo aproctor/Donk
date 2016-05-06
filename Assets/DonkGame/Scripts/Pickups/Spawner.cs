@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Spawner : MonoBehaviour {
 
@@ -8,17 +9,14 @@ public class Spawner : MonoBehaviour {
 	public GameObject objectToSpawn = null;
 	private GameObject spawnedObject = null;
 
-	public bool respawn = true;
-	public float respawnDelay = 0f;
-
 	private bool spawned = false;
 	private float lastSpawnTime = 0f;
 	private int numTimesSpawned = 0;
 
 	private bool CanSpawn {
 		get {
-			//TODO implement spawn delay based on game round time
-			return (spawnedObject == null);
+			return ((Time.time - this.lastSpawnTime) > spawnDelay) &&
+                ((spawnedObject == null) || !(spawnedObject.activeSelf));
 		}
 	}
 
@@ -29,9 +27,16 @@ public class Spawner : MonoBehaviour {
 	}
 
 	private void SpawnObject() {
-		spawnedObject = (GameObject)GameObject.Instantiate(objectToSpawn);
-    this.lastSpawnTime = Time.time;
-    spawned = true;
-    numTimesSpawned += 1;
+        if (spawnedObject == null) {
+            spawnedObject = (GameObject)GameObject.Instantiate(objectToSpawn, this.transform.position, this.objectToSpawn.transform.rotation);
+            this.lastSpawnTime = Time.time;
+            spawned = true;
+            numTimesSpawned += 1;
+        } else {
+            this.spawnedObject.transform.position = this.transform.position;
+            this.spawnedObject.SetActive(true);
+            this.lastSpawnTime = Time.time;
+            ++this.numTimesSpawned;
+        }
 	}
 }
