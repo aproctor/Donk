@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
     
     public float speed = 100f;
     public int playerNumber = 1;
+	public int gold = 0;
 
     private Vector3 aimDirection = Vector3.zero;
 

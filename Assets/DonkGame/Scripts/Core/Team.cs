@@ -33,6 +33,12 @@ public class Team : MonoBehaviour {
 		p.team = this;
 	}
 
+	public void AddGold(int amount) {
+		for (int i = 0; i < this.players.Length; i++) {
+			this.players[i].gold += amount;
+		}
+	}
+
   /// <summary>
   /// Add points to the score based on objectives
   /// </summary>

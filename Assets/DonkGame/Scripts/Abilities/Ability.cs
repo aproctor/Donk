@@ -22,12 +22,12 @@ public abstract class Ability {
 			Player p = hitDamagable.GetComponent<Player>();
 			if (p != null) {
 				player.team.AddPoints (Game.round.mode.playerKillScoreAmount);
+				player.gold += Game.round.mode.playerKillGoldAmount;
 			}
 			Chicken c = hitDamagable.GetComponent<Chicken>();
 			if (c != null) {
-				Debug.LogError ("Player? <"+player+">");
-				Debug.LogError ("Team? <"+player.team+">");
 				player.team.AddPoints(Game.round.mode.chickenKillScoreAmount);
+				player.gold += Game.round.mode.chickenKillGoldAmount;
 			}
 		}
 	}

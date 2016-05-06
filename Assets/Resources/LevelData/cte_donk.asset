@@ -17,6 +17,8 @@ MonoBehaviour:
   scoreLimit: 1000
   timeLimit: 0
   eggScoreAmount: 1000
-  killScoreAmount: 0
-  chickenTickScoreAmount: 0
+  playerKillScoreAmount: 1
+  chickenKillScoreAmount: 1
+  chickenTickScoreAmount: 1
+  chickenTickGoldAmount: 1
   levelScenes: 02000000

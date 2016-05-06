@@ -426,7 +426,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   secondsToStart: 3
-  gameScoreTickRate: 1
+  gameScoreTickRate: 5
   playerPrefab: {fileID: 189746, guid: 82e0f34d180c43649843d881a270c80a, type: 2}
 --- !u!4 &559565127
 Transform:

@@ -183,6 +183,7 @@ public class GameMaster : MonoBehaviour {
                 GameOver();
             }
         }
+		Debug.LogWarning ("Score: " + this.teams [0].Score + " - " + this.teams [1].Score);
     }
 
     private void GameOver() {
