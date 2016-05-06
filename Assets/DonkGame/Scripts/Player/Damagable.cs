@@ -15,6 +15,9 @@ public class Damagable : MonoBehaviour {
         this.currentHealth = this.maxHealth;
     }
 
+    public void Reset() {
+        this.currentHealth = maxHealth;
+    }
 
     /**
      * Returns whether the damage dealt killed the item

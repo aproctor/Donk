@@ -89,6 +89,7 @@ public class GameMaster : MonoBehaviour {
         player.transform.position = spawnPoint.transform.position;
         player.transform.parent = this.teams[i].transform;
         player.gameObject.name = "Player " + player.playerNumber;
+        player.attackMask = Game.Config.teamMask[i];
         this.players[playerIndex] = player;
 
         ++playerIndex;
