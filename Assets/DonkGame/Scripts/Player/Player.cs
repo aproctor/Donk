@@ -116,13 +116,4 @@ public class Player : MonoBehaviour {
         Gizmos.color = Color.magenta;
         Gizmos.DrawSphere(this.transform.position + this.aimDirection, 0.3f);
     }
-
-    public void TakeDamage(int value) {
-        this.currentHealth -= value;
-        if(this.currentHealth <= 0) {
-            Debug.LogError("Player " + this.playerNumber + " died");
-        } else {
-            Debug.LogError("Player " + this.playerNumber + " got hit");
-        }
-    }
 }
