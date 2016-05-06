@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour {
 	private bool CanSpawn {
 		get {
 			return ((Time.time - this.timeOfDeath) > this.spawnDelay) &&
-                ((this.spawnedObject == null) || !(this.spawnedObject.activeSelf));
+        ((this.spawnedObject == null) || !(damagable.IsAlive));
 		}
 	}
 

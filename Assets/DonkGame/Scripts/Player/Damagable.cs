@@ -11,6 +11,8 @@ public class Damagable : MonoBehaviour {
 
     public UnityEvent OnDie;
 
+  public UnityEvent OnReset;
+
     void Start() {
         this.currentHealth = this.maxHealth;
     }
