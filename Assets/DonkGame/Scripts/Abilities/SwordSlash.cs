@@ -5,6 +5,7 @@ using System;
 public class SwordSlash : Ability {
 
 	public int damageAmount = 30;
+	[SerializeField]
     private float radius = 2;
 
 	public SwordSlash(Transform playerTransform, LayerMask layer, Player player) : base(playerTransform, layer, player) {

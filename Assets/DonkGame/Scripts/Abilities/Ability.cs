@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public abstract class Ability {
+public abstract class Ability : ScriptableObject {
 
 	protected Transform playerTransform;
 	protected LayerMask mask;

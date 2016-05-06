@@ -19,6 +19,9 @@ public class Player : MonoBehaviour {
     private GameObject turret;
     [SerializeField]
     Ability[] Abilities = new Ability[5];
+	[SerializeField]
+	private Ability defaultAbility;
+
     public LayerMask attackMask;
 	[HideInInspector]
 	public Team team = null;
@@ -93,7 +96,7 @@ public class Player : MonoBehaviour {
         }  
     }
 
-    void Attack() {
+    void Attack() {		
       if(this.Abilities[0] != null) {
         this.Abilities[0].Activate();
       }
