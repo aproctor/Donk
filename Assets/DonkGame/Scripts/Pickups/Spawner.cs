@@ -57,4 +57,9 @@ public class Spawner : MonoBehaviour {
             }
         }
 	}
+
+	void OnDrawGizmosSelected() {
+		Gizmos.color = Color.white;
+		Gizmos.DrawSphere(this.transform.position, 0.2f);
+	}
 }

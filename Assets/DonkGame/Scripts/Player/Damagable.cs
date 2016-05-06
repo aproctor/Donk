@@ -19,14 +19,14 @@ public class Damagable : MonoBehaviour {
         this.currentHealth = maxHealth;
     }
 
-    public void Die(Team attacker) {
-      this.TakeDamage(this.currentHealth, attacker); 
+	public void Die() {
+		this.TakeDamage(this.currentHealth); 
     }
 
     /**
      * Returns whether the damage dealt killed the item
      */
-    public bool TakeDamage(float damageAmount, Team attackingTeam) {
+    public bool TakeDamage(float damageAmount) {
         if (this.IsAlive) {
             this.currentHealth = Mathf.Max(0f, this.currentHealth - damageAmount);
             if (Mathf.Approximately(0f, this.currentHealth)) {

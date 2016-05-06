@@ -8,6 +8,8 @@ public class Team : MonoBehaviour {
 	[HideInInspector]
 	public Player[] players;
 
+	public LayerMask teamMask;
+
   void Start() {
     Score = 0;
 	players = new Player[0];
@@ -25,6 +27,10 @@ public class Team : MonoBehaviour {
 		}
 		newPlayerList [newPlayerList.Length - 1] = p;
 		this.players = newPlayerList;
+
+		p.transform.parent = this.transform;
+		p.attackMask = teamMask;
+		p.team = this;
 	}
 
   /// <summary>

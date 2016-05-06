@@ -6,6 +6,11 @@ public class UIController : MonoBehaviour {
 
 	public Text countdownText;	
 	public Transform playerCameras;
+	public GameOverUI gameOverUI;
+
+	void Start() {
+		this.gameOverUI.Hide();
+	}
 
 	public void SetupCameras(Game.CameraMode cameraMode, Team[] teams) {
 		CameraConfig cameraConfig = null;

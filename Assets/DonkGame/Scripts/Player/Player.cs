@@ -17,10 +17,6 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private GameObject turret;
     [SerializeField]
-    int maxHealth = 100;
-    [SerializeField]
-    int currentHealth = 100;
-    [SerializeField]
     Ability[] Abilities = new Ability[5];
     public LayerMask attackMask;
 	[HideInInspector]
@@ -38,8 +34,6 @@ public class Player : MonoBehaviour {
 			r.material = Instantiate<Material>(r.material);
 			r.material.color = Game.Config.colors.playerColors[playerNumber - 1];
 		}
-
-        this.currentHealth = this.maxHealth;
         this.Abilities[0] = new SwordSlash(this.transform, this.attackMask, this);
     }
 	

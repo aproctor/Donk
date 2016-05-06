@@ -88,11 +88,9 @@ public class GameMaster : MonoBehaviour {
         Transform spawnPoint = teamObjs.spawnPoints[j];
         Player player = ((GameObject)GameObject.Instantiate(this.playerPrefab)).GetComponent<Player>();
         player.playerNumber = playerIndex + 1;       
-        player.transform.position = spawnPoint.transform.position;
-        player.transform.parent = this.teams[i].transform;
-        player.gameObject.name = "Player " + player.playerNumber;
-        player.attackMask = Game.Config.teamMask[i];
-        this.players[playerIndex] = player;
+		player.gameObject.name = "Player " + player.playerNumber;
+        player.transform.position = spawnPoint.transform.position;        
+		this.players[playerIndex] = player;
 		this.teams[i].AddPlayer(player);
 
         ++playerIndex;
@@ -109,6 +107,9 @@ public class GameMaster : MonoBehaviour {
     #region update_methods
 
     void Update() {
+		#if UNITY_EDITOR
+		this.gameObject.name = "Game Master[" + this.state.ToString() + "]";
+		#endif
         if (this.state == GameMasterState.Playing) {
             UpdatePlayState();
         } else if (this.state == GameMasterState.WaitingForPlayers) {
@@ -164,7 +165,6 @@ public class GameMaster : MonoBehaviour {
 
     private void ResumeGame() {
         this.state = GameMasterState.Playing;
-        Debug.LogError("GO!");
     }
 
     
@@ -188,6 +188,7 @@ public class GameMaster : MonoBehaviour {
     private void GameOver() {
         Debug.LogError("Game Over");
         this.state = GameMasterState.GameOver;
+		this.ui.gameOverUI.Show("Red Team Wins", Color.red);
     }
 
     #endregion 

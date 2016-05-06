@@ -7,7 +7,8 @@ public class BigEgg : Damagable {
     ChickenCoop coop = other.GetComponent<ChickenCoop>();
     //TODO figure out how to score the big egg
     if(coop != null) {
-      this.Die(coop.team);
+      this.Die();
+	  coop.team.AddPoints(Game.round.mode.eggScoreAmount);
     }
   }
 }

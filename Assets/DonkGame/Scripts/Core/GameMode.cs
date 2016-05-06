@@ -18,7 +18,8 @@ public class GameMode : ScriptableObject {
     public int timeLimit = 0;
 
 	public int eggScoreAmount = 0;
-	public int killScoreAmount = 0;
+	public int playerKillScoreAmount = 0;
+	public int chickenKillScoreAmount = 0;
 	public int chickenTickScoreAmount = 0;
 
     public Game.Scenes[] levelScenes;
