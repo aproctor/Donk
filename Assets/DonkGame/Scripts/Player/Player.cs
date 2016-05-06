@@ -12,6 +12,8 @@ public class Player : MonoBehaviour {
 
     private Vector3 aimDirection = Vector3.zero;
 
+  private const int MAX_ABILITIES = 4;
+
     [Header("Object Links")]
     [SerializeField]
     private GameObject model;
@@ -21,8 +23,8 @@ public class Player : MonoBehaviour {
 	[SerializeField]
 	Transform abilityContainer;
 
-    [SerializeField]
-    Ability[] Abilities = new Ability[5];
+  [SerializeField]
+  Ability[] Abilities = new Ability[MAX_ABILITIES + 1];
 	[SerializeField]
 	private GameObject defaultAbility;
 
@@ -35,6 +37,9 @@ public class Player : MonoBehaviour {
 
     [HideInInspector]
     public InputDevice device = null;
+
+
+  private int currentAbilityIndex = 0;
 
     void Start() {
 		for (int i = 0; i < primaryMaterials.Length; i++) {
@@ -103,22 +108,37 @@ public class Player : MonoBehaviour {
   }
 
 
-    private void AddAbility(GameObject abilityPrefab) {
-    	GameObject abilityInstance = (GameObject)GameObject.Instantiate (abilityPrefab);
+  private int AddAbility(GameObject abilityPrefab) {
+  	GameObject abilityInstance = (GameObject)GameObject.Instantiate (abilityPrefab);
 
-    	Ability a = abilityInstance.GetComponent<Ability>();
-    	a.transform.SetParent (this.abilityContainer);
-    	a.Init(this.transform, this.attackMask, this);
+  	Ability a = abilityInstance.GetComponent<Ability>();
+  	a.transform.SetParent (this.abilityContainer);
+  	a.Init(this.transform, this.attackMask, this);
 
-    	//TODO multi slot
-    	this.Abilities[0] = a;
-    }
-    
-    void Attack() {		
-      if(this.Abilities[0] != null) {
-        this.Abilities[0].Activate();
+    int openIndex = -1;
+    for (int i = 0; i < this.Abilities.Length; i++) {
+      if (this.Abilities [i] == null) {
+        openIndex = i;
+        break;
       }
     }
+    if (openIndex < 0) {
+      GameObject.Destroy(this.Abilities [currentAbilityIndex]);
+      openIndex = currentAbilityIndex;
+    }
+    this.Abilities[openIndex] = a;
+
+    return openIndex;
+  }
+
+  void Attack() {
+    if (this.Abilities[currentAbilityIndex] != null) {
+      this.Abilities[currentAbilityIndex].Activate ();
+    } else {
+      this.Abilities[0].Activate();
+    }
+  }
+
 
   public float tempActivateRadius = 3f;
   public Vector3 activateBoxCenter = new Vector3 (0f, 0f, 1.5f);
