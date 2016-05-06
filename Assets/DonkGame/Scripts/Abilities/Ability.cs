@@ -2,13 +2,13 @@
 using System;
 using System.Collections;
 
-public abstract class Ability : ScriptableObject {
+public abstract class Ability : MonoBehaviour {
 
 	protected Transform playerTransform;
 	protected LayerMask mask;
 	protected Player player;
 
-	public Ability(Transform playerTransform, LayerMask layer, Player player) {
+	public virtual void Init(Transform playerTransform, LayerMask layer, Player player) {
 		this.playerTransform = playerTransform;
 		this.mask = layer;
 		this.player = player;

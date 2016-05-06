@@ -17,10 +17,14 @@ public class Player : MonoBehaviour {
     private GameObject model;
     [SerializeField]
     private GameObject turret;
+
+	[SerializeField]
+	Transform abilityContainer;
+
     [SerializeField]
     Ability[] Abilities = new Ability[5];
 	[SerializeField]
-	private Ability defaultAbility;
+	private GameObject defaultAbility;
 
     public LayerMask attackMask;
 	[HideInInspector]
@@ -38,7 +42,7 @@ public class Player : MonoBehaviour {
 			r.material = Instantiate<Material>(r.material);
 			r.material.color = Game.Config.colors.playerColors[playerNumber - 1];
 		}
-        this.Abilities[0] = new SwordSlash(this.transform, this.attackMask, this);
+		this.AddAbility(this.defaultAbility);
     }
 	
 	// Update is called once per frame
@@ -95,6 +99,18 @@ public class Player : MonoBehaviour {
             Debug.LogError("Player " + playerNumber + " Y");
         }  
     }
+
+
+	private void AddAbility(GameObject abilityPrefab) {
+		GameObject abilityInstance = (GameObject)GameObject.Instantiate (abilityPrefab);
+
+		Ability a = abilityInstance.GetComponent<Ability>();
+		a.transform.SetParent (this.abilityContainer);
+		a.Init(this.transform, this.attackMask, this);
+
+		//TODO multi slot
+		this.Abilities[0] = a;
+	}
 
     void Attack() {		
       if(this.Abilities[0] != null) {

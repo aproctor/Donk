@@ -114,10 +114,6 @@ public class GameMaster : MonoBehaviour {
             UpdatePlayState();
         } else if (this.state == GameMasterState.WaitingForPlayers) {
             CheckForMinimumPlayers();
-        } else if (this.state == GameMasterState.Playing) {
-            if (Input.GetKeyDown(KeyCode.Escape)) {
-                PauseGame();
-            }
         } else if (this.state == GameMasterState.Paused) {
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 UnPauseGame();
@@ -169,6 +165,10 @@ public class GameMaster : MonoBehaviour {
 
     
     private void UpdatePlayState() {
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			PauseGame();
+		}
+
         //Tick Scores
         if (Time.time - this.lastScoreTickTime > this.gameScoreTickRate) {
             for (int i = 0; i < this.teams.Length; i++) {
