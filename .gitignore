@@ -3,6 +3,7 @@
 *.sln
 *.userprefs
 *.pidb
+*.suo
 
 Library/
 Temp/UnityLockfile
