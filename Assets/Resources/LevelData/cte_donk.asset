@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Name: cte_donk
   m_EditorClassIdentifier: 
   rules: 1
+  levelScenes: 02000000
   numTeams: 2
-  numPlayers: 4
+  numPlayers: 2
   scoreLimit: 1000
   timeLimit: 0
-  eggScoreAmount: 1000
+  eggCaptureScoreAmount: 1000
   playerKillScoreAmount: 1
   chickenKillScoreAmount: 1
   chickenTickScoreAmount: 1
+  eggCaptureGoldAmount: 0
+  playerKillGoldAmount: 0
+  chickenKillGoldAmount: 0
   chickenTickGoldAmount: 1
-  levelScenes: 02000000

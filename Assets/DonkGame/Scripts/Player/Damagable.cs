@@ -19,6 +19,7 @@ public class Damagable : MonoBehaviour {
 
     public void Reset() {
         this.currentHealth = maxHealth;
+        this.OnReset.Invoke();
     }
 
 	public void Die() {
