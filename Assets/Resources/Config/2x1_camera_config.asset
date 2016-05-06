@@ -15,4 +15,4 @@ MonoBehaviour:
   cameraPrefabs:
   - {fileID: 153770, guid: 02c62653b6ccf244c8e86c9311a0edde, type: 2}
   - {fileID: 178012, guid: e4d9c1963d95b3343864c6809e6bf42d, type: 2}
-  uiPrefab: {fileID: 0}
+  uiPrefab: {fileID: 124072, guid: e6954adaeded20c428378c0fca08a6c0, type: 2}
