@@ -16,10 +16,9 @@ public class SwordSlash : Ability {
     public override void Activate() {
         Collider[] hitColliders = Physics.OverlapSphere(this.playerTransform.position, this.radius, this.mask.value);
         for(int i = 0; i < hitColliders.Length; ++i) {
-            Player hitPlayer = hitColliders[i].GetComponent<Player>();
-            if(hitPlayer != null) {
-                Debug.LogError("hit a boy " + hitPlayer.playerNumber);
-                hitPlayer.TakeDamage(30);
+            Damagable hitDamagable = hitColliders[i].GetComponent<Damagable>();
+            if(hitDamagable != null) {
+                hitDamagable.TakeDamage(30);
             }
         }
     }
