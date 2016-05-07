@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
 
   [SerializeField]
   public Renderer[] primaryMaterials;
+	[SerializeField]
+	private SkinnedMeshRenderer fatSuit;
 
   [SerializeField]
   public BoxCollider InteractTrigger;
@@ -89,6 +91,10 @@ public class Player : MonoBehaviour
 
 		if (!dead && this.transform.position.y < -20) {
 			this.Die();
+		}
+			
+		if (this.fatSuit && this.fatSuit.sharedMesh.blendShapeCount > 0) {
+			this.fatSuit.SetBlendShapeWeight (0, (float)this.chickensInStomach.Count / this.maxChickensInStomach);
 		}
   }
 
