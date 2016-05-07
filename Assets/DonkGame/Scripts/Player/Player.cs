@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
   {
     if (device == null && InputManager.Devices.Count >= playerNumber) {
       //FIXME pass in device properly when drop in exists
-      Debug.LogError ("Defaulted device for player " + playerNumber);
+		Debug.LogWarning ("Defaulted device for player " + playerNumber);
       device = InputManager.Devices [playerNumber - 1];
     }
 
@@ -105,10 +105,14 @@ public class Player : MonoBehaviour
     }
 
     if (latchedObject != null) {
-      BigEgg egg = latchedObject.GetComponent<BigEgg>();
-      if (((egg != null) && egg.numLatchers >= 2) || (egg == null)) {
-		    this.latchedObject.MovePosition(this.latchedObject.transform.position + moveDirection * Time.deltaTime * this.currentSpeed * this.latchedMoveSpeed);
-      }
+		float moveScale = latchedMoveSpeed;
+
+		BigEgg egg = latchedObject.GetComponent<BigEgg>();
+		if (egg != null) {
+			moveScale = moveScale * egg.numLatchers;
+		}
+
+		this.latchedObject.MovePosition(this.latchedObject.transform.position + moveDirection * Time.deltaTime * this.currentSpeed * moveScale);
     } else {
       //Move self
 	  this.GetComponent<Rigidbody> ().MovePosition(this.transform.position + moveDirection * Time.deltaTime * this.currentSpeed);
@@ -241,16 +245,15 @@ public class Player : MonoBehaviour
     this.transform.SetParent(obj.transform);
   }
 
-  void UnlatchFromObject() {
-	  this.latchedObject = null;
+	void UnlatchFromObject () {	  
+		if (this.latchedObject.GetComponent<BigEgg> ()) {
+			--this.latchedObject.GetComponent<BigEgg> ().numLatchers;
+		}
+		this.GetComponent<Rigidbody> ().isKinematic = false;
+		this.transform.SetParent (this.team.transform);
 
-    if (this.latchedObject.GetComponent<BigEgg>()) {
-      --this.latchedObject.GetComponent<BigEgg>().numLatchers;
-    }
-
-	  this.GetComponent<Rigidbody>().isKinematic = false;
-    this.transform.SetParent (this.team.transform);
-  }
+		this.latchedObject = null;
+	}
 
   void OnDrawGizmosSelected ()
   {

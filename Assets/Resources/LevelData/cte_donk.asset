@@ -14,7 +14,7 @@ MonoBehaviour:
   rules: 1
   levelScenes: 02000000
   numTeams: 2
-  numPlayers: 2
+  numPlayers: 4
   scoreLimit: 1000
   timeLimit: 0
   eggCaptureScoreAmount: 1000
