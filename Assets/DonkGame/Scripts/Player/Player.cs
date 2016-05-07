@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
   {
     //Convert Incontrol vectors to movement directions in 3d space
     Vector3 moveDirection = new Vector3 (device.Direction.Vector.x, 0, device.Direction.Vector.y).normalized;
-    this.aimDirection = new Vector3 (device.RightStick.Vector.x, 0f, device.RightStick.Vector.y);
+    this.aimDirection = moveDirection;
 
     if (this.turret && aimDirection.sqrMagnitude > this.fireSensitivity) {                
       Quaternion quat = Quaternion.LookRotation (aimDirection, Vector3.up);
