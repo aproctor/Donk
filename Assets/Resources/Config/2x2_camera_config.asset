@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 3
   cameraPrefabs:
-  - {fileID: 166202, guid: d0fe7ce7f05658f4abe8eb384e538321, type: 2}
-  - {fileID: 166202, guid: fd26113a6ae4ad643aa96478da099196, type: 2}
-  - {fileID: 166202, guid: c7a7516df75912a49bce5ab55fd45881, type: 2}
-  - {fileID: 166202, guid: c2b54cde365dcdf49bd5cff8280be7e4, type: 2}
+  - {fileID: 153770, guid: 9450ca406d8ea48bda4b486642bf7bda, type: 2}
+  - {fileID: 153770, guid: 5768d99aa06774fd08eb6a86f2eaa5d3, type: 2}
+  - {fileID: 153770, guid: 913e2aceef4de4f70b2489fdea868337, type: 2}
+  - {fileID: 153770, guid: aa74b737db693462189b9ea3c209ed5f, type: 2}
   uiPrefab: {fileID: 102102, guid: 28d505b087d7bd643b7b422ed07fe555, type: 2}

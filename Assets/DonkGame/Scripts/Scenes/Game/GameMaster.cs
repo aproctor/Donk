@@ -37,6 +37,7 @@ public class GameMaster : MonoBehaviour {
   [SerializeField]
   private GameObject playerPrefab = null;
 
+
     #endregion
 
 
@@ -103,7 +104,7 @@ public class GameMaster : MonoBehaviour {
         ++playerIndex;
       }
     }
-		this.ui.SetupCameras(Game.CameraMode.SideBySide, this.teams);
+		this.ui.SetupCameras(Game.Config.preferedCamMode, this.teams);
         this.ui.SetupPlayerHuds(this.teams);
 
         this.state = GameMasterState.WaitingForPlayers;

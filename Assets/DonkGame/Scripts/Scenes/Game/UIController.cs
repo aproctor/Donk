@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class UIController : MonoBehaviour {
 
@@ -19,6 +20,7 @@ public class UIController : MonoBehaviour {
 
     #region cameras
     public void SetupCameras(Game.CameraMode cameraMode, Team[] teams) {
+
 		CameraConfig cameraConfig = null;
 		for (int i = 0; i < Game.Config.cameras.Length; i++) {
 			if (Game.Config.cameras[i].mode == cameraMode) {
@@ -36,11 +38,11 @@ public class UIController : MonoBehaviour {
 				SetupFollowCam(cameraConfig.cameraPrefabs[0], teams[0]);
 				SetupFollowCam(cameraConfig.cameraPrefabs[1], teams[1]);
 			} else if (cameraMode == Game.CameraMode.TwoByTwo) {
-				//TODO add a camera to each player
-//				for (int i = 0; i < cameraConfig.cameraPrefabs.Length; i++) {
-//					((GameObject)GameObject.Instantiate(cameraConfig.cameraPrefabs[i])).transform.parent = team.players[i].transform;
-//				}
-				Debug.LogError("Unimplemented Camera Mode");
+				Player[] tempPlayers = new Player[4] { teams[0].players[0], teams[0].players[1], teams[1].players[0], teams[1].players[1]};
+				for (int i = 0; i < cameraConfig.cameraPrefabs.Length; i++) {
+					SetupFollowCam (cameraConfig.cameraPrefabs [i], tempPlayers [i]);
+				}
+
 			} else if (cameraMode == Game.CameraMode.Single) {
 				//TODO add first camera prefab to current player?
 				Debug.LogError("Unimplemented Camera Mode");
@@ -51,6 +53,8 @@ public class UIController : MonoBehaviour {
 		}
 	}
 
+
+	//For a multi member camera
 	private void SetupFollowCam(GameObject prefab, Team team) {
 		
 		GameObject newCamera = (GameObject)GameObject.Instantiate(prefab);
@@ -60,6 +64,13 @@ public class UIController : MonoBehaviour {
 		for (int i = 0; i < team.players.Length; i++) {
 			followerCamera.players[i] = team.players[i].transform;
 		}
+	}
+
+	private void SetupFollowCam(GameObject prefab, Player player) {
+		GameObject newCamera = (GameObject)GameObject.Instantiate(prefab);
+		newCamera.transform.SetParent(player.team.transform);
+		FollowerCameraRig followerCamera = newCamera.GetComponent<FollowerCameraRig>();
+		followerCamera.players = new Transform[1] { player.transform};
 	}
 
 	private void SetupPipUI(GameObject prefab) {

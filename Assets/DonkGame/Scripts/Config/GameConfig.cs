@@ -9,6 +9,8 @@ public class GameConfig : ScriptableObject {
     public CameraConfig[] cameras;
     #endregion
 
+	public Game.CameraMode preferedCamMode = Game.CameraMode.TwoByTwo;
+
     public GameMode[] modes;
 
     public int maxPlayers = 4;
