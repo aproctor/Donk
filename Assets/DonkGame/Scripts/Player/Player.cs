@@ -86,17 +86,25 @@ public class Player : MonoBehaviour
       UpdateDirection ();
     }
   }
-
+    
+  public Rigidbody latchedObject = null;
+  public float latchedMoveSpeed = 0.2f;
   void UpdateDirection ()
-  {        
+  {
     //Convert Incontrol vectors to movement directions in 3d space
     Vector3 moveDirection = new Vector3 (device.Direction.Vector.x, 0, device.Direction.Vector.y).normalized;
     this.aimDirection = new Vector3 (device.RightStick.Vector.x, 0f, device.RightStick.Vector.y);
 
-    this.GetComponent<Rigidbody> ().MovePosition (this.transform.position + moveDirection * Time.deltaTime * this.currentSpeed);
     if (this.turret && aimDirection.sqrMagnitude > this.fireSensitivity) {                
       Quaternion quat = Quaternion.LookRotation (aimDirection, Vector3.up);
       this.turret.transform.rotation = quat;
+    }
+
+    if (latchedObject != null) {
+		this.latchedObject.MovePosition(this.latchedObject.transform.position + moveDirection * Time.deltaTime * this.speed * this.latchedMoveSpeed);
+    } else {
+      //Move self
+      this.GetComponent<Rigidbody> ().MovePosition(this.transform.position + moveDirection * Time.deltaTime * this.speed);
     }
   }
 
@@ -109,8 +117,12 @@ public class Player : MonoBehaviour
       PrimaryAction ();
     }
     if (device.Action2.WasPressed) {
-      //B button
-      this.SpitUp();
+      //B button      
+		if (this.latchedObject) {
+			this.UnlatchFromObject();
+		} else {
+			this.SpitUp();
+		}
     }
     if (device.Action3.WasPressed || device.RightTrigger.WasPressed) {
       //X button
@@ -164,7 +176,7 @@ public class Player : MonoBehaviour
     for (int i = 0; i < possibleObjects.Length; i++) {
       BigEgg egg = possibleObjects [i].gameObject.GetComponent<BigEgg> ();
       if (egg != null) {
-        LatchOntoEgg(egg);
+        LatchOnto(egg.GetComponent<Rigidbody>());
         break;
       }
 
@@ -178,7 +190,7 @@ public class Player : MonoBehaviour
       }
     }
   }
-
+		
   private void SpitUp() {
     if (this.chickensInStomach.Count > 1) {
       Chicken chickenToRemove = this.chickensInStomach[this.chickensInStomach.Count-1];
@@ -193,9 +205,17 @@ public class Player : MonoBehaviour
     this.currentSpeed = Mathf.Clamp(this.maxSpeed - (2f * this.chickensInStomach.Count), this.minSpeed, this.maxSpeed);
   }
 
-  void LatchOntoEgg(BigEgg egg) {
-    Debug.LogError ("Latching onto egg",egg.gameObject);
+  void LatchOnto(Rigidbody obj) {
+	this.latchedObject = obj;
+	this.GetComponent<Rigidbody>().isKinematic = true;
 
+    this.transform.SetParent(obj.transform);
+  }
+
+  void UnlatchFromObject() {
+	this.latchedObject = null;
+	this.GetComponent<Rigidbody>().isKinematic = false;
+    this.transform.SetParent (this.team.transform);
   }
 
   void OnDrawGizmosSelected ()
