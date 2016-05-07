@@ -14,7 +14,7 @@ public class Bolt : MonoBehaviour {
 
   public void Shoot(Crossbow crossbow) {
     this.crossbow = crossbow;
-    //Destroy(this.transform.parent.gameObject, 5f);
+    Destroy(this.gameObject, 2f);
   }
 
   void OnTriggerEnter(Collider collider) {
