@@ -87,9 +87,7 @@ public class Player : MonoBehaviour
   {
     this.AddAbility(this.defaultAbility);
     this.AddAbility(this.crossbow);
-
-		Debug.LogError ("Blend shapes? " + this.fatSuit.sharedMesh.blendShapeCount);
-
+			
     this.currentSpeed = this.maxSpeed;
   }
 	
@@ -115,12 +113,9 @@ public class Player : MonoBehaviour
 		}
 			
 		if (this.fatSuit && this.fatSuit.sharedMesh.blendShapeCount > 0) {
-			this.fatSuit.SetBlendShapeWeight (0, tempBlendShapeWeight);
-			//this.fatSuit.SetBlendShapeWeight (0, 100f * (float)this.chickensInStomach.Count / this.maxChickensInStomach);
+			this.fatSuit.SetBlendShapeWeight (0, 100f * (float)this.chickensInStomach.Count / this.maxChickensInStomach);
 		}
   }
-	[Range(0f,100f)]
-	public float tempBlendShapeWeight = 0f;
 
   void FixedUpdate ()
   {
