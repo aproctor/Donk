@@ -5,7 +5,7 @@ public class Chicken : MonoBehaviour {
   public float weight = 10;
 
   [SerializeField]
-  SphereCollider collider;
+  SphereCollider sphereCollider;
 
   private Rigidbody myRigidbody;
 
@@ -16,11 +16,11 @@ public class Chicken : MonoBehaviour {
     this.gameObject.SetActive(true);
     this.transform.parent = null;
     this.myRigidbody.isKinematic = false;
-    this.collider.enabled = false;
+    this.sphereCollider.enabled = false;
     this.myRigidbody.AddForce(Vector3.up * 500f);
 
     yield return new WaitForSeconds(1);
-    this.collider.enabled = true;
+    this.sphereCollider.enabled = true;
     yield return new WaitForSeconds(5);
     this.myRigidbody.isKinematic = true;
 

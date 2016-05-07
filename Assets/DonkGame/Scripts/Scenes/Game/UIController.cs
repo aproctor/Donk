@@ -77,7 +77,6 @@ public class UIController : MonoBehaviour {
             for (int i = 0; i < teams.Length; i++) {
                 Transform hudContainer = this.teamHuds[i];
                 for (int j = 0; j < teams[i].players.Length; j++) {
-                    Player p = teams[i].players[j];
                     GameObject hud = (GameObject)GameObject.Instantiate(playerHudPrefab);
                     RectTransform hudTransform = hud.GetComponent<RectTransform>();
                     hudTransform.SetParent(hudContainer, false);

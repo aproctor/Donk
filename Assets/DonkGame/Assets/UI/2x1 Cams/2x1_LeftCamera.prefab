@@ -118,7 +118,7 @@ MonoBehaviour:
   cameraMode: 1
   distanceMargin: 8
   minimumDistance: 20
-  maximumDistance: 200
+  maximumDistance: 500
 --- !u!124 &12410020
 Behaviour:
   m_ObjectHideFlags: 1

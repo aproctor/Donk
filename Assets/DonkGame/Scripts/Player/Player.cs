@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
                 Renderer r = primaryMaterials[i];
                 r.material = Instantiate<Material>(r.material);
                 r.material.color = _playerColor;
+				this.healthImage.color = _playerColor;
             }
         }
     }
@@ -135,7 +136,7 @@ public class Player : MonoBehaviour
 			moveScale = moveScale * egg.numLatchers;
 		}
 
-		this.latchedObject.MovePosition(this.transform.position + moveDirection * Time.deltaTime * this.currentSpeed * moveScale);
+		this.latchedObject.MovePosition(this.latchedObject.position + moveDirection * Time.deltaTime * this.currentSpeed * moveScale);
     } else {
       //Move self
 	  this.GetComponent<Rigidbody> ().MovePosition(this.transform.position + moveDirection * Time.deltaTime * this.currentSpeed);
@@ -237,7 +238,7 @@ public class Player : MonoBehaviour
 	public void Die() {
 		this.UnlatchFromObject();
 		this.dead = true;
-
+		this.UpdateHealthUI ();
 		StartCoroutine (RespawnDelay());
 	}
 
