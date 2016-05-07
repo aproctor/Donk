@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 450088}
   - 33: {fileID: 3379196}
   - 23: {fileID: 2359370}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Egg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 114: {fileID: 11431028}
   - 54: {fileID: 5462830}
   - 136: {fileID: 13685258}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BigEgg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

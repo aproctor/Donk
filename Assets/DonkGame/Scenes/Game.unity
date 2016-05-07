@@ -216,7 +216,7 @@ MonoBehaviour:
   players: []
   teamMask:
     serializedVersion: 2
-    m_Bits: 4294966783
+    m_Bits: 4294965759
 --- !u!1 &420004649
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +556,7 @@ MonoBehaviour:
   players: []
   teamMask:
     serializedVersion: 2
-    m_Bits: 4294967039
+    m_Bits: 4294966015
 --- !u!1 &846923322
 GameObject:
   m_ObjectHideFlags: 0

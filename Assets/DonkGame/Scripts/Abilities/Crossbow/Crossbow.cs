@@ -14,8 +14,10 @@ public class Crossbow : Ability {
   }
 
   public void HitTarget(Damagable target) {
+	BigEgg egg = target.GetComponent<BigEgg> ();
     Player hitPlayer = target.gameObject.GetComponent<Player>();
-    if(hitPlayer == null || (hitPlayer.team != this.player.team)) {
+    //This logic could be drastically simplified just by checking the layer mask, but that's not working and this is a jam so fuck it
+    if(egg == null && (hitPlayer == null || (hitPlayer.team != this.player.team))) {
       this.ApplyDamage(target, this.damageAmount);
     }
   } 
