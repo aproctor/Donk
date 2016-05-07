@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[CreateAssetMenu()]
 public class ColorConfig : ScriptableObject {
 
-    public Color[] playerColors;
+    [System.Serializable]
+    public struct TeamColors {
+        public Color[] colors;
+    }
+
+    public TeamColors[] teams;
 }

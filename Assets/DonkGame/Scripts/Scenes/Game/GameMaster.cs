@@ -93,7 +93,7 @@ public class GameMaster : MonoBehaviour {
 		player.gameObject.name = "Player " + player.playerNumber;
         player.transform.position = spawnPoint.transform.position;        
         player.spawnPoint = spawnPoint.transform.position;
-        player.PlayerColor = Game.Config.colors.playerColors[player.playerNumber - 1];
+        player.PlayerColor = Game.Config.colors.teams[i].colors[j];
         player.gold = Game.round.mode.playerStartingGold;
 		this.players[playerIndex] = player;
 		this.teams[i].AddPlayer(player);
