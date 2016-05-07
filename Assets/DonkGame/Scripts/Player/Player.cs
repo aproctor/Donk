@@ -192,6 +192,8 @@ public class Player : MonoBehaviour
     }
     this.Abilities [openIndex] = a;
 
+	this.currentAbilityIndex = openIndex;
+
     return openIndex;
   }
 
@@ -226,6 +228,13 @@ public class Player : MonoBehaviour
         this.UpdateSpeed();
         break;
       }
+
+			Shop shop = possibleObjects [i].gameObject.GetComponent<Shop> ();
+			if (shop != null && shop.open && this.gold >= shop.goldCost) {
+				this.gold -= shop.goldCost;
+				this.AddAbility (shop.abilityPrefab);
+				shop.ItemPurchased();
+			}
     }
   }
 
