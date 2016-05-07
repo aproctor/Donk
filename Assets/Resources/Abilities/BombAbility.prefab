@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 465290}
-  - 114: {fileID: 11462838}
+  - 114: {fileID: 11439628}
   m_Layer: 0
   m_Name: BombAbility
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11462838
+--- !u!114 &11439628
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -36,11 +36,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 133072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c95583e78cc0914dbe28db9207d446c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a3f64c12e05d49a88b463037536a575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
-  radius: 2000
+  damageAmount: 30
+  radius: 2
+  projectilePrefab: {fileID: 111284, guid: 116dbd3f5dc4b4592a5afefdddd9b314, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

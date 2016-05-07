@@ -12,7 +12,7 @@ GameObject:
   - 135: {fileID: 13577028}
   - 23: {fileID: 2343824}
   m_Layer: 0
-  m_Name: BombModel
+  m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

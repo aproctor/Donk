@@ -365,62 +365,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11477558, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
-      propertyPath: abilityPrefab
-      value: 
-      objectReference: {fileID: 133072, guid: 54c42dd9364ab49b296e5518e47f40ae, type: 2}
-    - target: {fileID: 22484372, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2.0597105
-      objectReference: {fileID: 0}
-    - target: {fileID: 22484372, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2.059712
-      objectReference: {fileID: 0}
-    - target: {fileID: 22484372, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 2.059712
-      objectReference: {fileID: 0}
-    - target: {fileID: 474630, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2.0597105
-      objectReference: {fileID: 0}
-    - target: {fileID: 474630, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2.059712
-      objectReference: {fileID: 0}
-    - target: {fileID: 474630, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 2.059712
-      objectReference: {fileID: 0}
-    - target: {fileID: 414554, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2.0597105
-      objectReference: {fileID: 0}
-    - target: {fileID: 414554, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2.059712
-      objectReference: {fileID: 0}
-    - target: {fileID: 414554, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 2.059712
-      objectReference: {fileID: 0}
-    - target: {fileID: 22484372, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.061
-      objectReference: {fileID: 0}
-    - target: {fileID: 22484372, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 1.84
-      objectReference: {fileID: 0}
-    - target: {fileID: 150030, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11477558, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
-      propertyPath: shopCooldown
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b020ecee43f79444db57a9eb9e4c7813, type: 2}
   m_IsPrefabParent: 0
