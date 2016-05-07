@@ -200,7 +200,8 @@ public class Player : MonoBehaviour
       Chicken chicken = possibleObjects [i].gameObject.GetComponent<Chicken> ();
       if (chicken != null && (this.chickensInStomach.Count < this.maxChickensInStomach)) {
         this.chickensInStomach.Add(chicken);
-        chicken.transform.SetParent(this.transform, true);
+        chicken.transform.SetParent(this.transform, false);
+        chicken.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
         chicken.gameObject.SetActive(false);
         this.UpdateSpeed();
         break;
@@ -231,11 +232,10 @@ public class Player : MonoBehaviour
 	}
 		
   private void SpitUp() {
-    if (this.chickensInStomach.Count > 1) {
+    if (this.chickensInStomach.Count >= 1) {
       Chicken chickenToRemove = this.chickensInStomach[this.chickensInStomach.Count-1];
-      chickenToRemove.transform.parent = null;
       this.chickensInStomach.Remove(chickenToRemove);
-      chickenToRemove.gameObject.SetActive(true);
+      StartCoroutine(chickenToRemove.SpatOut());
       this.UpdateSpeed();
     }
   }
