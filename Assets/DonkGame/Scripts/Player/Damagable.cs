@@ -39,12 +39,12 @@ public class Damagable : MonoBehaviour {
     public bool TakeDamage(float damageAmount) {
         if (this.IsAlive) {
             this.currentHealth = Mathf.Max(0f, this.currentHealth - damageAmount);
+            this.OnRecieveDamage.Invoke();
             if (Mathf.Approximately(0f, this.currentHealth)) {
                 OnDie.Invoke();
                 return true;
             }
 
-            this.OnRecieveDamage.Invoke();
         }
         return false;
     }
