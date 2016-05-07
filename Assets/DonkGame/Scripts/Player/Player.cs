@@ -105,7 +105,10 @@ public class Player : MonoBehaviour
     }
 
     if (latchedObject != null) {
-		this.latchedObject.MovePosition(this.latchedObject.transform.position + moveDirection * Time.deltaTime * this.currentSpeed * this.latchedMoveSpeed);
+      BigEgg egg = latchedObject.GetComponent<BigEgg>();
+      if (((egg != null) && egg.numLatchers >= 2) || (egg == null)) {
+		    this.latchedObject.MovePosition(this.latchedObject.transform.position + moveDirection * Time.deltaTime * this.currentSpeed * this.latchedMoveSpeed);
+      }
     } else {
       //Move self
 	  this.GetComponent<Rigidbody> ().MovePosition(this.transform.position + moveDirection * Time.deltaTime * this.currentSpeed);
@@ -182,6 +185,7 @@ public class Player : MonoBehaviour
       BigEgg egg = possibleObjects [i].gameObject.GetComponent<BigEgg> ();
       if (egg != null) {
         LatchOnto(egg.GetComponent<Rigidbody>());
+        ++egg.numLatchers;
         break;
       }
 
@@ -238,8 +242,13 @@ public class Player : MonoBehaviour
   }
 
   void UnlatchFromObject() {
-	this.latchedObject = null;
-	this.GetComponent<Rigidbody>().isKinematic = false;
+	  this.latchedObject = null;
+
+    if (this.latchedObject.GetComponent<BigEgg>()) {
+      --this.latchedObject.GetComponent<BigEgg>().numLatchers;
+    }
+
+	  this.GetComponent<Rigidbody>().isKinematic = false;
     this.transform.SetParent (this.team.transform);
   }
 
