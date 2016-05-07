@@ -6,6 +6,7 @@ public class PlayerHud : MonoBehaviour {
 
 	public Text goldText;
     private Player player;
+	public Text abilityText;
 
     public void Init(Player p) {
         this.player = p;
@@ -17,6 +18,8 @@ public class PlayerHud : MonoBehaviour {
         if (player != null) {
             //Update gold text
             this.goldText.text = "$" + player.gold;
+
+			this.abilityText.text = player.CurrentAbility.name;
 
             //Update HP bar
             //Update selected items
