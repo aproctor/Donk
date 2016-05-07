@@ -5,7 +5,14 @@ using System.Collections;
 public class Damagable : MonoBehaviour {
 
     public float maxHealth = 100f;
-    private float currentHealth = 100f;
+
+	private float currentHealth = 100f;
+	public float HealthPercent {
+		get {
+			return this.currentHealth / this.maxHealth;
+		}	
+	}
+    
 
     public UnityEvent OnRecieveDamage;
 

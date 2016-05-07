@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using InControl;
@@ -32,6 +33,9 @@ public class Player : MonoBehaviour
 
   [SerializeField]
   Transform abilityContainer;
+
+	[SerializeField]
+	public Image healthImage;
 
   [SerializeField]
   Ability[] Abilities = new Ability[MAX_ABILITIES + 1];
@@ -208,6 +212,11 @@ public class Player : MonoBehaviour
     }
   }
 
+	public void UpdateHealthUI() {
+		Damagable d = this.GetComponent<Damagable> ();
+		this.healthImage.fillAmount = d.HealthPercent;
+	}
+
 	public float spawnDelay = 4f;
 	public void Die() {
 		this.UnlatchFromObject();
@@ -228,6 +237,7 @@ public class Player : MonoBehaviour
 		this.dead = false;
 		this.transform.position = spawnPoint;
 		this.GetComponent<Damagable>().Reset();
+		this.UpdateHealthUI();
 	}
 		
   private void SpitUp() {
