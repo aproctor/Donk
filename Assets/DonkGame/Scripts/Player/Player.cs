@@ -101,10 +101,10 @@ public class Player : MonoBehaviour
     }
 
     if (latchedObject != null) {
-		this.latchedObject.MovePosition(this.latchedObject.transform.position + moveDirection * Time.deltaTime * this.speed * this.latchedMoveSpeed);
+		this.latchedObject.MovePosition(this.latchedObject.transform.position + moveDirection * Time.deltaTime * this.currentSpeed * this.latchedMoveSpeed);
     } else {
       //Move self
-      this.GetComponent<Rigidbody> ().MovePosition(this.transform.position + moveDirection * Time.deltaTime * this.speed);
+	  this.GetComponent<Rigidbody> ().MovePosition(this.transform.position + moveDirection * Time.deltaTime * this.currentSpeed);
     }
   }
 
