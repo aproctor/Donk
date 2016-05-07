@@ -22,6 +22,7 @@ MonoBehaviour:
   chickenKillScoreAmount: 1
   chickenTickScoreAmount: 1
   eggCaptureGoldAmount: 0
-  playerKillGoldAmount: 0
-  chickenKillGoldAmount: 0
+  playerKillGoldAmount: 100
+  chickenKillGoldAmount: 1
   chickenTickGoldAmount: 1
+  playerStartingGold: 10

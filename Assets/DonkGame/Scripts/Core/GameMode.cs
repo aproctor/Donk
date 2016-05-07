@@ -31,6 +31,7 @@ public class GameMode : ScriptableObject {
 	public int playerKillGoldAmount = 0;
 	public int chickenKillGoldAmount = 0;
 	public int chickenTickGoldAmount = 0;
+    public int playerStartingGold = 0;
 
     
 

@@ -46,6 +46,7 @@ public class Team : MonoBehaviour {
   /// <returns>score</returns>
   public void ScoreObjectivePoints() {   
     AddPoints(this.teamObjects.chickenCoop.CountChickens() * Game.round.mode.chickenTickScoreAmount);
+    AddGold(this.teamObjects.chickenCoop.CountChickens() * Game.round.mode.chickenTickGoldAmount);
   }
 
   public void AddPoints(int points) {

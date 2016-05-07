@@ -78,6 +78,7 @@ public class GameMaster : MonoBehaviour {
         //TODO Link up relevant game objects from level config
         int numPlayersPerTeam = Game.round.mode.numPlayers / Game.round.mode.numTeams;
 
+    //Spawn Players
     int playerIndex = 0;
     for(int i = 0; i < Game.round.mode.numTeams; i++) {
       TeamObjects teamObjs = level.teamObjects[i];
@@ -86,11 +87,14 @@ public class GameMaster : MonoBehaviour {
 
       for(int j = 0; j < numPlayersPerTeam; j++) {
         Transform spawnPoint = teamObjs.spawnPoints[j];
+
         Player player = ((GameObject)GameObject.Instantiate(this.playerPrefab)).GetComponent<Player>();
         player.playerNumber = playerIndex + 1;       
 		player.gameObject.name = "Player " + player.playerNumber;
         player.transform.position = spawnPoint.transform.position;        
-				player.spawnPoint = spawnPoint.transform.position;
+        player.spawnPoint = spawnPoint.transform.position;
+        player.PlayerColor = Game.Config.colors.playerColors[player.playerNumber - 1];
+        player.gold = Game.round.mode.playerStartingGold;
 		this.players[playerIndex] = player;
 		this.teams[i].AddPlayer(player);
 
@@ -98,6 +102,7 @@ public class GameMaster : MonoBehaviour {
       }
     }
 		this.ui.SetupCameras(Game.CameraMode.SideBySide, this.teams);
+        this.ui.SetupPlayerHuds(this.teams);
 
         this.state = GameMasterState.WaitingForPlayers;
     }

@@ -4,15 +4,21 @@ using System.Collections;
 
 public class UIController : MonoBehaviour {
 
+    [Header("Object Links")]
 	public Text countdownText;	
 	public Transform playerCameras;
+    public Transform[] teamHuds;
 	public GameOverUI gameOverUI;
+
+    [Header("Prefab Links")]
+    public GameObject playerHudPrefab;
 
 	void Start() {
 		this.gameOverUI.Hide();
 	}
 
-	public void SetupCameras(Game.CameraMode cameraMode, Team[] teams) {
+    #region cameras
+    public void SetupCameras(Game.CameraMode cameraMode, Team[] teams) {
 		CameraConfig cameraConfig = null;
 		for (int i = 0; i < Game.Config.cameras.Length; i++) {
 			if (Game.Config.cameras[i].mode == cameraMode) {
@@ -62,5 +68,31 @@ public class UIController : MonoBehaviour {
 		rectTransform.SetParent(this.playerCameras);
 		rectTransform.offsetMin = Vector2.zero;
 		rectTransform.offsetMax = Vector2.one;
-	}
+    }
+    #endregion
+
+    public void SetupPlayerHuds(Team[] teams) {
+        
+        if (teams.Length == 2) {
+            for (int i = 0; i < teams.Length; i++) {
+                Transform hudContainer = this.teamHuds[i];
+                for (int j = 0; j < teams[i].players.Length; j++) {
+                    Player p = teams[i].players[j];
+                    GameObject hud = (GameObject)GameObject.Instantiate(playerHudPrefab);
+                    RectTransform hudTransform = hud.GetComponent<RectTransform>();
+                    hudTransform.SetParent(hudContainer, false);
+
+                    //Not sure what layout we'll need in the future
+                    //This forces team 1 left and team 2 right, and players on the top or bottom of their screen
+                    hudTransform.pivot = new Vector2(i, j);
+                    hudTransform.anchorMin = new Vector2(i, j);
+                    hudTransform.anchorMax = new Vector2(i, j);
+                    hudTransform.anchoredPosition = Vector3.zero;
+
+                    hud.GetComponent<PlayerHud>().Init(teams[i].players[j]);
+                }
+            }
+        }
+    }
+
 }

@@ -59,14 +59,23 @@ public class Player : MonoBehaviour
 
 	public Vector3 spawnPoint;
 
+    private Color _playerColor;
+    public Color PlayerColor {
+        get {
+            return _playerColor;
+        }
+        set {
+            _playerColor = value;
+            for (int i = 0; i < primaryMaterials.Length; i++) {
+                Renderer r = primaryMaterials[i];
+                r.material = Instantiate<Material>(r.material);
+                r.material.color = _playerColor;
+            }
+        }
+    }
 
   void Start ()
   {
-    for (int i = 0; i < primaryMaterials.Length; i++) {
-      Renderer r = primaryMaterials [i];
-      r.material = Instantiate<Material> (r.material);
-      r.material.color = Game.Config.colors.playerColors [playerNumber - 1];
-    }
     this.AddAbility (this.defaultAbility);
 
     this.currentSpeed = this.maxSpeed;
