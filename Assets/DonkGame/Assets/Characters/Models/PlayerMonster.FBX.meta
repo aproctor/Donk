@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 33e6665d4c7cf4b148b9e9968c58a3ed
-timeCreated: 1462594546
+guid: 58685486269bb46ce89c83b4fad544df
+timeCreated: 1462647101
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -101,7 +101,107 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: 'Abdomen '
+        weight: 1
+      - path: Abdomen /Neck
+        weight: 1
+      - path: Abdomen /Neck/Head Top
+        weight: 1
+      - path: Abdomen /Neck/Head Top/Ear01_L
+        weight: 1
+      - path: Abdomen /Neck/Head Top/Ear01_L/Ear02_L
+        weight: 1
+      - path: Abdomen /Neck/Head Top/Ear01_R
+        weight: 1
+      - path: Abdomen /Neck/Head Top/Ear01_R/Ear02_R
+        weight: 1
+      - path: Abdomen /Neck/Mouth Bottom
+        weight: 1
+      - path: Abdomen /UpperArm_L
+        weight: 1
+      - path: Abdomen /UpperArm_L/LowerArm_L
+        weight: 1
+      - path: Abdomen /UpperArm_L/LowerArm_L/Hand_L
+        weight: 1
+      - path: Abdomen /UpperArm_L/LowerArm_L/Hand_L/Fingers_L
+        weight: 1
+      - path: Abdomen /UpperArm_L/LowerArm_L/Hand_L/Fingers_L/FingerTips_L
+        weight: 1
+      - path: Abdomen /UpperArm_L/LowerArm_L/Hand_L/Thumb_L
+        weight: 1
+      - path: Abdomen /UpperArm_L/LowerArm_L/Hand_L/Thumb_L/ThumbTip_L
+        weight: 1
+      - path: Abdomen /UpperArm_R
+        weight: 1
+      - path: Abdomen /UpperArm_R/LowerArm_R
+        weight: 1
+      - path: Abdomen /UpperArm_R/LowerArm_R/Hand_R
+        weight: 1
+      - path: Abdomen /UpperArm_R/LowerArm_R/Hand_R/Fingers_R
+        weight: 1
+      - path: Abdomen /UpperArm_R/LowerArm_R/Hand_R/Fingers_R/FingerTip_R
+        weight: 1
+      - path: Abdomen /UpperArm_R/LowerArm_R/Hand_R/Thumb_R
+        weight: 1
+      - path: Abdomen /UpperArm_R/LowerArm_R/Hand_R/Thumb_R/ThumbTip_R
+        weight: 1
+      - path: Pelvis
+        weight: 1
+      - path: Pelvis/Tail01
+        weight: 1
+      - path: Pelvis/Tail01/Tail02
+        weight: 1
+      - path: Pelvis/Tail01/Tail02/Tail_N
+        weight: 1
+      - path: Pelvis/UpperLeg_L
+        weight: 1
+      - path: Pelvis/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Pelvis/UpperLeg_L/LowerLeg_L/Foot_L
+        weight: 1
+      - path: Pelvis/UpperLeg_L/LowerLeg_L/Foot_L/Foot_LN
+        weight: 1
+      - path: Pelvis/UpperLeg_R
+        weight: 1
+      - path: Pelvis/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Pelvis/UpperLeg_R/LowerLeg_R/Foot_R
+        weight: 1
+      - path: Pelvis/UpperLeg_R/LowerLeg_R/Foot_R/Foot_RN
+        weight: 1
+      - path: Player
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
