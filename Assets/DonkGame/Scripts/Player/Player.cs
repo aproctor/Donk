@@ -268,7 +268,7 @@ public class Player : MonoBehaviour
   }
 
 	void UnlatchFromObject () {	  
-		if (this.latchedObject.GetComponent<BigEgg> ()) {
+		if (this.latchedObject != null && this.latchedObject.GetComponent<BigEgg> ()) {
 			--this.latchedObject.GetComponent<BigEgg> ().numLatchers;
 		}
 		this.GetComponent<Rigidbody> ().isKinematic = false;

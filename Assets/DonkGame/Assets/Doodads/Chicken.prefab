@@ -441,6 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 2
+  collider: {fileID: 13507126}
 --- !u!114 &11427610
 MonoBehaviour:
   m_ObjectHideFlags: 1
