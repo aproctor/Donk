@@ -4,8 +4,9 @@ using System.Collections;
 
 public abstract class Ability : MonoBehaviour {
 
+	public LayerMask mask { get; private set; }
+
 	protected Transform playerTransform;
-	protected LayerMask mask;
 	protected Player player;
 
 	public virtual void Init(Transform playerTransform, LayerMask layer, Player player) {
@@ -16,7 +17,7 @@ public abstract class Ability : MonoBehaviour {
 
     public abstract void Activate();
 
-	protected void ApplyDamage(Damagable hitDamagable, int amount) {
+	public void ApplyDamage(Damagable hitDamagable, int amount) {
 		bool targetKilled = hitDamagable.TakeDamage(amount);
 		if (targetKilled) {
 			Player p = hitDamagable.GetComponent<Player>();

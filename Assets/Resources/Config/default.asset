@@ -17,9 +17,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 747923cf24517ab4d994b1b5b4a117d4, type: 2}
   modes:
   - {fileID: 11400000, guid: 5b54b7f396d41da479bfe5e3ec20e7c5, type: 2}
-  teamMask:
-  - serializedVersion: 2
-    m_Bits: 4294967039
-  - serializedVersion: 2
-    m_Bits: 4294966783
   maxPlayers: 4
