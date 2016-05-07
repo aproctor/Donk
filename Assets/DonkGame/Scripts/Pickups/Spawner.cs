@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour {
 		}
 	}
 
-    void Start() {
+    void Start() {		
         this.SpawnObject();
     }
 

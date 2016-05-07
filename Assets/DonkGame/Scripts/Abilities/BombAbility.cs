@@ -4,10 +4,6 @@ using System;
 
 public class BombAbility : Ability {
 
-	public int damageAmount = 30;
-	[SerializeField]
-  	private float radius = 2;
-
 	public GameObject projectilePrefab;
 
     public override void Activate() {

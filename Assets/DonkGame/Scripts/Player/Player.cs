@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
   public int maxChickensInStomach;
 
   private Vector3 aimDirection = Vector3.zero;
+  private Vector3 moveDirection = Vector3.zero;
 
   private const int MAX_ABILITIES = 4;
 
@@ -104,9 +105,11 @@ public class Player : MonoBehaviour
       UpdateActions ();
     }
 
-    if (this.aimDirection != Vector3.zero) {
+		if (this.aimDirection == Vector3.zero) {
+			this.aimDirection = this.moveDirection;
+		}
       this.transform.LookAt (this.transform.position + this.aimDirection);
-    }
+    
 
 		if (!dead && this.transform.position.y < -20) {
 			this.Die();
@@ -129,8 +132,8 @@ public class Player : MonoBehaviour
   void UpdateDirection ()
   {
     //Convert Incontrol vectors to movement directions in 3d space
-    Vector3 moveDirection = new Vector3 (device.Direction.Vector.x, 0, device.Direction.Vector.y).normalized;
-    this.aimDirection = moveDirection;
+    this.moveDirection = new Vector3 (device.Direction.Vector.x, 0, device.Direction.Vector.y).normalized;
+	this.aimDirection = new Vector3 (device.RightStick.Vector.x, 0f, device.RightStick.Vector.y);
 
     if (this.turret && aimDirection.sqrMagnitude > this.fireSensitivity) {                
       Quaternion quat = Quaternion.LookRotation (aimDirection, Vector3.up);
