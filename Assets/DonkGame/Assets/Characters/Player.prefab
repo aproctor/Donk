@@ -1432,6 +1432,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   defaultAbility: {fileID: 133072, guid: bc35ade3572d74046b302b135a6d291c, type: 2}
+  crossbow: {fileID: 106748, guid: 5b497d60e822f9a49b013631e5b3b4b6, type: 2}
   attackMask:
     serializedVersion: 2
     m_Bits: 512

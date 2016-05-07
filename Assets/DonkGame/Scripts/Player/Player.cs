@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
   Ability[] Abilities = new Ability[MAX_ABILITIES + 1];
   [SerializeField]
   private GameObject defaultAbility;
+  [SerializeField]
+  private GameObject crossbow;
 
   public LayerMask attackMask;
   [HideInInspector]
@@ -76,7 +78,8 @@ public class Player : MonoBehaviour
 
   void Start ()
   {
-    this.AddAbility (this.defaultAbility);
+    this.AddAbility(this.defaultAbility);
+    this.AddAbility(this.crossbow);
 
     this.currentSpeed = this.maxSpeed;
   }
@@ -165,7 +168,7 @@ public class Player : MonoBehaviour
     }
     if (device.Action4.WasPressed) {
       //Y Button
-      Debug.LogError ("Player " + playerNumber + " Y");
+      this.SwitchWeapons();
     }  
   }
 
@@ -175,7 +178,8 @@ public class Player : MonoBehaviour
     GameObject abilityInstance = (GameObject)GameObject.Instantiate (abilityPrefab);
 
     Ability a = abilityInstance.GetComponent<Ability> ();
-    a.transform.SetParent (this.abilityContainer);
+    a.transform.SetParent (this.abilityContainer, false);
+    a.transform.position = this.abilityContainer.transform.position;
     a.Init (this.transform, this.attackMask, this);
 
     int openIndex = -1;
@@ -267,6 +271,13 @@ public class Player : MonoBehaviour
 
   private void UpdateSpeed() {
     this.currentSpeed = Mathf.Clamp(this.maxSpeed - (2f * this.chickensInStomach.Count), this.minSpeed, this.maxSpeed);
+  }
+
+  private void SwitchWeapons() {
+    ++this.currentAbilityIndex;
+    if((this.currentAbilityIndex > (this.Abilities.Length - 1)) || (this.Abilities[this.currentAbilityIndex] == null)) {
+      this.currentAbilityIndex = 0;
+    }
   }
 
   void LatchOnto(Rigidbody obj) {

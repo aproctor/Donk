@@ -15,7 +15,7 @@ public class SwordSlash : Ability {
       for (int i = 0; i < hitColliders.Length; ++i) {
               Damagable hitDamagable = hitColliders[i].GetComponent<Damagable>();
               if(hitDamagable != null) {
-				  ApplyDamage(hitDamagable, damageAmount);
+				        ApplyDamage(hitDamagable, damageAmount);
               }
           }
       }
