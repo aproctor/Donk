@@ -1424,6 +1424,7 @@ MonoBehaviour:
   turret: {fileID: 182394}
   abilityContainer: {fileID: 474188}
   healthImage: {fileID: 11466464}
+  characterAnimator: {fileID: 9530196}
   Abilities:
   - {fileID: 0}
   - {fileID: 0}
@@ -1441,7 +1442,6 @@ MonoBehaviour:
   fatSuit: {fileID: 13726900}
   InteractTrigger: {fileID: 6551030}
   spawnPoint: {x: 0, y: 0, z: 0}
-  tempBlendShapeWeight: 0
   latchedObject: {fileID: 0}
   latchedMoveSpeed: 0.02
   spawnDelay: 4

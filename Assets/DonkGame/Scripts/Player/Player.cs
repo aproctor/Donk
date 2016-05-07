@@ -38,6 +38,9 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	public Image healthImage;
 
+	[SerializeField]
+	public Animator characterAnimator;
+
   [SerializeField]
   Ability[] Abilities = new Ability[MAX_ABILITIES + 1];
   [SerializeField]
@@ -153,6 +156,8 @@ public class Player : MonoBehaviour
       //Move self
 	  this.GetComponent<Rigidbody> ().MovePosition(this.transform.position + moveDirection * Time.deltaTime * this.currentSpeed);
     }
+
+		this.characterAnimator.SetFloat ("Speed", this.moveDirection.sqrMagnitude);   //That's not right, we should actually pass the player speed
 
   }
 
@@ -284,12 +289,17 @@ public class Player : MonoBehaviour
       Chicken chickenToRemove = this.chickensInStomach[this.chickensInStomach.Count-1];
       this.chickensInStomach.Remove(chickenToRemove);
       StartCoroutine(chickenToRemove.SpatOut());
-      this.UpdateSpeed();
+	  this.UpdateSpeed();
     }
   }
 
   private void UpdateSpeed() {
-    this.currentSpeed = Mathf.Clamp(this.maxSpeed - (2f * this.chickensInStomach.Count), this.minSpeed, this.maxSpeed);
+	float weight = 0f;
+	for (int i = 0; i < this.chickensInStomach.Count; i++) {
+		weight += this.chickensInStomach [i].weight;
+	}
+	this.currentSpeed = Mathf.Clamp(this.maxSpeed - weight, this.minSpeed, this.maxSpeed);
+	this.model.transform.localScale = Vector3.one * (weight / 6f) + Vector3.one;
   }
 
   private void SwitchWeapons() {
