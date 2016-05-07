@@ -82,6 +82,10 @@ public class Player : MonoBehaviour
     if (this.aimDirection != Vector3.zero) {
       this.transform.LookAt (this.transform.position + this.aimDirection);
     }
+
+		if (!dead && this.transform.position.y < -20) {
+			this.Die();
+		}
   }
 
   void FixedUpdate ()
@@ -112,7 +116,7 @@ public class Player : MonoBehaviour
 			moveScale = moveScale * egg.numLatchers;
 		}
 
-		this.latchedObject.MovePosition(this.latchedObject.transform.position + moveDirection * Time.deltaTime * this.currentSpeed * moveScale);
+		this.latchedObject.MovePosition(this.transform.position + moveDirection * Time.deltaTime * this.currentSpeed * moveScale);
     } else {
       //Move self
 	  this.GetComponent<Rigidbody> ().MovePosition(this.transform.position + moveDirection * Time.deltaTime * this.currentSpeed);
@@ -206,7 +210,9 @@ public class Player : MonoBehaviour
 
 	public float spawnDelay = 4f;
 	public void Die() {
+		this.UnlatchFromObject();
 		this.dead = true;
+
 		StartCoroutine (RespawnDelay());
 	}
 
