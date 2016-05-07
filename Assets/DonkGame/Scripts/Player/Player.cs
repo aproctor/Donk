@@ -184,12 +184,14 @@ public class Player : MonoBehaviour
 
   void LatchOnto(Rigidbody obj) {
 	this.latchedObject = obj;
+	this.GetComponent<Rigidbody>().isKinematic = true;
 
     this.transform.SetParent(obj.transform);
   }
 
   void UnlatchFromObject() {
 	this.latchedObject = null;
+	this.GetComponent<Rigidbody>().isKinematic = false;
     this.transform.SetParent (this.team.transform);
   }
 

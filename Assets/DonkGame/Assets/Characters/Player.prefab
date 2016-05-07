@@ -372,6 +372,8 @@ MonoBehaviour:
   team: {fileID: 0}
   primaryMaterials:
   - {fileID: 2321072}
+  latchedObject: {fileID: 0}
+  latchedMoveSpeed: 0.02
   tempActivateRadius: 3
   activateBoxCenter: {x: 0, y: 0, z: 1.5}
   activateBoxSize: {x: 3, y: 3, z: 3}
