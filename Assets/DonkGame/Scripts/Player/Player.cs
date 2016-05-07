@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using InControl;
 
 public class Player : MonoBehaviour
@@ -7,9 +8,13 @@ public class Player : MonoBehaviour
  
   public float fireSensitivity = 0.1f;
     
-  public float speed = 100f;
+  public float currentSpeed = 100f;
+  public float maxSpeed = 100f;
+  public float minSpeed = 1f;
   public int playerNumber = 1;
   public int gold = 0;
+  public List<Chicken> chickensInStomach = new List<Chicken>();
+  public int maxChickensInStomach;
 
   private Vector3 aimDirection = Vector3.zero;
 
@@ -36,6 +41,9 @@ public class Player : MonoBehaviour
   [SerializeField]
   public Renderer[] primaryMaterials;
 
+  [SerializeField]
+  public BoxCollider InteractTrigger;
+
   [HideInInspector]
   public InputDevice device = null;
 
@@ -50,6 +58,8 @@ public class Player : MonoBehaviour
       r.material.color = Game.Config.colors.playerColors [playerNumber - 1];
     }
     this.AddAbility (this.defaultAbility);
+
+    this.currentSpeed = this.maxSpeed;
   }
 	
   // Update is called once per frame
@@ -66,7 +76,7 @@ public class Player : MonoBehaviour
     }
 
     if (this.aimDirection != Vector3.zero) {
-      this.model.transform.LookAt (this.transform.position + this.aimDirection);
+      this.transform.LookAt (this.transform.position + this.aimDirection);
     }
   }
 
@@ -107,11 +117,12 @@ public class Player : MonoBehaviour
       PrimaryAction ();
     }
     if (device.Action2.WasPressed) {
-      //B button
+      //B button      
 		if (this.latchedObject) {
 			this.UnlatchFromObject();
+		} else {
+			this.SpitUp();
 		}
-			//TODO spit chicken, fuck this spacing
     }
     if (device.Action3.WasPressed || device.RightTrigger.WasPressed) {
       //X button
@@ -157,29 +168,41 @@ public class Player : MonoBehaviour
     }
   }
 
-
-  public float tempActivateRadius = 3f;
-  public Vector3 activateBoxCenter = new Vector3 (0f, 0f, 1.5f);
-  public Vector3 activateBoxSize = Vector3.one * 3;
-
   void PrimaryAction ()
   {
-    //TODO make this properly rotate
-    Collider[] possibleObjects = Physics.OverlapBox (this.transform.position, activateBoxSize, this.transform.rotation);
+
+    Collider[] possibleObjects = Physics.OverlapBox(this.InteractTrigger.bounds.center, this.InteractTrigger.bounds.extents);
 
     for (int i = 0; i < possibleObjects.Length; i++) {
-      BigEgg egg = possibleObjects [i].GetComponent<BigEgg> ();
+      BigEgg egg = possibleObjects [i].gameObject.GetComponent<BigEgg> ();
       if (egg != null) {
         LatchOnto(egg.GetComponent<Rigidbody>());
         break;
       }
 
-      Chicken chicken = possibleObjects [i].GetComponent<Chicken> ();
-      if (chicken != null) {
-        Debug.LogError ("eating chicken");
+      Chicken chicken = possibleObjects [i].gameObject.GetComponent<Chicken> ();
+      if (chicken != null && (this.chickensInStomach.Count < this.maxChickensInStomach)) {
+        this.chickensInStomach.Add(chicken);
+        chicken.transform.SetParent(this.transform, true);
+        chicken.gameObject.SetActive(false);
+        this.UpdateSpeed();
         break;
       }
     }
+  }
+		
+  private void SpitUp() {
+    if (this.chickensInStomach.Count > 1) {
+      Chicken chickenToRemove = this.chickensInStomach[this.chickensInStomach.Count-1];
+      chickenToRemove.transform.parent = null;
+      this.chickensInStomach.Remove(chickenToRemove);
+      chickenToRemove.gameObject.SetActive(true);
+      this.UpdateSpeed();
+    }
+  }
+
+  private void UpdateSpeed() {
+    this.currentSpeed = Mathf.Clamp(this.maxSpeed - (2f * this.chickensInStomach.Count), this.minSpeed, this.maxSpeed);
   }
 
   void LatchOnto(Rigidbody obj) {
@@ -199,6 +222,5 @@ public class Player : MonoBehaviour
   {
     Gizmos.color = Color.magenta;
     Gizmos.DrawSphere (this.transform.position + this.aimDirection, 0.3f);
-    Gizmos.DrawWireCube (this.transform.position + this.activateBoxCenter, activateBoxSize);
   }
 }
