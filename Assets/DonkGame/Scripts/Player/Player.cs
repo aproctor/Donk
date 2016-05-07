@@ -20,6 +20,10 @@ public class Player : MonoBehaviour
 
   private const int MAX_ABILITIES = 4;
 
+	private int currentAbilityIndex = 0;
+	[HideInInspector]
+	public bool dead = false;
+
   [Header ("Object Links")]
   [SerializeField]
   private GameObject model;
@@ -47,8 +51,8 @@ public class Player : MonoBehaviour
   [HideInInspector]
   public InputDevice device = null;
 
+	public Vector3 spawnPoint;
 
-  private int currentAbilityIndex = 0;
 
   void Start ()
   {
@@ -71,7 +75,7 @@ public class Player : MonoBehaviour
       device = InputManager.Devices [playerNumber - 1];
     }
 
-    if (device) {
+    if (device && !dead) {
       UpdateActions ();
     }
 
@@ -82,7 +86,7 @@ public class Player : MonoBehaviour
 
   void FixedUpdate ()
   {
-    if (device) {
+    if (device && !dead) {
       UpdateDirection ();
     }
   }
@@ -106,6 +110,7 @@ public class Player : MonoBehaviour
       //Move self
 	  this.GetComponent<Rigidbody> ().MovePosition(this.transform.position + moveDirection * Time.deltaTime * this.currentSpeed);
     }
+
   }
 
   void UpdateActions ()
@@ -190,6 +195,26 @@ public class Player : MonoBehaviour
       }
     }
   }
+
+	public float spawnDelay = 4f;
+	public void Die() {
+		this.dead = true;
+		StartCoroutine (RespawnDelay());
+	}
+
+	IEnumerator RespawnDelay() {
+		yield return new WaitForSeconds (spawnDelay);
+
+		Respawn ();
+
+		yield return null;
+	}
+
+	public void Respawn() {
+		this.dead = false;
+		this.transform.position = spawnPoint;
+		this.GetComponent<Damagable>().Reset();
+	}
 		
   private void SpitUp() {
     if (this.chickensInStomach.Count > 1) {

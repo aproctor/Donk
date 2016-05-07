@@ -90,6 +90,7 @@ public class GameMaster : MonoBehaviour {
         player.playerNumber = playerIndex + 1;       
 		player.gameObject.name = "Player " + player.playerNumber;
         player.transform.position = spawnPoint.transform.position;        
+				player.spawnPoint = spawnPoint.transform.position;
 		this.players[playerIndex] = player;
 		this.teams[i].AddPlayer(player);
 
