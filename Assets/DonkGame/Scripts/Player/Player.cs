@@ -267,6 +267,13 @@ public class Player : MonoBehaviour
 		this.dead = true;
 		this.UpdateHealthUI ();
 		StartCoroutine (RespawnDelay());
+
+    for(int i = 0; i < this.chickensInStomach.Count; ++i) {
+      StartCoroutine(this.chickensInStomach[0].SpatOut());
+      this.chickensInStomach.Remove(this.chickensInStomach[0]);
+      this.UpdateSpeed();
+    }
+
 	}
 
 	IEnumerator RespawnDelay() {
