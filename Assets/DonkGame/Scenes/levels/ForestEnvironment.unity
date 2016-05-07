@@ -1225,7 +1225,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1726753711}
-  m_RootOrder: 2
+  m_RootOrder: 4
 --- !u!114 &888937446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1473,6 +1473,33 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a741568fd5d263949913f0c017bd28af, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1091522522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1091522523}
+  m_Layer: 0
+  m_Name: T2Spawn 3
+  m_TagString: Untagged
+  m_Icon: {fileID: -2663371497217273435, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1091522523
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1091522522}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 92.69, y: 0, z: 1.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2019086825}
+  m_RootOrder: 3
 --- !u!4 &1104121504 stripped
 Transform:
   m_PrefabParentObject: {fileID: 447872, guid: a741568fd5d263949913f0c017bd28af, type: 2}
@@ -1806,6 +1833,33 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 447872, guid: a741568fd5d263949913f0c017bd28af, type: 2}
   m_PrefabInternal: {fileID: 238055319}
+--- !u!1 &1272069191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1272069192}
+  m_Layer: 0
+  m_Name: T1Spawn 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 5228209130450103505, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1272069192
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1272069191}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -76.51, y: 0, z: -6.95}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1726753711}
+  m_RootOrder: 3
 --- !u!1001 &1290274340
 Prefab:
   m_ObjectHideFlags: 0
@@ -2270,6 +2324,8 @@ Transform:
   m_Children:
   - {fileID: 1485137608}
   - {fileID: 1873541086}
+  - {fileID: 1820263233}
+  - {fileID: 1272069192}
   - {fileID: 888937445}
   m_Father: {fileID: 117974171}
   m_RootOrder: 0
@@ -2288,6 +2344,8 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1485137608}
   - {fileID: 1873541086}
+  - {fileID: 1820263233}
+  - {fileID: 1272069192}
   chickenCoop: {fileID: 888937446}
 --- !u!1 &1746062342
 GameObject:
@@ -2461,6 +2519,33 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 447872, guid: a741568fd5d263949913f0c017bd28af, type: 2}
   m_PrefabInternal: {fileID: 1205317778}
+--- !u!1 &1820263232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1820263233}
+  m_Layer: 0
+  m_Name: T1Spawn 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 5228209130450103505, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1820263233
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1820263232}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -76.51, y: 0, z: -12.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1726753711}
+  m_RootOrder: 2
 --- !u!1 &1873541085
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,6 +2723,8 @@ Transform:
   - {fileID: 1669725611}
   - {fileID: 954671310}
   - {fileID: 931021391}
+  - {fileID: 1091522523}
+  - {fileID: 2121852951}
   m_Father: {fileID: 117974171}
   m_RootOrder: 1
 --- !u!114 &2019086826
@@ -2655,6 +2742,8 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 954671310}
   - {fileID: 931021391}
+  - {fileID: 1091522523}
+  - {fileID: 2121852951}
   chickenCoop: {fileID: 1669725613}
 --- !u!1001 &2027410250
 Prefab:
@@ -2794,6 +2883,33 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 447872, guid: a741568fd5d263949913f0c017bd28af, type: 2}
   m_PrefabInternal: {fileID: 636479812}
+--- !u!1 &2121852950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2121852951}
+  m_Layer: 0
+  m_Name: T2Spawn 4
+  m_TagString: Untagged
+  m_Icon: {fileID: -2663371497217273435, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2121852951
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2121852950}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 92.69, y: 0, z: 9.44}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2019086825}
+  m_RootOrder: 4
 --- !u!1 &2146236491
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class GameMaster : MonoBehaviour {
 
     //TODO spawn these dynamically
     public Team[] teams;
+    [HideInInspector]
     public Player[] players;
 
     private enum GameMasterState {
@@ -79,6 +80,7 @@ public class GameMaster : MonoBehaviour {
         int numPlayersPerTeam = Game.round.mode.numPlayers / Game.round.mode.numTeams;
 
     //Spawn Players
+        this.players = new Player[Game.round.mode.numPlayers];
     int playerIndex = 0;
     for(int i = 0; i < Game.round.mode.numTeams; i++) {
       TeamObjects teamObjs = level.teamObjects[i];
