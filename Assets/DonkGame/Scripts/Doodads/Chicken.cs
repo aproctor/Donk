@@ -9,6 +9,7 @@ public class Chicken : MonoBehaviour {
 
 	void Start() {
 		this.myRigidbody = this.GetComponent<Rigidbody>();
+		this.transform.Rotate (0f, Random.value * 360f, 0f);
 	}
 
 	void Update() {
