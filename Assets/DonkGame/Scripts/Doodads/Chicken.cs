@@ -23,6 +23,7 @@ public class Chicken : MonoBehaviour {
 		Collider c = this.GetComponent<Collider>();
 
 		this.gameObject.SetActive(true);
+    this.GetComponent<Damagable>().TakeDamage(0f);
 		c.enabled = false;
 		this.myRigidbody.AddForce((this.transform.parent.up *Random.Range(400f, 500f)) + (-this.transform.parent.forward * Random.Range(100f, 150f)) + (this.transform.parent.right * Random.Range(-200f, 200f)));
 		this.transform.parent = null;

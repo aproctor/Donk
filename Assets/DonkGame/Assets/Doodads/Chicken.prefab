@@ -64,22 +64,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &121040
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 431628}
-  - 82: {fileID: 8244626}
-  m_Layer: 0
-  m_Name: Squak
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &129448
 GameObject:
   m_ObjectHideFlags: 1
@@ -137,7 +121,7 @@ GameObject:
   - 4: {fileID: 482256}
   - 82: {fileID: 8288234}
   m_Layer: 0
-  m_Name: Death
+  m_Name: Buck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,6 +199,22 @@ GameObject:
   - 95: {fileID: 9584448}
   m_Layer: 0
   m_Name: Chicken
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &195272
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 499916}
+  - 82: {fileID: 8231218}
+  m_Layer: 0
+  m_Name: Death
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,18 +302,6 @@ Transform:
   - {fileID: 497192}
   m_Father: {fileID: 416098}
   m_RootOrder: 2
---- !u!4 &431628
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 121040}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 452990}
-  m_RootOrder: 1
 --- !u!4 &452990
 Transform:
   m_ObjectHideFlags: 1
@@ -324,8 +312,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 499916}
   - {fileID: 482256}
-  - {fileID: 431628}
   m_Father: {fileID: 416098}
   m_RootOrder: 1
 --- !u!4 &459288
@@ -377,7 +365,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 452990}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &486994
 Transform:
   m_ObjectHideFlags: 1
@@ -402,6 +390,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425942}
   m_RootOrder: 0
+--- !u!4 &499916
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195272}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 452990}
+  m_RootOrder: 0
 --- !u!54 &5435764
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -417,17 +417,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!82 &8244626
+--- !u!82 &8231218
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 121040}
+  m_GameObject: {fileID: 195272}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300001, guid: 792a88b01d01f47ca9e1ed1add984b3d,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 638b6410a284d464b963e877532c760f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b298d17f6b8644f45b076c7cc779fdf9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -480,7 +480,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -502,10 +502,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300001, guid: 792a88b01d01f47ca9e1ed1add984b3d,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 638b6410a284d464b963e877532c760f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 143b6ca20c6c942889fe98d614b6ef0b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: -1.62
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -555,7 +555,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -628,7 +628,7 @@ MonoBehaviour:
   OnDie:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8288234}
+      - m_Target: {fileID: 8231218}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:

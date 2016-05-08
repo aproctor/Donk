@@ -287,8 +287,9 @@ public class Player : MonoBehaviour
     }
   }
 
-	private void EatChicken(Chicken chicken) {
+	private void EatChicken(Chicken chicken) {    
 		this.characterAnimator.SetTrigger("Eat");
+    chicken.GetComponent<Damagable>().TakeDamage(0f); //sound effect
 		this.chickensInStomach.Add(chicken);
 		chicken.transform.SetParent(this.transform, false);
 		chicken.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
