@@ -9,7 +9,7 @@ public class LandMineAbility : Ability {
 
   public override void Init(Transform playerTransform, LayerMask layer, Player player) {
     base.Init(playerTransform, layer, player);
-    this.chargesRemaining = 5;
+    this.chargesRemaining = this.stackQuantity;
   }
 
   public override void Activate() {

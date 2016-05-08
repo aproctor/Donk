@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
   {
     if (device == null && InputManager.Devices.Count >= playerNumber) {
       //FIXME pass in device properly when drop in exists
-		Debug.LogWarning ("Defaulted device for player " + playerNumber);
+		//Debug.LogWarning ("Defaulted device for player " + playerNumber);
       device = InputManager.Devices [playerNumber - 1];
     }
 
@@ -209,7 +209,7 @@ public class Player : MonoBehaviour
       for (int i = 0; i < this.Abilities.Length; ++i) {
         if (this.Abilities[i] == null) continue;
         if (this.Abilities[i].GetType() == abilityPrefab.GetComponent<Ability>().GetType()) {
-          this.Abilities[i].AddQuantity(5);
+          this.Abilities[i].AddQuantity(this.Abilities[i].stackQuantity);
           break;
         }
       }

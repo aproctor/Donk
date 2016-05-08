@@ -25,6 +25,7 @@ public abstract class Ability : MonoBehaviour {
 	protected Player player;
   protected float lastUseTime = 0f;
   public int chargesRemaining { get; protected set; }
+  public int stackQuantity = 1;
 
   public float CooldownPct {
     get {      
