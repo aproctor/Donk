@@ -267,7 +267,7 @@ public class Player : MonoBehaviour
 
     for (int i = 0; i < possibleObjects.Length; i++) {
       BigEgg egg = possibleObjects [i].gameObject.GetComponent<BigEgg> ();
-      if (egg != null) {
+      if (egg != null && (this.latchedObject == null)) {
         LatchOnto(egg.GetComponent<Rigidbody>());
         ++egg.numLatchers;
         break;
