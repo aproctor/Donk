@@ -25,4 +25,4 @@ MonoBehaviour:
   playerKillGoldAmount: 100
   chickenKillGoldAmount: 1
   chickenTickGoldAmount: 5
-  playerStartingGold: 1000
+  playerStartingGold: 50
