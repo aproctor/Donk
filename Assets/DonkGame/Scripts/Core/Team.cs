@@ -8,6 +8,7 @@ public class Team : MonoBehaviour {
 	[HideInInspector]
 	public Player[] players;
 
+  public int teamNumber = 0;
 	public LayerMask teamMask;
 
   void Start() {

@@ -12,11 +12,10 @@ public class LandMine : MonoBehaviour {
     Damagable damagable = collider.gameObject.GetComponent<Damagable>();
     if(damagable != null) {
       damagable.TakeDamage(this.damage);
+      this.explosionSystem.SetActive(true);
+      Destroy(this.gameObject, 2f);
     }
 
-    this.explosionSystem.SetActive(true);
-
-    Destroy(this.gameObject, 2f);
 
   }
 }
