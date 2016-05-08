@@ -351,7 +351,9 @@ public class Player : MonoBehaviour
   }
 
   private void SwitchWeapons() {
-    this.Abilities[this.currentAbilityIndex].OnDeselected();
+    if (this.Abilities[this.currentAbilityIndex] != null) {
+      this.Abilities[this.currentAbilityIndex].OnDeselected();
+    }
 
     do {
       ++this.currentAbilityIndex;
