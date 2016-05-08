@@ -100,6 +100,7 @@ public class GameMaster : MonoBehaviour {
         player.gold = Game.round.mode.playerStartingGold;
 		this.players[playerIndex] = player;
 		this.teams[i].AddPlayer(player);
+        player.canMove = false;
 
         ++playerIndex;
       }
@@ -169,39 +170,49 @@ public class GameMaster : MonoBehaviour {
         StartCoroutine(StartGameCountdown());
     }
 
-    private void ResumeGame() {
-        this.state = GameMasterState.Playing;
+  private void ResumeGame() {
+    this.state = GameMasterState.Playing;
+
+    for(int i = 0; i < this.teams.Length; i++) {
+      for(int j = 0; j < this.teams[i].players.Length; j++) {
+        this.teams[i].players[j].canMove = true;
+      }
     }
+  }
 
     
-    private void UpdatePlayState() {
-		if (Input.GetKeyDown(KeyCode.Escape)) {
-			PauseGame();
-		}
-
-        //Tick Scores
-        if (Time.time - this.lastScoreTickTime > this.gameScoreTickRate) {
-            for (int i = 0; i < this.teams.Length; i++) {
-                this.teams[i].ScoreObjectivePoints();
-            }
-            this.lastScoreTickTime = Time.time;
-        }
-
-        //Check Scores
-        for (int i = 0; i < this.teams.Length; i++) {
-			this.ui.teamScoreLabels[i].text = this.teams[i].Score.ToString();
-            if (this.teams[i].Score > Game.round.mode.scoreLimit) {                
-                GameOver();
-            }
-        }
-		//Debug.LogWarning ("Score: " + this.teams [0].Score + " - " + this.teams [1].Score);
+  private void UpdatePlayState() {
+    if(Input.GetKeyDown(KeyCode.Escape)) {
+      PauseGame();
     }
 
-    private void GameOver() {
-        Debug.LogError("Game Over");
-        this.state = GameMasterState.GameOver;
-		this.ui.gameOverUI.Show("Red Team Wins", Color.red);
+    //Tick Scores
+    if(Time.time - this.lastScoreTickTime > this.gameScoreTickRate) {
+      for(int i = 0; i < this.teams.Length; i++) {
+        this.teams[i].ScoreObjectivePoints();
+      }
+      this.lastScoreTickTime = Time.time;
     }
+
+    //Check Scores
+    for(int i = 0; i < this.teams.Length; i++) {
+      this.ui.teamScoreLabels[i].text = this.teams[i].Score.ToString();
+      if(this.teams[i].Score >= Game.round.mode.scoreLimit) {                
+        GameOver(this.teams[i]);
+      }
+    }
+  }
+
+  private void GameOver(Team winner) {
+    for(int i = 0; i < this.teams.Length; i++) {
+      for(int j = 0; j < this.teams[i].players.Length; j++) {
+        this.teams[i].players[j].canMove = false;
+      }
+    }
+      
+    this.state = GameMasterState.GameOver;
+    this.ui.gameOverUI.Show(winner.gameObject.name + " Wins", winner.players[0].PlayerColor);
+  }
 
     #endregion 
 

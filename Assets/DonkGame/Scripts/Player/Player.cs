@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
   public List<Chicken> chickensInStomach = new List<Chicken>();
   public int maxChickensInStomach;
 
+  public bool canMove = true;
+
   private Vector3 aimDirection = Vector3.zero;
   private Vector3 moveDirection = Vector3.zero;
 
@@ -87,6 +89,12 @@ public class Player : MonoBehaviour
 		}
 	}
 
+  public bool AbleToAct {
+    get {
+      return (device && !dead && this.canMove);
+    }
+  }
+
   void Start ()
   {
     this.AddAbility(this.defaultAbility);
@@ -103,7 +111,7 @@ public class Player : MonoBehaviour
       device = InputManager.Devices [playerNumber - 1];
     }
 
-    if (device && !dead) {
+    if (this.AbleToAct) {
       UpdateActions ();
     }
 
@@ -119,7 +127,7 @@ public class Player : MonoBehaviour
 
   void FixedUpdate ()
   {
-    if (device && !dead) {
+    if (this.AbleToAct) {
       UpdateDirection ();
     }
   }
