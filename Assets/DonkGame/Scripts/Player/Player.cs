@@ -90,8 +90,7 @@ public class Player : MonoBehaviour
   void Start ()
   {
     this.AddAbility(this.defaultAbility);
-    this.AddAbility(this.crossbow);
-			
+
     this.currentSpeed = this.maxSpeed;
   }
 	
