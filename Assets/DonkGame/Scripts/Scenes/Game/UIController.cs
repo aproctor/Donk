@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour {
 	public Transform playerCameras;
     public Transform[] teamHuds;
 	public GameOverUI gameOverUI;
+	public Text[] teamScoreLabels;
 
     [Header("Prefab Links")]
     public GameObject playerHudPrefab;
@@ -104,5 +105,12 @@ public class UIController : MonoBehaviour {
             }
         }
     }
+
+	public void SetupTeamScores(Team[] teams) {
+		for (int i = 0; i < teams.Length; i++) {
+			this.teamScoreLabels [i].color = Game.Config.colors.teams [i].colors [0];
+			this.teamScoreLabels [i].text = "0";
+		}
+	}
 
 }

@@ -111,11 +111,6 @@ public class Player : MonoBehaviour
 			this.aimDirection = this.moveDirection;
 		}
       this.transform.LookAt (this.transform.position + this.aimDirection);
-    
-
-		if (!dead && this.transform.position.y < -20) {
-			this.Die();
-		}
 			
 		if (this.fatSuit && this.fatSuit.sharedMesh.blendShapeCount > 0) {
 			this.fatSuit.SetBlendShapeWeight (0, 100f * (float)this.chickensInStomach.Count / this.maxChickensInStomach);

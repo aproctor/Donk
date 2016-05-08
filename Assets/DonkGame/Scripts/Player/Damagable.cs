@@ -6,6 +6,9 @@ public class Damagable : MonoBehaviour {
 
     public float maxHealth = 100f;
 
+	[SerializeField]
+	private float killZ = -2f;
+
 	private float currentHealth = 100f;
 	public float HealthPercent {
 		get {
@@ -23,6 +26,12 @@ public class Damagable : MonoBehaviour {
     void Start() {
         this.currentHealth = this.maxHealth;
     }
+
+	void Update(){
+		if (this.IsAlive && this.transform.position.y < this.killZ) {
+			this.Die();
+		}
+	}
 
     public void Reset() {
         this.currentHealth = maxHealth;
@@ -53,8 +62,5 @@ public class Damagable : MonoBehaviour {
         get {
             return !Mathf.Approximately(0f, this.currentHealth);
         }
-    }
-
-    void Update() {  
     }
 }
