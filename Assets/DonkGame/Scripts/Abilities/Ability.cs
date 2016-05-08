@@ -50,7 +50,7 @@ public abstract class Ability : MonoBehaviour {
 		bool targetKilled = hitDamagable.TakeDamage(amount);
 		if (targetKilled) {
 			Player p = hitDamagable.GetComponent<Player>();
-			if (p != null) {
+			if (p != null && (p != this.player) && (p.team != this.player.team)) {
 				player.team.AddPoints (Game.round.mode.playerKillScoreAmount);
 				player.gold += Game.round.mode.playerKillGoldAmount;
 			}

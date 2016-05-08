@@ -22,6 +22,7 @@ public class LandMineAbility : Ability {
 
       GameObject spawnedProjectile = (GameObject)GameObject.Instantiate(landMinePrefab, (this.transform.position + (-this.transform.forward * 2)), landMinePrefab.transform.rotation);
       LandMine landMine = spawnedProjectile.GetComponent<LandMine>();
+      landMine.Init(this);
 
       //hard coded garbage
       switch (this.player.team.teamNumber) {
