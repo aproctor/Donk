@@ -236,14 +236,10 @@ public class Player : MonoBehaviour
         ++egg.numLatchers;
         break;
       }
-
-      Chicken chicken = possibleObjects [i].gameObject.GetComponent<Chicken> ();
+				
+      Chicken chicken = possibleObjects[i].gameObject.GetComponent<Chicken> ();
       if (chicken != null && (this.chickensInStomach.Count < this.maxChickensInStomach)) {
-        this.chickensInStomach.Add(chicken);
-        chicken.transform.SetParent(this.transform, false);
-        chicken.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
-        chicken.gameObject.SetActive(false);
-        this.UpdateSpeed();
+		EatChicken(chicken);
         break;
       }
 
@@ -255,6 +251,15 @@ public class Player : MonoBehaviour
 			}
     }
   }
+
+	private void EatChicken(Chicken chicken) {
+		this.characterAnimator.SetTrigger("Eat");
+		this.chickensInStomach.Add(chicken);
+		chicken.transform.SetParent(this.transform, false);
+		chicken.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
+		chicken.gameObject.SetActive(false);
+		this.UpdateSpeed();
+	}
 
 	public void UpdateHealthUI() {
 		Damagable d = this.GetComponent<Damagable> ();
@@ -293,6 +298,7 @@ public class Player : MonoBehaviour
 		
   private void SpitUp() {
     if (this.chickensInStomach.Count >= 1) {
+      this.characterAnimator.SetTrigger("Spit");
       Chicken chickenToRemove = this.chickensInStomach[this.chickensInStomach.Count-1];
       this.chickensInStomach.Remove(chickenToRemove);
       StartCoroutine(chickenToRemove.SpatOut());
