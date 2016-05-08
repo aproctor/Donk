@@ -700,7 +700,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -72.70025, y: 3.6695943, z: 8.301282}
+  m_LocalPosition: {x: -76.7659, y: -0.7501135, z: 13.729122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 485900}
@@ -1442,6 +1442,7 @@ MonoBehaviour:
   fatSuit: {fileID: 13744754}
   InteractTrigger: {fileID: 6551030}
   spawnPoint: {x: 0, y: 0, z: 0}
+  rightHandTransform: {fileID: 442026}
   latchedObject: {fileID: 0}
   latchedMoveSpeed: 0.06
   spawnDelay: 4

@@ -18,6 +18,8 @@ public abstract class Ability : MonoBehaviour {
   protected float coolDown;
   [SerializeField]
   protected Type type;
+  [SerializeField]
+  GameObject model;
 
   protected Transform playerTransform;
 	protected Player player;
@@ -35,6 +37,11 @@ public abstract class Ability : MonoBehaviour {
 		this.mask = layer;
 		this.player = player;
     this.chargesRemaining = 1;
+
+    if(this.model != null) {
+      this.model.transform.position = player.rightHandTransform.position;
+      this.model.transform.parent = this.player.rightHandTransform;
+    }
 	}
 
   public abstract void Activate();
@@ -61,6 +68,12 @@ public abstract class Ability : MonoBehaviour {
 
   public virtual void AddQuantity(int value) {
     this.chargesRemaining += value;
+  }
+
+  public virtual void OnSelected() {
+    if(this.model != null) {
+      this.model.SetActive(true);
+    }
   }
 
   protected virtual bool OnCooldown() {

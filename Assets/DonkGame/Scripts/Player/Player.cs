@@ -67,6 +67,8 @@ public class Player : MonoBehaviour
 
 	public Vector3 spawnPoint;
 
+  public Transform rightHandTransform;
+
     private Color _playerColor;
     public Color PlayerColor {
         get {
@@ -233,6 +235,9 @@ public class Player : MonoBehaviour
 
       this.currentAbilityIndex = openIndex;
     }
+
+    this.Abilities[this.currentAbilityIndex].OnSelected();
+
   }
 
   void Attack ()
@@ -350,6 +355,7 @@ public class Player : MonoBehaviour
       }
     } while (this.Abilities[this.currentAbilityIndex] == null);
 
+    this.Abilities[this.currentAbilityIndex].OnSelected();
   }
 
   void LatchOnto(Rigidbody obj) {
