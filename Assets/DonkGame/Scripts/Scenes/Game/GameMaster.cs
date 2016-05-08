@@ -207,11 +207,7 @@ public class GameMaster : MonoBehaviour {
 
   private void UpdatePlayState() {
     if(Input.GetKeyDown(KeyCode.Escape)) {
-      if(this.state == GameMasterState.Paused) {
-        this.QuitGame();
-      } else {
-        PauseGame();
-      }
+      PauseGame();
     }
 
     //Tick Scores
