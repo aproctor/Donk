@@ -14,8 +14,9 @@ public class UIController : MonoBehaviour {
 
     [Header("Prefab Links")]
     public GameObject playerHudPrefab;
+    public GameObject playerHudTeam2Prefab;
 
-	void Start() {
+  void Start() {
 		this.gameOverUI.Hide();
 	}
 
@@ -89,7 +90,7 @@ public class UIController : MonoBehaviour {
             for (int i = 0; i < teams.Length; i++) {
                 Transform hudContainer = this.teamHuds[i];
                 for (int j = 0; j < teams[i].players.Length; j++) {
-                    GameObject hud = (GameObject)GameObject.Instantiate(playerHudPrefab);
+                    GameObject hud = (i==0) ? (GameObject)GameObject.Instantiate(playerHudPrefab) : (GameObject)GameObject.Instantiate(playerHudTeam2Prefab);
                     RectTransform hudTransform = hud.GetComponent<RectTransform>();
                     hudTransform.SetParent(hudContainer, false);
 
