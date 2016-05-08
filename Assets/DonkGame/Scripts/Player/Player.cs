@@ -182,40 +182,64 @@ public class Player : MonoBehaviour
   }
 
 
-  private int AddAbility (GameObject abilityPrefab)
+  private void AddAbility (GameObject abilityPrefab)
   {
-    GameObject abilityInstance = (GameObject)GameObject.Instantiate (abilityPrefab);
 
-    Ability a = abilityInstance.GetComponent<Ability> ();
-    a.transform.SetParent (this.abilityContainer, false);
-    a.transform.position = this.abilityContainer.transform.position;
-    a.Init (this.transform, this.attackMask, this);
+    bool playerHasAbility = false;
 
-    int openIndex = -1;
-    for (int i = 0; i < this.Abilities.Length; i++) {
-      if (this.Abilities [i] == null) {
-        openIndex = i;
+    for(int i = 0; i < this.Abilities.Length; ++i) {
+      if(this.Abilities[i] == null) continue;
+      if(this.Abilities[i].GetType() == abilityPrefab.GetComponent<Ability>().GetType()) {
+        playerHasAbility = true;
         break;
       }
     }
-    if (openIndex < 0) {
-      GameObject.Destroy (this.Abilities [currentAbilityIndex]);
-      openIndex = currentAbilityIndex;
+
+    if (playerHasAbility) {
+      for (int i = 0; i < this.Abilities.Length; ++i) {
+        if (this.Abilities[i].GetType() == abilityPrefab.GetComponent<Ability>().GetType()) {
+          this.Abilities[i].AddQuantity(5);
+          break;
+        }
+      }
+    } else {
+      GameObject abilityInstance = (GameObject)GameObject.Instantiate(abilityPrefab);
+
+      Ability a = abilityInstance.GetComponent<Ability>();
+      a.transform.SetParent(this.abilityContainer, false);
+      a.transform.position = this.abilityContainer.transform.position;
+      a.Init(this.transform, this.attackMask, this);
+
+      int openIndex = -1;
+      for (int i = 0; i < this.Abilities.Length; i++) {
+        if (this.Abilities[i] == null) {
+          openIndex = i;
+          break;
+        }
+      }
+      if (openIndex < 0) {
+        GameObject.Destroy(this.Abilities[currentAbilityIndex]);
+        openIndex = currentAbilityIndex;
+      }
+      this.Abilities[openIndex] = a;
+
+      this.currentAbilityIndex = openIndex;
     }
-    this.Abilities [openIndex] = a;
-
-	this.currentAbilityIndex = openIndex;
-
-    return openIndex;
   }
 
   void Attack ()
   {
     if (this.Abilities [currentAbilityIndex] != null) {
       this.Abilities [currentAbilityIndex].Activate ();
+      if (!this.Abilities[currentAbilityIndex].HasCharges) {
+        Destroy(this.Abilities[currentAbilityIndex]);
+        this.Abilities[currentAbilityIndex] = null;
+        this.SwitchWeapons();
+      }
     } else {
       this.Abilities [0].Activate ();
     }
+
   }
 
   void PrimaryAction ()
@@ -310,10 +334,14 @@ public class Player : MonoBehaviour
   }
 
   private void SwitchWeapons() {
-    ++this.currentAbilityIndex;
-    if((this.currentAbilityIndex > (this.Abilities.Length - 1)) || (this.Abilities[this.currentAbilityIndex] == null)) {
-      this.currentAbilityIndex = 0;
-    }
+
+    do {
+      ++this.currentAbilityIndex;
+      if (this.currentAbilityIndex > (this.Abilities.Length - 1)) {
+        this.currentAbilityIndex = 0;
+      }
+    } while (this.Abilities[this.currentAbilityIndex] == null);
+
   }
 
   void LatchOnto(Rigidbody obj) {

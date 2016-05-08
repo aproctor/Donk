@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 1.5
+  type: 1
   damageAmount: 30
   radius: 2
 --- !u!1001 &100100000

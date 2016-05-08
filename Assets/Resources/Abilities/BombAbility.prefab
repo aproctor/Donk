@@ -37,9 +37,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a3f64c12e05d49a88b463037536a575, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   coolDown: 5
+  type: 1
   damageAmount: 60
   radius: 2
   projectilePrefab: {fileID: 111284, guid: 116dbd3f5dc4b4592a5afefdddd9b314, type: 2}
