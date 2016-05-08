@@ -7,10 +7,12 @@ public class PlayerHud : MonoBehaviour {
 	public Text goldText;
     private Player player;
 	public Text abilityText;
+  public Image abilityIcon;
 
     public void Init(Player p) {
         this.player = p;
         this.goldText.color = p.PlayerColor;
+        this.abilityIcon.color = p.PlayerColor;
     }
 	
 	// Update is called once per frame
@@ -19,7 +21,8 @@ public class PlayerHud : MonoBehaviour {
             //Update gold text
             this.goldText.text = "$" + player.gold;
 
-			this.abilityText.text = player.CurrentAbility.name;
+            this.abilityText.text = player.CurrentAbility.name;
+            this.abilityIcon.sprite = player.CurrentAbility.icon;
 
             //Update HP bar
             //Update selected items

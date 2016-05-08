@@ -39,6 +39,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 773e67acb0ca4d64881da42229ee66a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 68a11378768ed2b459e301475bb8cec7, type: 3}
+  coolDown: 0
+  type: 0
   landMinePrefab: {fileID: 161166, guid: 15997b42d4cbb9f4d840451e1cf9e8ed, type: 2}
 --- !u!1001 &100100000
 Prefab:

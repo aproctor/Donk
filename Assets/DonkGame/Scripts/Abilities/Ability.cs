@@ -4,6 +4,8 @@ using System.Collections;
 
 public abstract class Ability : MonoBehaviour {
 
+  public Sprite icon;
+
   public enum Type {
     CONSUMABLE,
     WEAPON
