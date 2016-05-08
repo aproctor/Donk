@@ -18,6 +18,10 @@ public class SwordSlash : Ability {
 			this.slashFX.SetActive(true);
       this.lastUseTime = Time.time;
 
+      if(this.type == Ability.Type.CONSUMABLE) {
+        --this.chargesRemaining;
+      }
+
       Collider[] hitColliders = Physics.OverlapSphere(this.playerTransform.position, this.radius, this.mask.value);
 
       for (int i = 0; i < hitColliders.Length; ++i) {

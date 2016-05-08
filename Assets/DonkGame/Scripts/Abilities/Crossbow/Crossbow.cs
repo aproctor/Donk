@@ -11,6 +11,11 @@ public class Crossbow : Ability {
   public override void Activate() {
     if (!this.OnCooldown()) {
       this.lastUseTime = Time.time;
+
+      if (this.type == Ability.Type.CONSUMABLE) {
+        --this.chargesRemaining;
+      }
+
       GameObject boltGO = (GameObject)Instantiate(this.bolt, this.transform.position + (this.transform.forward * 2) + (this.transform.up * 2), this.transform.rotation);
       boltGO.GetComponentInChildren<Bolt>().Shoot(this);
     }

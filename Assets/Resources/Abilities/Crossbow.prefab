@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 1
+  type: 1
   bolt: {fileID: 169198, guid: 215e4956de9110c4a83936f313f8f8aa, type: 2}
   damageAmount: 10
 --- !u!1001 &100100000
