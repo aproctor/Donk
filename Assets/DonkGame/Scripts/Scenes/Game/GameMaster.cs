@@ -130,21 +130,7 @@ public class GameMaster : MonoBehaviour {
     } else if(this.state == GameMasterState.WaitingForPlayers) {
       CheckForMinimumPlayers();
     } else if(this.state == GameMasterState.Paused) {
-
-      bool anyDeviceButtonPressed = false;
-      var devices = InputManager.Devices;
-      for(int i = 0; i < devices.Count; ++i) {
-        if(devices[i].AnyButton) {
-          anyDeviceButtonPressed = true;
-          break;
-        }
-      }
-
-      if(Input.GetKeyDown(KeyCode.Escape)) {
-        this.QuitGame();
-      } else if((InputManager.AnyKeyIsPressed && !(Input.GetKey(KeyCode.Escape))) || anyDeviceButtonPressed) {
-        this.UnPauseGame();
-      }
+      UpdatePauseState();
     } else if(this.state == GameMasterState.GameOver) {
       if(Input.anyKeyDown) {
         //Go to Main Menu
@@ -181,6 +167,12 @@ public class GameMaster : MonoBehaviour {
   public void PauseGame() {
     this.ui.countdownText.text = "PAUSED";        
     this.state = GameMasterState.Paused;
+
+    for(int i = 0; i < this.teams.Length; i++) {
+      for(int j = 0; j < this.teams[i].players.Length; j++) {
+        this.teams[i].players[j].canMove = false;
+      }
+    }
   }
 
   public void UnPauseGame() {
@@ -223,6 +215,24 @@ public class GameMaster : MonoBehaviour {
       this.ui.teamScoreLabels[i].text = this.teams[i].Score.ToString();
       if(this.teams[i].Score >= Game.round.mode.scoreLimit) {                
         GameOver(this.teams[i]);
+      }
+    }
+  }
+
+  private void UpdatePauseState() {
+    if(Input.GetKeyDown(KeyCode.Escape)) {
+      this.QuitGame();
+    } else {
+      bool anyDeviceButtonPressed = false;
+      var devices = InputManager.Devices;
+      for(int i = 0; i < devices.Count; ++i) {
+        if(devices[i].AnyButton || devices[i].MenuWasPressed) {
+          anyDeviceButtonPressed = true;
+          break;
+        }
+      }
+      if(anyDeviceButtonPressed) {
+        this.UnPauseGame();
       }
     }
   }
