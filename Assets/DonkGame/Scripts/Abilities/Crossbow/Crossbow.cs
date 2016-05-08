@@ -9,8 +9,11 @@ public class Crossbow : Ability {
   [SerializeField] int damageAmount = 10;
 
   public override void Activate() {
-    GameObject boltGO = (GameObject)Instantiate(this.bolt, this.transform.position + (this.transform.forward * 2) + (this.transform.up * 2), this.transform.rotation);
-    boltGO.GetComponentInChildren<Bolt>().Shoot(this);
+    if (!this.OnCooldown()) {
+      this.lastUseTime = Time.time;
+      GameObject boltGO = (GameObject)Instantiate(this.bolt, this.transform.position + (this.transform.forward * 2) + (this.transform.up * 2), this.transform.rotation);
+      boltGO.GetComponentInChildren<Bolt>().Shoot(this);
+    }
   }
 
   public void HitTarget(Damagable target) {

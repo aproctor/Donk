@@ -8,15 +8,19 @@ public class SwordSlash : Ability {
 	[SerializeField]
   private float radius = 2;
 
+  public override void Activate() {
+    if (!this.OnCooldown()) {
+      this.lastUseTime = Time.time;
 
-    public override void Activate() {
       Collider[] hitColliders = Physics.OverlapSphere(this.playerTransform.position, this.radius, this.mask.value);
 
       for (int i = 0; i < hitColliders.Length; ++i) {
-              Damagable hitDamagable = hitColliders[i].GetComponent<Damagable>();
-              if(hitDamagable != null) {
-				        ApplyDamage(hitDamagable, damageAmount);
-              }
-          }
+        Damagable hitDamagable = hitColliders[i].GetComponent<Damagable>();
+        if (hitDamagable != null) {
+          ApplyDamage(hitDamagable, damageAmount);
+        }
       }
+    }
+  }
+
 }
