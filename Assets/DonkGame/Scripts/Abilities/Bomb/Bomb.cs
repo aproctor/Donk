@@ -8,8 +8,11 @@ public class Bomb : MonoBehaviour {
   [SerializeField]
   float explodeTime = 1f;
   [SerializeField]
-  GameObject explosionSystem;
-  [SerializeField] float explosionRadius = 2f;
+  GameObject explosion;
+  [SerializeField]
+  float explosionRadius = 2f;
+  [SerializeField]
+  GameObject model;
 
   private BombAbility bombAbility;
 
@@ -30,10 +33,9 @@ public class Bomb : MonoBehaviour {
       }
     }
 
-    this.explosionSystem.SetActive(true);
+    Instantiate(this.explosion, this.transform.position, this.explosion.transform.rotation);
+    this.model.SetActive(false);
 
-    yield return new WaitForSeconds(this.explodeTime);
-
-    Destroy(this.gameObject);
+    Destroy(this.gameObject, this.explodeTime);
   }
 }
