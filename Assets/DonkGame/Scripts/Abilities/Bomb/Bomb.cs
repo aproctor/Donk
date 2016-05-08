@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 public class Bomb : MonoBehaviour {
@@ -13,6 +14,8 @@ public class Bomb : MonoBehaviour {
   float explosionRadius = 2f;
   [SerializeField]
   GameObject model;
+
+  public UnityEvent OnActivate;
 
   private BombAbility bombAbility;
 
@@ -32,6 +35,8 @@ public class Bomb : MonoBehaviour {
         this.bombAbility.ApplyDamage(hitDamagable, this.bombAbility.damageAmount);
       }
     }
+
+    OnActivate.Invoke();
 
     Instantiate(this.explosion, this.transform.position, this.explosion.transform.rotation);
     this.model.SetActive(false);
