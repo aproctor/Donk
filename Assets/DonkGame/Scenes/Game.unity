@@ -183,7 +183,7 @@ GameObject:
   - 4: {fileID: 402694583}
   - 114: {fileID: 402694584}
   m_Layer: 9
-  m_Name: Team2
+  m_Name: Blue Team
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -528,7 +528,7 @@ GameObject:
   - 4: {fileID: 732793477}
   - 114: {fileID: 732793478}
   m_Layer: 8
-  m_Name: Team1
+  m_Name: Red Team
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1094,7 +1094,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1190478385}
   m_LocalRotation: {x: -0.48578703, y: 0.0117992535, z: -0.006558469, w: -0.87397295}
-  m_LocalPosition: {x: 91.31, y: 32.60076, z: -14}
+  m_LocalPosition: {x: 3.6, y: 32.60076, z: -14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

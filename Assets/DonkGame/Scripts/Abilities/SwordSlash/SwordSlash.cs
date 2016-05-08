@@ -8,8 +8,14 @@ public class SwordSlash : Ability {
 	[SerializeField]
   private float radius = 2;
 
+	[SerializeField]
+	private GameObject slashFX;
+
+
   public override void Activate() {
     if (!this.OnCooldown()) {
+			this.slashFX.SetActive(false);
+			this.slashFX.SetActive(true);
       this.lastUseTime = Time.time;
 
       if(this.type == Ability.Type.CONSUMABLE) {
