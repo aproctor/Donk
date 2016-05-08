@@ -6,8 +6,12 @@ public abstract class Ability : MonoBehaviour {
 
 	public LayerMask mask { get; private set; }
 
+  [SerializeField]
+  protected float coolDown;
+
 	protected Transform playerTransform;
 	protected Player player;
+  protected float lastUseTime = 0f;
 
 	public virtual void Init(Transform playerTransform, LayerMask layer, Player player) {
 		this.playerTransform = playerTransform;
@@ -15,7 +19,7 @@ public abstract class Ability : MonoBehaviour {
 		this.player = player;
 	}
 
-    public abstract void Activate();
+  public abstract void Activate();
 
 	public void ApplyDamage(Damagable hitDamagable, int amount) {
 		bool targetKilled = hitDamagable.TakeDamage(amount);
@@ -32,5 +36,9 @@ public abstract class Ability : MonoBehaviour {
 			}
 		}
 	}
+
+  protected virtual bool OnCooldown() {
+    return ((Time.time - this.lastUseTime) < this.coolDown);
+  }
 
 }

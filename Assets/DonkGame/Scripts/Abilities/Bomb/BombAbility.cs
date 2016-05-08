@@ -11,12 +11,16 @@ public class BombAbility : Ability {
 	public GameObject projectilePrefab;
 
     public override void Activate() {
-		GameObject spawnedProjectile = (GameObject)GameObject.Instantiate (projectilePrefab);
-    Bomb bomb = spawnedProjectile.GetComponent<Bomb>();
-    if(bomb != null) {
-      bomb.Toss(this);
-    }
+      if (!this.OnCooldown()) {
+        this.lastUseTime = Time.time;
 
-		spawnedProjectile.transform.position = this.transform.position + this.transform.forward * 2;
+        GameObject spawnedProjectile = (GameObject)GameObject.Instantiate (projectilePrefab);
+        Bomb bomb = spawnedProjectile.GetComponent<Bomb>();
+        if(bomb != null) {
+          bomb.Toss(this);
+        }
+
+		    spawnedProjectile.transform.position = this.transform.position + this.transform.forward * 2;
+      }
     }
 }
