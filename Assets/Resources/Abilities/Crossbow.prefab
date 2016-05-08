@@ -131,11 +131,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 8c7dbecbc774909439eb10d9b4bf36f9, type: 3}
-  coolDown: 0.2
+  coolDown: 0.5
   type: 1
   model: {fileID: 144322}
   bolt: {fileID: 169198, guid: 215e4956de9110c4a83936f313f8f8aa, type: 2}
   damageAmount: 10
+  numBolts: 5
+  cone: 25
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

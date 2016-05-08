@@ -8,13 +8,6 @@ public class Bolt : MonoBehaviour {
   [SerializeField]
   float timeAlive = 2f;
 
-  private Collider c;
-
-  void Start() {
-    this.c = this.GetComponent<Collider>();
-
-  }
-
   private Crossbow crossbow;
 
   void FixedUpdate() {
@@ -30,8 +23,8 @@ public class Bolt : MonoBehaviour {
     Damagable damagable = collider.gameObject.GetComponent<Damagable>();
     if(damagable != null) {
       this.crossbow.HitTarget(damagable);
+      Destroy(this.gameObject);
     }
-    Destroy(this.gameObject);
   }
 
 }
