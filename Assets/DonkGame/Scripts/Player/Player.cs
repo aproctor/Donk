@@ -207,6 +207,7 @@ public class Player : MonoBehaviour
 
     if (playerHasAbility) {
       for (int i = 0; i < this.Abilities.Length; ++i) {
+        if (this.Abilities[i] == null) continue;
         if (this.Abilities[i].GetType() == abilityPrefab.GetComponent<Ability>().GetType()) {
           this.Abilities[i].AddQuantity(5);
           break;

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using InControl;
 
 public class GameMaster : MonoBehaviour {
 
@@ -120,14 +121,27 @@ public class GameMaster : MonoBehaviour {
     void Update() {
 		#if UNITY_EDITOR
 		this.gameObject.name = "Game Master[" + this.state.ToString() + "]";
-		#endif
+#endif
+
         if (this.state == GameMasterState.Playing) {
             UpdatePlayState();
         } else if (this.state == GameMasterState.WaitingForPlayers) {
             CheckForMinimumPlayers();
         } else if (this.state == GameMasterState.Paused) {
-            if (Input.GetKeyDown(KeyCode.Escape)) {
-                UnPauseGame();
+
+          bool anyDeviceButtonPressed = false;
+          var devices = InputManager.Devices;
+          for (int i = 0; i < devices.Count; ++i) {
+            if (devices[i].AnyButton) {
+              anyDeviceButtonPressed = true;
+              break;
+            }
+          }
+
+      if (Input.GetKeyDown(KeyCode.Escape)) {
+              this.QuitGame();
+            } else if ((InputManager.AnyKeyIsPressed && !(Input.GetKey(KeyCode.Escape))) || anyDeviceButtonPressed) {
+              this.UnPauseGame();
             }
         } else if (this.state == GameMasterState.GameOver) {
             if (Input.anyKeyDown) {
@@ -180,10 +194,21 @@ public class GameMaster : MonoBehaviour {
     }
   }
 
-    
+  private void QuitGame() {
+#if UNITY_EDITOR
+    UnityEditor.EditorApplication.isPlaying = false;
+#else
+    Application.Quit();
+#endif
+  }
+
   private void UpdatePlayState() {
     if(Input.GetKeyDown(KeyCode.Escape)) {
-      PauseGame();
+      if(this.state == GameMasterState.Paused) {
+        this.QuitGame();
+      } else {
+        PauseGame();
+      }
     }
 
     //Tick Scores
@@ -214,7 +239,7 @@ public class GameMaster : MonoBehaviour {
     this.ui.gameOverUI.Show(winner.gameObject.name + " Wins", winner.players[0].PlayerColor);
   }
 
-    #endregion 
+#endregion
 
 
 
