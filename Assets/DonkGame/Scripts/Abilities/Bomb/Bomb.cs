@@ -21,11 +21,11 @@ public class Bomb : MonoBehaviour {
   private IEnumerator SetCharge() {
     yield return new WaitForSeconds(this.chargeTime);
 
-    Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, this.explosionRadius, this.bombAbility.mask.value);
+    Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, this.explosionRadius);
 
     for (int i = 0; i < hitColliders.Length; ++i) {
       Damagable hitDamagable = hitColliders[i].GetComponent<Damagable>();
-      if (hitDamagable != null) {
+			if (hitDamagable != null && hitDamagable.GetComponent<BigEgg>() == null) {
         this.bombAbility.ApplyDamage(hitDamagable, this.bombAbility.damageAmount);
       }
     }
