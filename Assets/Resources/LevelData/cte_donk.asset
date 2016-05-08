@@ -18,11 +18,11 @@ MonoBehaviour:
   scoreLimit: 1000
   timeLimit: 0
   eggCaptureScoreAmount: 1000
-  playerKillScoreAmount: 1
-  chickenKillScoreAmount: 1
+  playerKillScoreAmount: 0
+  chickenKillScoreAmount: 0
   chickenTickScoreAmount: 1
   eggCaptureGoldAmount: 0
   playerKillGoldAmount: 100
-  chickenKillGoldAmount: 0
-  chickenTickGoldAmount: 1
+  chickenKillGoldAmount: 1
+  chickenTickGoldAmount: 5
   playerStartingGold: 1000

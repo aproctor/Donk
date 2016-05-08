@@ -20,4 +20,9 @@ public class ChickenCoop : MonoBehaviour {
 
     return chickens;
   }
+
+	void OnDrawGizmosSelected() {
+		Gizmos.color = new Color (255f, 0f, 0f, 0.2f);
+		Gizmos.DrawSphere (this.transform.position, this.GetComponent<SphereCollider> ().radius);
+	}
 }

@@ -106,6 +106,7 @@ public class GameMaster : MonoBehaviour {
     }
 		this.ui.SetupCameras(Game.Config.preferedCamMode, this.teams);
         this.ui.SetupPlayerHuds(this.teams);
+		this.ui.SetupTeamScores(this.teams);
 
         this.state = GameMasterState.WaitingForPlayers;
     }
@@ -188,11 +189,12 @@ public class GameMaster : MonoBehaviour {
 
         //Check Scores
         for (int i = 0; i < this.teams.Length; i++) {
+			this.ui.teamScoreLabels[i].text = this.teams[i].Score.ToString();
             if (this.teams[i].Score > Game.round.mode.scoreLimit) {                
                 GameOver();
             }
         }
-		Debug.LogWarning ("Score: " + this.teams [0].Score + " - " + this.teams [1].Score);
+		//Debug.LogWarning ("Score: " + this.teams [0].Score + " - " + this.teams [1].Score);
     }
 
     private void GameOver() {
