@@ -8,8 +8,20 @@ public class LandMineAbility : Ability {
   GameObject landMinePrefab;
 
   public override void Activate() {
-    GameObject spawnedProjectile = (GameObject)GameObject.Instantiate(landMinePrefab, (this.transform.position + (this.transform.forward * 2)), landMinePrefab.transform.rotation);
+    GameObject spawnedProjectile = (GameObject)GameObject.Instantiate(landMinePrefab, (this.transform.position + (-this.transform.forward * 2)), landMinePrefab.transform.rotation);
     LandMine landMine = spawnedProjectile.GetComponent<LandMine>();
+
+    //hard coded garbage
+    switch (this.player.team.teamNumber) {
+      case 1:
+        landMine.gameObject.layer = 11;
+        break;
+      case 2:
+        landMine.gameObject.layer = 12;
+        break;
+      default:
+        break;
+    }
   }
 
 }

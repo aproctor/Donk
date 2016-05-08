@@ -214,6 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamObjects: {fileID: 0}
   players: []
+  teamNumber: 2
   teamMask:
     serializedVersion: 2
     m_Bits: 4294965759
@@ -554,6 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamObjects: {fileID: 0}
   players: []
+  teamNumber: 1
   teamMask:
     serializedVersion: 2
     m_Bits: 4294966015
