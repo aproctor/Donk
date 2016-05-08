@@ -16,7 +16,7 @@ public class Crossbow : Ability {
         --this.chargesRemaining;
       }
 
-      GameObject boltGO = (GameObject)Instantiate(this.bolt, this.transform.position + (this.transform.forward * 2) + (this.transform.up * 2), this.transform.rotation);
+      GameObject boltGO = (GameObject)Instantiate(this.bolt, this.transform.position + (this.transform.forward * 4) + (this.transform.up), this.transform.rotation);
       boltGO.GetComponentInChildren<Bolt>().Shoot(this);
     }
   }

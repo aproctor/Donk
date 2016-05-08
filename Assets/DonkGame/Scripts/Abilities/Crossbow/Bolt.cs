@@ -5,6 +5,15 @@ public class Bolt : MonoBehaviour {
 
   [SerializeField]
   float flightSpeed = 10;
+  [SerializeField]
+  float timeAlive = 2f;
+
+  private Collider c;
+
+  void Start() {
+    this.c = this.GetComponent<Collider>();
+
+  }
 
   private Crossbow crossbow;
 
@@ -14,7 +23,7 @@ public class Bolt : MonoBehaviour {
 
   public void Shoot(Crossbow crossbow) {
     this.crossbow = crossbow;
-    Destroy(this.gameObject, 2f);
+    Destroy(this.gameObject, timeAlive);
   }
 
   void OnTriggerEnter(Collider collider) {
