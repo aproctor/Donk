@@ -19,7 +19,7 @@ public class GameMaster : MonoBehaviour {
   private enum GameMasterState {
     Setup,
     LoadingLevel,
-    WaitingForPlayers,
+    FadingIn,
     Countdown,
     Playing,
     Paused,
@@ -32,6 +32,9 @@ public class GameMaster : MonoBehaviour {
   public int secondsToStart = 3;
   //Optimization to avoid runtime allocation, reuse wait for seconds definition
   private WaitForSeconds oneSecondDelay = new WaitForSeconds(1f);
+
+  private float loadStartTime = 0f;
+  public float fadeToGameDelay = 1f;
 
   public float gameScoreTickRate = 1f;
   private float lastScoreTickTime = 0f;
@@ -49,6 +52,9 @@ public class GameMaster : MonoBehaviour {
   // Use this for initialization
   void Start() {
     this.state = GameMasterState.Setup;
+
+    this.ui.curtain.gameObject.SetActive(true);
+
     Game.Initialize();
 
     if(Game.round == null) {
@@ -112,7 +118,7 @@ public class GameMaster : MonoBehaviour {
     this.ui.SetupPlayerHuds(this.teams);
     this.ui.SetupTeamScores(this.teams);
 
-    this.state = GameMasterState.WaitingForPlayers;
+    StartCoroutine(FadeInToGame());
   }
 
   #endregion
@@ -127,8 +133,9 @@ public class GameMaster : MonoBehaviour {
 
     if(this.state == GameMasterState.Playing) {
       UpdatePlayState();
-    } else if(this.state == GameMasterState.WaitingForPlayers) {
-      CheckForMinimumPlayers();
+    } else if(this.state == GameMasterState.FadingIn) {
+      float alpha = Mathf.Lerp(1f, 0f, (Time.time - this.loadStartTime) / fadeToGameDelay);
+      this.ui.curtain.color = new Color(this.ui.curtain.color.r, this.ui.curtain.color.g, this.ui.curtain.color.b, alpha);
     } else if(this.state == GameMasterState.Paused) {
       UpdatePauseState();
     } else if(this.state == GameMasterState.GameOver) {
@@ -138,6 +145,16 @@ public class GameMaster : MonoBehaviour {
         SceneManager.LoadScene((int)Game.Scenes.Startup);
       }
     } 
+  }
+    
+  private IEnumerator FadeInToGame() {
+    this.state = GameMasterState.FadingIn;
+    this.loadStartTime = Time.time;
+
+    yield return new WaitForSeconds(fadeToGameDelay);
+
+    CheckForMinimumPlayers();
+    yield return null;
   }
 
   private void CheckForMinimumPlayers() {
@@ -149,6 +166,7 @@ public class GameMaster : MonoBehaviour {
     this.state = GameMasterState.Countdown;
     for(int i = 0; i < this.secondsToStart; i++) {
       this.ui.countdownText.text = (this.secondsToStart - i).ToString();
+      this.ui.countdownText.GetComponent<AudioSource>().Play();
       yield return oneSecondDelay;
     }
 

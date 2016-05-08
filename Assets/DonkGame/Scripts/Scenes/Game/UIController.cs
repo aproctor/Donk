@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour {
     public Transform[] teamHuds;
 	public GameOverUI gameOverUI;
 	public Text[] teamScoreLabels;
+  public Image curtain;
 
     [Header("Prefab Links")]
     public GameObject playerHudPrefab;
