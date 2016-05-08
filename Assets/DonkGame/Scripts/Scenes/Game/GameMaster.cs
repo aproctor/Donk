@@ -206,7 +206,7 @@ public class GameMaster : MonoBehaviour {
   }
 
   private void UpdatePlayState() {
-    if(Input.GetKeyDown(KeyCode.Escape)) {
+    if(Input.GetKeyDown(KeyCode.Escape) || this.StartButtonPressed) {
       PauseGame();
     }
 
@@ -239,6 +239,21 @@ public class GameMaster : MonoBehaviour {
   }
 
   #endregion
+
+
+  private bool StartButtonPressed {
+    get {
+      var devices = InputManager.Devices;
+      for(int i = 0; i < devices.Count; ++i) {
+        if(devices[i].MenuWasPressed) {
+          return true;
+          break;
+        }
+      }
+
+      return false;
+    }
+  }
 
 
 
