@@ -76,6 +76,12 @@ public abstract class Ability : MonoBehaviour {
     }
   }
 
+  public virtual void OnDeselected() {
+    if (this.model != null) {
+      this.model.SetActive(false);
+    }
+  }
+
   protected virtual bool OnCooldown() {
     return ((Time.time - this.lastUseTime) < this.coolDown);
   }

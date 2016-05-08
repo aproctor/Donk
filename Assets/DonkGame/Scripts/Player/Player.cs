@@ -213,6 +213,10 @@ public class Player : MonoBehaviour
         }
       }
     } else {
+      if (this.Abilities[this.currentAbilityIndex] != null) {
+        this.Abilities[this.currentAbilityIndex].OnDeselected();
+      }
+
       GameObject abilityInstance = (GameObject)GameObject.Instantiate(abilityPrefab);
 
       Ability a = abilityInstance.GetComponent<Ability>();
@@ -347,6 +351,7 @@ public class Player : MonoBehaviour
   }
 
   private void SwitchWeapons() {
+    this.Abilities[this.currentAbilityIndex].OnDeselected();
 
     do {
       ++this.currentAbilityIndex;
