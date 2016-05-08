@@ -45,7 +45,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 490138}
   - 33: {fileID: 3371260}
-  - 136: {fileID: 13674910}
   - 23: {fileID: 2397382}
   m_Layer: 0
   m_Name: Cylinder
@@ -172,7 +171,7 @@ MonoBehaviour:
   chargeTime: 2
   explodeTime: 1
   explosionSystem: {fileID: 129670}
-  explosionRadius: 2
+  explosionRadius: 3.5
 --- !u!135 &13577028
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -180,23 +179,10 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111284}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &13674910
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139486}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &19830208
 ParticleSystem:
