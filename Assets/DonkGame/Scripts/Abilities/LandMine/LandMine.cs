@@ -5,7 +5,7 @@ using System.Collections;
 public class LandMine : MonoBehaviour {
 
   [SerializeField]
-  float damage;
+  int damage;
   [SerializeField]
   GameObject explosion;
   [SerializeField]
@@ -13,11 +13,17 @@ public class LandMine : MonoBehaviour {
 
   public UnityEvent OnActivate;
 
+  private LandMineAbility landMineAbility;
+
+  public void Init(LandMineAbility landMineAbility) {
+    this.landMineAbility = landMineAbility;
+  }
+
   void OnTriggerEnter(Collider collider) {
     Damagable damagable = collider.gameObject.GetComponent<Damagable>();
     if(damagable != null) {
       this.model.SetActive(false);
-      damagable.TakeDamage(this.damage);
+      this.landMineAbility.ApplyDamage(damagable, this.damage);
 
       this.OnActivate.Invoke();
 
