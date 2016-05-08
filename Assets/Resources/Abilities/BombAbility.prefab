@@ -40,11 +40,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 35286c4aedd42ce499549dd7bdf89c28, type: 3}
-  coolDown: 1
+  coolDown: 0.7
   type: 1
   model: {fileID: 0}
   damageAmount: 60
-  radius: 2
   projectilePrefab: {fileID: 111284, guid: 116dbd3f5dc4b4592a5afefdddd9b314, type: 2}
 --- !u!1001 &100100000
 Prefab:

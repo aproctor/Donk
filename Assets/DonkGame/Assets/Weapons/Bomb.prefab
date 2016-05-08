@@ -298,10 +298,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb1f94f1907eb3459e4ecb5b80a3454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeTime: 2
+  chargeTime: 0.7
   explodeTime: 1
   explosion: {fileID: 134748, guid: cdd780b81efd0d84f80cf46446563482, type: 2}
-  explosionRadius: 3.5
+  explosionRadius: 4
   model: {fileID: 108984}
   OnActivate:
     m_PersistentCalls:
