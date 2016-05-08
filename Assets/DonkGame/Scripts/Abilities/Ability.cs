@@ -22,7 +22,7 @@ public abstract class Ability : MonoBehaviour {
   protected Transform playerTransform;
 	protected Player player;
   protected float lastUseTime = 0f;
-  protected int chargesRemaining = 0;
+  public int chargesRemaining { get; protected set; }
 
   public float CooldownPct {
     get {      
@@ -55,11 +55,16 @@ public abstract class Ability : MonoBehaviour {
 		}
 	}
 
-  protected virtual bool OnCooldown() {
-    return ((Time.time - this.lastUseTime) < this.coolDown);
+  public Type GetAbilityType() {
+    return this.type;
   }
 
   public virtual void AddQuantity(int value) {
     this.chargesRemaining += value;
   }
+
+  protected virtual bool OnCooldown() {
+    return ((Time.time - this.lastUseTime) < this.coolDown);
+  }
+
 }
