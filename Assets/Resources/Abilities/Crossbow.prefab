@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddb21d6e8f7b1346b35be1df7c10e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: c1acdae6c7a333645bed4daa0fd20de9, type: 3}
+  icon: {fileID: 21300000, guid: 8c7dbecbc774909439eb10d9b4bf36f9, type: 3}
   coolDown: 0.2
   type: 1
   bolt: {fileID: 169198, guid: 215e4956de9110c4a83936f313f8f8aa, type: 2}

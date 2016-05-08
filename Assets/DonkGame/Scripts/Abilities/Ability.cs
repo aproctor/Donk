@@ -24,6 +24,12 @@ public abstract class Ability : MonoBehaviour {
   protected float lastUseTime = 0f;
   protected int chargesRemaining = 0;
 
+  public float CooldownPct {
+    get {      
+      return Mathf.Clamp((Time.time - this.lastUseTime) / this.coolDown, 0f, 1f);
+    }
+  }
+
 	public virtual void Init(Transform playerTransform, LayerMask layer, Player player) {
 		this.playerTransform = playerTransform;
 		this.mask = layer;
