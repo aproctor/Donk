@@ -116,9 +116,9 @@ MonoBehaviour:
   - {fileID: 0}
   followCam: {fileID: 2007436}
   cameraMode: 1
-  distanceMargin: 8
+  distanceMargin: 14
   minimumDistance: 20
-  maximumDistance: 500
+  maximumDistance: 700
 --- !u!124 &12410020
 Behaviour:
   m_ObjectHideFlags: 1

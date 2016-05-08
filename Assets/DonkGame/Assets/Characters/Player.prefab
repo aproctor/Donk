@@ -1444,7 +1444,7 @@ MonoBehaviour:
   InteractTrigger: {fileID: 6551030}
   spawnPoint: {x: 0, y: 0, z: 0}
   latchedObject: {fileID: 0}
-  latchedMoveSpeed: 0.04
+  latchedMoveSpeed: 0.06
   spawnDelay: 4
 --- !u!114 &11451546
 MonoBehaviour:

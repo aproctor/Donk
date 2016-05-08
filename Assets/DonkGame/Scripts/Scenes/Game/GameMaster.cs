@@ -130,7 +130,7 @@ public class GameMaster : MonoBehaviour {
                 UnPauseGame();
             }
         } else if (this.state == GameMasterState.GameOver) {
-            if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (Input.anyKeyDown) {
                 //Go to Main Menu
                 this.state = GameMasterState.Exiting;
                 SceneManager.LoadScene((int)Game.Scenes.Startup);
