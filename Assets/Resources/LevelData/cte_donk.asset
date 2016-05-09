@@ -15,9 +15,9 @@ MonoBehaviour:
   levelScenes: 02000000
   numTeams: 2
   numPlayers: 4
-  scoreLimit: 1000
+  scoreLimit: 200
   timeLimit: 0
-  eggCaptureScoreAmount: 1000
+  eggCaptureScoreAmount: 200
   playerKillScoreAmount: 0
   chickenKillScoreAmount: 0
   chickenTickScoreAmount: 1

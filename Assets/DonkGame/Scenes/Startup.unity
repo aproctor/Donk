@@ -807,7 +807,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Coop de gr\xE2ce"
+  m_Text: "Coop De Gr\xE2ce"
 --- !u!222 &1584614709
 CanvasRenderer:
   m_ObjectHideFlags: 0

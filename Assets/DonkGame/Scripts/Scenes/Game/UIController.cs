@@ -41,7 +41,7 @@ public class UIController : MonoBehaviour {
 				SetupFollowCam(cameraConfig.cameraPrefabs[0], teams[0]);
 				SetupFollowCam(cameraConfig.cameraPrefabs[1], teams[1]);
 			} else if (cameraMode == Game.CameraMode.TwoByTwo) {
-				Player[] tempPlayers = new Player[4] { teams[0].players[0], teams[0].players[1], teams[1].players[0], teams[1].players[1]};
+				Player[] tempPlayers = new Player[4] { teams[0].players[1], teams[0].players[0], teams[1].players[1], teams[1].players[0]};
 				for (int i = 0; i < cameraConfig.cameraPrefabs.Length; i++) {
 					SetupFollowCam (cameraConfig.cameraPrefabs [i], tempPlayers [i]);
 				}
