@@ -6,92 +6,95 @@ using System.Collections.Generic;
 public class UIController : MonoBehaviour {
 
     [Header("Object Links")]
-	public Text countdownText;	
-	public Transform playerCameras;
+    public Text countdownText;
+    public Transform playerCameras;
     public Transform[] teamHuds;
-	public GameOverUI gameOverUI;
-	public Text[] teamScoreLabels;
-  public Image curtain;
+    public GameOverUI gameOverUI;
+    public Text[] teamScoreLabels;
+    public Image curtain;
+    public AudioSource countdownBlip;
+    public AudioSource countdownGo;
 
     [Header("Prefab Links")]
     public GameObject playerHudPrefab;
     public GameObject playerHudTeam2Prefab;
+    
 
-  void Start() {
-		this.gameOverUI.Hide();
-	}
+    void Start() {
+        this.gameOverUI.Hide();
+    }
 
     #region cameras
     public void SetupCameras(Game.CameraMode cameraMode, Team[] teams) {
 
-		CameraConfig cameraConfig = null;
-		for (int i = 0; i < Game.Config.cameras.Length; i++) {
-			if (Game.Config.cameras[i].mode == cameraMode) {
-				cameraConfig = Game.Config.cameras[i];
-				break;
-			}
-		}
+        CameraConfig cameraConfig = null;
+        for (int i = 0; i < Game.Config.cameras.Length; i++) {
+            if (Game.Config.cameras[i].mode == cameraMode) {
+                cameraConfig = Game.Config.cameras[i];
+                break;
+            }
+        }
 
-		if (cameraConfig == null) {
-			Debug.LogError("Unable to find config for camera mode <" + cameraMode.ToString() + ">");
-		} else {
-			//Spawn cameras based on mode
-			if (cameraMode == Game.CameraMode.SideBySide || cameraMode == Game.CameraMode.TwoStacked) {
-				//Add a camera to each team
-				SetupFollowCam(cameraConfig.cameraPrefabs[0], teams[0]);
-				SetupFollowCam(cameraConfig.cameraPrefabs[1], teams[1]);
-			} else if (cameraMode == Game.CameraMode.TwoByTwo) {
-				Player[] tempPlayers = new Player[4] { teams[0].players[1], teams[0].players[0], teams[1].players[1], teams[1].players[0]};
-				for (int i = 0; i < cameraConfig.cameraPrefabs.Length; i++) {
-					SetupFollowCam (cameraConfig.cameraPrefabs [i], tempPlayers [i]);
-				}
+        if (cameraConfig == null) {
+            Debug.LogError("Unable to find config for camera mode <" + cameraMode.ToString() + ">");
+        } else {
+            //Spawn cameras based on mode
+            if (cameraMode == Game.CameraMode.SideBySide || cameraMode == Game.CameraMode.TwoStacked) {
+                //Add a camera to each team
+                SetupFollowCam(cameraConfig.cameraPrefabs[0], teams[0]);
+                SetupFollowCam(cameraConfig.cameraPrefabs[1], teams[1]);
+            } else if (cameraMode == Game.CameraMode.TwoByTwo) {
+                Player[] tempPlayers = new Player[4] { teams[0].players[1], teams[0].players[0], teams[1].players[1], teams[1].players[0] };
+                for (int i = 0; i < cameraConfig.cameraPrefabs.Length; i++) {
+                    SetupFollowCam(cameraConfig.cameraPrefabs[i], tempPlayers[i]);
+                }
 
-			} else if (cameraMode == Game.CameraMode.Single) {
-				//TODO add first camera prefab to current player?
-				Debug.LogError("Unimplemented Camera Mode");
-			}
+            } else if (cameraMode == Game.CameraMode.Single) {
+                //TODO add first camera prefab to current player?
+                Debug.LogError("Unimplemented Camera Mode");
+            }
 
-			//Spawn PiP UI
-			SetupPipUI(cameraConfig.uiPrefab);
-		}
-	}
+            //Spawn PiP UI
+            SetupPipUI(cameraConfig.uiPrefab);
+        }
+    }
 
 
-	//For a multi member camera
-	private void SetupFollowCam(GameObject prefab, Team team) {
-		
-		GameObject newCamera = (GameObject)GameObject.Instantiate(prefab);
-		newCamera.transform.SetParent(team.transform);
-		FollowerCameraRig followerCamera = newCamera.GetComponent<FollowerCameraRig>();
-		followerCamera.players = new Transform[team.players.Length];
-		for (int i = 0; i < team.players.Length; i++) {
-			followerCamera.players[i] = team.players[i].transform;
-		}
-	}
+    //For a multi member camera
+    private void SetupFollowCam(GameObject prefab, Team team) {
 
-	private void SetupFollowCam(GameObject prefab, Player player) {
-		GameObject newCamera = (GameObject)GameObject.Instantiate(prefab);
-		newCamera.transform.SetParent(player.team.transform);
-		FollowerCameraRig followerCamera = newCamera.GetComponent<FollowerCameraRig>();
-		followerCamera.players = new Transform[1] { player.transform};
-	}
+        GameObject newCamera = (GameObject)GameObject.Instantiate(prefab);
+        newCamera.transform.SetParent(team.transform);
+        FollowerCameraRig followerCamera = newCamera.GetComponent<FollowerCameraRig>();
+        followerCamera.players = new Transform[team.players.Length];
+        for (int i = 0; i < team.players.Length; i++) {
+            followerCamera.players[i] = team.players[i].transform;
+        }
+    }
 
-	private void SetupPipUI(GameObject prefab) {
-		GameObject pipUI = (GameObject)GameObject.Instantiate(prefab);        
-		RectTransform rectTransform = pipUI.GetComponent<RectTransform>();
-		rectTransform.SetParent(this.playerCameras);
-		rectTransform.offsetMin = Vector2.zero;
-		rectTransform.offsetMax = Vector2.one;
+    private void SetupFollowCam(GameObject prefab, Player player) {
+        GameObject newCamera = (GameObject)GameObject.Instantiate(prefab);
+        newCamera.transform.SetParent(player.team.transform);
+        FollowerCameraRig followerCamera = newCamera.GetComponent<FollowerCameraRig>();
+        followerCamera.players = new Transform[1] { player.transform };
+    }
+
+    private void SetupPipUI(GameObject prefab) {
+        GameObject pipUI = (GameObject)GameObject.Instantiate(prefab);
+        RectTransform rectTransform = pipUI.GetComponent<RectTransform>();
+        rectTransform.SetParent(this.playerCameras);
+        rectTransform.offsetMin = Vector2.zero;
+        rectTransform.offsetMax = Vector2.one;
     }
     #endregion
 
     public void SetupPlayerHuds(Team[] teams) {
-        
+
         if (teams.Length == 2) {
             for (int i = 0; i < teams.Length; i++) {
                 Transform hudContainer = this.teamHuds[i];
                 for (int j = 0; j < teams[i].players.Length; j++) {
-                    GameObject hud = (i==0) ? (GameObject)GameObject.Instantiate(playerHudPrefab) : (GameObject)GameObject.Instantiate(playerHudTeam2Prefab);
+                    GameObject hud = (i == 0) ? (GameObject)GameObject.Instantiate(playerHudPrefab) : (GameObject)GameObject.Instantiate(playerHudTeam2Prefab);
                     RectTransform hudTransform = hud.GetComponent<RectTransform>();
                     hudTransform.SetParent(hudContainer, false);
 
@@ -108,11 +111,11 @@ public class UIController : MonoBehaviour {
         }
     }
 
-	public void SetupTeamScores(Team[] teams) {
-		for (int i = 0; i < teams.Length; i++) {
-			this.teamScoreLabels [i].color = Game.Config.colors.teams [i].colors [0];
-			this.teamScoreLabels [i].text = "0";
-		}
-	}
+    public void SetupTeamScores(Team[] teams) {
+        for (int i = 0; i < teams.Length; i++) {
+            this.teamScoreLabels[i].color = Game.Config.colors.teams[i].colors[0];
+            this.teamScoreLabels[i].text = "0";
+        }
+    }
 
 }
